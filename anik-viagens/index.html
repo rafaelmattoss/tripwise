@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Orçamento de Viagem</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li id="vizudestin">DESTINO E HOSPEDAGEM </li>
+        <li id="vizuvoo">INFORMAÇÕES DE VOO</li>
+        <li id="vizuvalores">VALORES</li>
+        <li id="vizuclientes">CLIENTES</li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="servicos-org">
+    <label for="servicos">o que o orçamento inclui?</label>
+    <select id="servicos">
+      <option value="Hospedagem">Hospedagem</option>
+      <option value="Aereo">Aereo</option>
+      <option value="hospedagem e aereo">Hospedagem + Aereo</option>
+    </select>
+
+  </div>
+
+  <div id="organizer">
+    <section id="destino">
+
+      <label for="titulo">Digite o Destino</label>
+      <input type="text" id="titulo" required>
+
+      <label for="dias">Quantos dias?</label>
+      <input type="number" id="dias">
+
+      <label for="noites">Quantas noites?</label>
+      <input type="number" id="noites">
+
+      <label for="hotel">Nome do Hotel/Hospedagem</label>
+      <input type="text" id="hotel">
+
+      <label for="novoenderecohotel">Digite o Endereço</label>
+      <input type="text" id="novoenderecohotel">
+    </section>
+    
+    <section id="dadopassageiros">
+      <h3>Dados dos Passageiros</h3>
+      <label for="qtdadultos">Quantos Adultos?</label>
+      <input type="number" id="qtdadultos">
+      <label for="qtdcriancas">Quantas crianças? </label>
+      <input type="number" id="qtdcriancas">
+      <label for="qtdbebes">Quantos bebês? (De 0 a 2 anos)</label>
+      <input type="number" id="qtdbebes">
+      <label for="qtdidosos">Quantos Idosos?</label>
+      <input type="number" id="qtdidosos">
+    </section>
+    
+    <section id="dadoshospedagem">
+      <h3>Detalhes da Hospedagem</h3>
+      <label for="descriquarto">Descrição do quarto</label>
+      <input type="text" id="descriquarto">
+      <label for="checkin">Data de Check-in</label>
+      <input type="date" id="checkin">
+      <label for="checkout">Data de Check-out</label>
+      <input type="date" id="checkout">
+    </section>
+  </div>
+
+    <div id="organizer1">
+      <section id="info-voo-ida">
+
+          <label for="aeroporto">Selecione o aeroporto do embarque</label>
+          <select id="aeroporto">
+            <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+            <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
+            <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
+            <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
+            <option value="Brasília (BSB)">Brasília (BSB)</option>
+            <option value="Rio de Janeiro - Galeão (GIG)">Rio de Janeiro - Galeão (GIG)</option>
+            <option value="Rio de Janeiro - Santos Dumont (SDU)">Rio de Janeiro - Santos Dumont (SDU)</option>
+            <option value="Belo Horizonte - Confins (CNF)">Belo Horizonte - Confins (CNF)</option>
+            <option value="Porto Alegre (POA)">Porto Alegre (POA)</option>
+            <option value="Recife (REC)">Recife (REC)</option>
+            <option value="Salvador (SSA)">Salvador (SSA)</option>
+            <option value="Fortaleza (FOR)">Fortaleza (FOR)</option>
+            <option value="Curitiba (CWB)">Curitiba (CWB)</option>
+            <option value="Manaus (MAO)">Manaus (MAO)</option>
+            <option value="Belém (BEL)">Belém (BEL)</option>
+            <option value="Florianópolis (FLN)">Florianópolis (FLN)</option>
+            <option value="Natal (NAT)">Natal (NAT)</option>
+            <option value="Maceió (MCZ)">Maceió (MCZ)</option>
+            <option value="Cuiabá (CGB)">Cuiabá (CGB)</option>
+            <option value="Goiânia (GYN)">Goiânia (GYN)</option>
+            <option value="São Luís (SLZ)">São Luís (SLZ)</option>
+            <option value="Joinville (JOI)">Joinville (JOI)</option>
+            <option value="Foz do Iguaçu (IGU)">Foz do Iguaçu (IGU)</option>
+            <option value="Aracaju (AJU)">Aracaju (AJU)</option>
+            <option value="Teresina (THE)">Teresina (THE)</option>
+            <option value="João Pessoa (JPA)">João Pessoa (JPA)</option>
+            <option value="Uberlândia (UDI)">Uberlândia (UDI)</option>
+            <option value="Vitória (VIX)">Vitória (VIX)</option>
+            <option value="Londrina (LDB)">Londrina (LDB)</option>
+            <option value="Porto Seguro (BPS)">Porto Seguro (BPS)</option>
+            <option value="Palmas (PMW)">Palmas (PMW)</option>
+            <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
+            <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+          </select>
+      
+          <label for="dataembarque">Data de embarque</label>
+          <input type="date" id="dataembarque">
+      
+          <label for="horaembarque">Hora de embarque</label>
+          <input type="time" id="horaembarque">
+      
+          <label for="classe">Selecione a classe do voo</label>
+          <select id="classe">
+              <option value="Economica">Econômica</option>
+              <option value="Executiva">Executiva</option>
+              <option value="Primeira Classe">Primeira classe</option>
+          </select>
+      
+          <label for="numerovoo">Número do voo</label>
+          <input type="number" id="numerovoo">
+      
+          <label for="ciaaereaida">Companhia aérea</label>
+          <input type="text" id="ciaaereaida">
+      
+          <label for="aeroporto-desembarque">Selecione o aeroporto de desembarque</label>
+          <select id="aeroporto-desembarque">
+            <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+            <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
+            <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
+            <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
+            <option value="Brasília (BSB)">Brasília (BSB)</option>
+            <option value="Rio de Janeiro - Galeão (GIG)">Rio de Janeiro - Galeão (GIG)</option>
+            <option value="Rio de Janeiro - Santos Dumont (SDU)">Rio de Janeiro - Santos Dumont (SDU)</option>
+            <option value="Belo Horizonte - Confins (CNF)">Belo Horizonte - Confins (CNF)</option>
+            <option value="Porto Alegre (POA)">Porto Alegre (POA)</option>
+            <option value="Recife (REC)">Recife (REC)</option>
+            <option value="Salvador (SSA)">Salvador (SSA)</option>
+            <option value="Fortaleza (FOR)">Fortaleza (FOR)</option>
+            <option value="Curitiba (CWB)">Curitiba (CWB)</option>
+            <option value="Manaus (MAO)">Manaus (MAO)</option>
+            <option value="Belém (BEL)">Belém (BEL)</option>
+            <option value="Florianópolis (FLN)">Florianópolis (FLN)</option>
+            <option value="Natal (NAT)">Natal (NAT)</option>
+            <option value="Maceió (MCZ)">Maceió (MCZ)</option>
+            <option value="Cuiabá (CGB)">Cuiabá (CGB)</option>
+            <option value="Goiânia (GYN)">Goiânia (GYN)</option>
+            <option value="São Luís (SLZ)">São Luís (SLZ)</option>
+            <option value="Joinville (JOI)">Joinville (JOI)</option>
+            <option value="Foz do Iguaçu (IGU)">Foz do Iguaçu (IGU)</option>
+            <option value="Aracaju (AJU)">Aracaju (AJU)</option>
+            <option value="Teresina (THE)">Teresina (THE)</option>
+            <option value="João Pessoa (JPA)">João Pessoa (JPA)</option>
+            <option value="Uberlândia (UDI)">Uberlândia (UDI)</option>
+            <option value="Vitória (VIX)">Vitória (VIX)</option>
+            <option value="Londrina (LDB)">Londrina (LDB)</option>
+            <option value="Porto Seguro (BPS)">Porto Seguro (BPS)</option>
+            <option value="Palmas (PMW)">Palmas (PMW)</option>
+            <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
+            <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+          </select>
+      
+          <label for="datadesembarque">Data do desembarque</label>
+          <input type="date" id="datadesembarque">
+      
+          <label for="horadesembarque">Hora de desembarque</label>
+          <input type="time" id="horadesembarque">
+      
+        </section>
+      <!-- acima informações da ida -->
+      
+      <!-- abaixo informações da volta -->
+      
+      <section id="info-voo-volta">
+        <h3>Informações do Voo Volta</h3>
+        <label for="aeroporto-embarque-volta">Selecione o aeroporto do embarque</label>
+        <select id="aeroporto-embarque-volta">
+          <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+          <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
+          <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
+          <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
+          <option value="Brasília (BSB)">Brasília (BSB)</option>
+          <option value="Rio de Janeiro - Galeão (GIG)">Rio de Janeiro - Galeão (GIG)</option>
+          <option value="Rio de Janeiro - Santos Dumont (SDU)">Rio de Janeiro - Santos Dumont (SDU)</option>
+          <option value="Belo Horizonte - Confins (CNF)">Belo Horizonte - Confins (CNF)</option>
+          <option value="Porto Alegre (POA)">Porto Alegre (POA)</option>
+          <option value="Recife (REC)">Recife (REC)</option>
+          <option value="Salvador (SSA)">Salvador (SSA)</option>
+          <option value="Fortaleza (FOR)">Fortaleza (FOR)</option>
+          <option value="Curitiba (CWB)">Curitiba (CWB)</option>
+          <option value="Manaus (MAO)">Manaus (MAO)</option>
+          <option value="Belém (BEL)">Belém (BEL)</option>
+          <option value="Florianópolis (FLN)">Florianópolis (FLN)</option>
+          <option value="Natal (NAT)">Natal (NAT)</option>
+          <option value="Maceió (MCZ)">Maceió (MCZ)</option>
+          <option value="Cuiabá (CGB)">Cuiabá (CGB)</option>
+          <option value="Goiânia (GYN)">Goiânia (GYN)</option>
+          <option value="São Luís (SLZ)">São Luís (SLZ)</option>
+          <option value="Joinville (JOI)">Joinville (JOI)</option>
+          <option value="Foz do Iguaçu (IGU)">Foz do Iguaçu (IGU)</option>
+          <option value="Aracaju (AJU)">Aracaju (AJU)</option>
+          <option value="Teresina (THE)">Teresina (THE)</option>
+          <option value="João Pessoa (JPA)">João Pessoa (JPA)</option>
+          <option value="Uberlândia (UDI)">Uberlândia (UDI)</option>
+          <option value="Vitória (VIX)">Vitória (VIX)</option>
+          <option value="Londrina (LDB)">Londrina (LDB)</option>
+          <option value="Porto Seguro (BPS)">Porto Seguro (BPS)</option>
+          <option value="Palmas (PMW)">Palmas (PMW)</option>
+          <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
+          <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+        </select>
+      
+        <label for="dataembarque-volta">Data de embarque</label>
+        <input type="date" id="dataembarque-volta">
+      
+        <label for="horaembarque-volta">Hora de embarque</label>
+        <input type="time" id="horaembarque-volta">
+      
+        <label for="classe-volta">Selecione a classe do voo</label>
+        <select id="classe-volta">
+            <option value="economica">Econômica</option>
+            <option value="executiva">Executiva</option>
+            <option value="Primeira Classe">Primeira classe</option>
+        </select>
+      
+        <label for="numerovoo-volta">Número do voo</label>
+        <input type="number" id="numerovoo-volta">
+      
+        <label for="ciaaereavolta">Companhia aérea</label>
+        <input type="text" id="ciaaereavolta">
+      
+        <label for="aeroporto-desembarque-volta">Selecione o aeroporto de desembarque</label>
+        <select id="aeroporto-desembarque-volta">
+          <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+          <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
+          <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
+          <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
+          <option value="Brasília (BSB)">Brasília (BSB)</option>
+          <option value="Rio de Janeiro - Galeão (GIG)">Rio de Janeiro - Galeão (GIG)</option>
+          <option value="Rio de Janeiro - Santos Dumont (SDU)">Rio de Janeiro - Santos Dumont (SDU)</option>
+          <option value="Belo Horizonte - Confins (CNF)">Belo Horizonte - Confins (CNF)</option>
+          <option value="Porto Alegre (POA)">Porto Alegre (POA)</option>
+          <option value="Recife (REC)">Recife (REC)</option>
+          <option value="Salvador (SSA)">Salvador (SSA)</option>
+          <option value="Fortaleza (FOR)">Fortaleza (FOR)</option>
+          <option value="Curitiba (CWB)">Curitiba (CWB)</option>
+          <option value="Manaus (MAO)">Manaus (MAO)</option>
+          <option value="Belém (BEL)">Belém (BEL)</option>
+          <option value="Florianópolis (FLN)">Florianópolis (FLN)</option>
+          <option value="Natal (NAT)">Natal (NAT)</option>
+          <option value="Maceió (MCZ)">Maceió (MCZ)</option>
+          <option value="Cuiabá (CGB)">Cuiabá (CGB)</option>
+          <option value="Goiânia (GYN)">Goiânia (GYN)</option>
+          <option value="São Luís (SLZ)">São Luís (SLZ)</option>
+          <option value="Joinville (JOI)">Joinville (JOI)</option>
+          <option value="Foz do Iguaçu (IGU)">Foz do Iguaçu (IGU)</option>
+          <option value="Aracaju (AJU)">Aracaju (AJU)</option>
+          <option value="Teresina (THE)">Teresina (THE)</option>
+          <option value="João Pessoa (JPA)">João Pessoa (JPA)</option>
+          <option value="Uberlândia (UDI)">Uberlândia (UDI)</option>
+          <option value="Vitória (VIX)">Vitória (VIX)</option>
+          <option value="Londrina (LDB)">Londrina (LDB)</option>
+          <option value="Porto Seguro (BPS)">Porto Seguro (BPS)</option>
+          <option value="Palmas (PMW)">Palmas (PMW)</option>
+          <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
+          <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+      
+        </select>
+      
+        <label for="datadesembarque-volta">Data do desembarque</label>
+        <input type="date" id="datadesembarque-volta">
+      
+        <label for="horadesembarque-volta">Hora de desembarque</label>
+        <input type="time" id="horadesembarque-volta">
+      </section>
+    </div>
+
+    <section id="valoresfinais">
+      <div>
+        <label for="valorhotel">Digite o valor total da Hospedagem</label>
+        <input type="text" id="valorhotel" placeholder="R$ 0,00">
+        <input type="hidden" id="valorhotel_real">
+
+        <label for="valorvoo">Digite o valor total do Voo</label>
+        <input type="text" id="valorvoo" placeholder="R$ 0,00">
+        <input type="hidden" id="valorvoo_real">
+      </div>
+    </section>
+  
+
+  
+
+
+  <button id="alterar">VIZUALIZAR PDF</button>
+
+  <div id="container">
+
+    <div id="imagemlogo"></div>
+
+    <header>
+      <h1 id="tituloprincipal">MACEIÓ 8 DIAS E 7 NOITES</h1>
+    </header>
+
+    <section id="resumo">
+
+      <div id="resumo-viagem">
+        <h2>RESUMO DA VIAGEM</h2>
+        <p>Reservas ainda não finalizadas</p>
+      </div>
+
+      <div id="inclusos">
+        <h2>INCLUI</h2>
+        <ul>
+          <li id="servico-hospedagem" >Hospedagem</li>
+          <li id="servico-aereo">Aéreo</li>
+          <li>serviços</li>
+        </ul>
+      </div>
+
+      <div id="info-agencia">
+        <h1 id="agencia">AGÊNCIA ANIK VIAGENS</h1>
+        <ul>
+          <li>Lucas</li>
+          <li>
+            adm@anikviagens.com.br</li>
+          <li>(16) 99700-3986</li>
+        </ul>
+      </div>
+    </section>
+
+    <div id="separar"></div>
+
+  
+    
+
+    <section id="info-hotel">
+      <div id="endereco">
+        <h1> Hotel </h1>
+        <h2 id="nomehotel"> Ritz Hotel</h2>
+        <p>Endereço: <span id="enderecohotel">rua xv de novembro, 595 - jardim das torres</span></p>
+      </div>
+
+      <div id="apart">
+        <h1>Apartamento 1</h1>
+
+        <div id="categoria1" class="categoria">
+          <div>Check-in  <br><span id="atualcheckin">26/05/2026</span></div>
+          <div>Check-out  <br><span id="atualcheckout">26/05/2026</span></div>
+          <div>Regime: Café da manhã incluso</div>
+        </div>
+        
+
+        <div id="categoria2" class="categoria">
+          <div class="adultos">Adultos: 2</div>
+          <div >Crianças: <span class="atualqtdcriancas"></span></div>
+          <div>Infantil: 0</div>
+          <div >Idosos: <span class="atualqtdidosos"></span></div>
+        </div>
+      </div>
+
+      <div id="info-quarto">
+        <H1>Descrição Do Quarto</H1>
+        <p id="atualdescri">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eveniet quis magni eius consequuntur placeat, vero accusantium corporis molestiae, fuga nulla quo, doloremque praesentium natus vel aperiam ut sint ea!</p>
+      </div>
+    </section>
+
+    <div id="separar"></div>
+
+    <section id="voo">
+
+      <h1>informações sobre o voo</h1>
+
+
+     <h2>IDA</h2>
+      <div id="vooida">
+        <div>
+          <span class="material-icons">flight</span>
+          <p>Ida</p>
+        </div>
+
+
+        <div>
+          <div class="adultos"> 2 Adultos</div>
+          <div ><span class="atualqtdcriancas"></span> Crianças</div>
+          <div ><span class="atualqtdbebes"></span> Bebes</div>
+        </div>
+
+
+        <div>
+          <span class="material-icons" id="mala">business_center</span>
+          <p>Mala de Cabine (10kg)</p>
+        </div>
+
+
+        <div> 10/05/2026</div>
+
+      </div>
+
+      <div id="datasida">
+
+        <div id="voostyle">
+          <p id="embarque-aero-ida">São Paulo (GRU)</p>
+          <p id="data-aero-ida"> 10/05/2026</p>  <p id="hora-aero-ida">as 07:00 </p>
+        </div>
+
+        <p><span class="icone-aviao-direita">flight</span></p>
+
+
+        <div id="voostyle"> 
+          <p id="desembarque-aero-ida">Maceió (GRU)</p>
+          <p id="data-desembarque-aero-ida">10/05/2026</p> <p id="hora-desembarque-ida">as 10:00 </p>
+        </div>
+
+
+        <div>
+          <p id="atualclasse">Economica</p>
+        </div>
+
+
+        <div> 
+          <p>Cia Aerea: <span id="atual-cia">LaTAM</span></p>
+          <p>Numero do Voo: <span id="atual-numero-voo">165252</span></p>
+        </div>
+
+      </div>
+
+
+      <h2>VOLTA</h2>
+      <div id="voovolta">
+
+    
+        <div>
+          <span class="material-icons">flight</span>
+          <p>volta</p>
+        </div>
+
+
+        <div>
+          <div class="adultos"> 2 Adultos</div>
+          <div ><span class="atualqtdcriancas"></span> Crianças</div>
+          <div ><span class="atualqtdbebes"></span> Bebes</div>
+        </div>
+
+
+
+        <div>
+          <span class="material-icons" id="mala">business_center</span>
+          <p>Mala de Cabine (10kg)</p>
+        </div>
+
+
+        <div> 15/05/2026</div>
+        
+      </div>
+
+      <div id="datasvolta">
+
+        <div>
+          <p id="atual-aeroporto-embarque-volta">Maceio (MZC)</p>
+          <p id="atual-data-embarque-volta"> 15/05/2026 </p> <p id="atual-hora-embarque-volta">as 07:00 </p>
+        </div>
+
+        <p><span class="icone-aviao-esquerda">flight</span></p>
+
+
+        <div> 
+          <p id="atual-aeroporto-desembarque-volta">São Paulo (GRU)</p>
+          <p id="atual-data-desembarque-volta">10/05/2026</p> <p id="atual-hora-desembarque-volta">as 10:00 </p>
+        </div>
+
+
+        <div>
+          <p id="atual-classe-volta">Economica</p>
+        </div>
+
+
+        <div> 
+          <p>Cia Aerea: <span id="atual-cia-volta">LaTAM</span></p>
+          <p>Numero do Voo: <span id="atual-numero-voo-volta">165252</span></p>
+        </div>
+
+      </div>
+
+
+    </section>
+
+    <div id="separar"></div>
+
+    <section id="orcamento-total">
+
+      <div id="pagamentos">
+        <h1>Formas de pagamento</h1>
+        <ul>
+          <li>Cartão de Crédito (18x com juros)</li>
+          <li>PIX</li>
+          <li>Cartão de Débito</li>
+        </ul>
+      </div>
+      
+      <div id="valores">
+        <h2 id="orcamento">Orçamento Total</h2>
+
+        <div class="organizarvalores">
+          <div>Hospedagem:</div>
+          <div id="atualvalorhospedagem">7.000,00 R$</div>
+        </div>
+
+
+        <div class="organizarvalores">
+          <div>Aereo:</div>
+          <div id="atualvalorvoo">7.000,00 R$</div>
+        </div>
+
+
+        <div class="organizarvalores">
+          <div>TOTAL:</div>
+          <div id="atualtotal">14.000.00 R$</div>
+        </div>
+      </div>
+
+      
+      
+
+  </section>
+  
+
+    <section id="info-adicionais">
+
+      <p>Politica de Cancelamento</p>
+      <p> Anik Viagens informa que todas as reservas são definitivas e não podem ser canceladas após a confirmação. Recomendamos que os clientes estejam cientes dessa política antes de finalizar sua reserva. <br> Caso tenha dúvidas, entre em contato pelo telefone (16) 99700-3986 ou pelo e-mail: 
+        adm@anikviagens.com.br</p>
+      
+
+    </section>
+  </div>
+
+  <button id="botao-pdf">Baixar PDF</button>
+
+  <script src="index.js" ></script>
+</body>
+</html>
+
