@@ -121,9 +121,9 @@ $("#alterar").click(() => {
         {id:"horadesembarque-volta", nome: "Hora de Desembarque (volta)"},
           
     ]
-
+    
     let camposVazios = []; // Alterei para camposVazios
-
+    
     camposObrigatorios.forEach(campo => {
     let valor = $("#" + campo.id).val().trim();
     if (!valor) {
@@ -133,9 +133,9 @@ $("#alterar").click(() => {
         $("#" + campo.id).css("border", ""); // Remove o destaque se estiver preenchido
     }
     });
-
+    
     if (camposVazios.length > 0) { // Mudei "erros" para "camposVazios"
-    alert("Preencha os seguintes campos obrigatórios:\n" + camposVazios.join("\n"));
+    alert("Preencha os seguintes campos obrigatórios:\n \n" + camposVazios.join("\n"));
     return;
     }
 
@@ -172,10 +172,9 @@ $("#alterar").click(() => {
     let horadesembarquevolta = $("#horadesembarque-volta").val();
     let datadesembarquevolta = $("#datadesembarque-volta").val();
     let numerobebes = $("#qtdbebes").val();
-
     let valorhospedagem = $("#valorhotel").val();
     let valorvoo = $("#valorvoo").val();
-    
+
     
    
     let tituloatual = $("#tituloprincipal");
@@ -235,9 +234,12 @@ $("#alterar").click(() => {
     atualclassevolta.text(classevolta)
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
+
+
+    if(numerobebes > 0){
+        $(".atualqtdbebes").text(numerobebes + " Bebes")
+    }
     
-    
-   
     
 
     if (checkin) {
