@@ -35,6 +35,7 @@
 
   <div id="organizer">
     <section id="destino">
+      <h3> Informações sobre o Destino</h3> <br> <br>
 
       <label for="titulo">Digite o Destino</label>
       <input type="text" id="titulo" required>
@@ -45,38 +46,48 @@
       <label for="noites">Quantas noites?</label>
       <input type="number" id="noites">
 
-      <label for="hotel">Nome do Hotel/Hospedagem</label>
-      <input type="text" id="hotel">
-
-      <label for="novoenderecohotel">Digite o Endereço</label>
-      <input type="text" id="novoenderecohotel">
     </section>
     
     <section id="dadopassageiros">
       <h3>Dados dos Passageiros</h3>
+
       <label for="qtdadultos">Quantos Adultos?</label>
       <input type="number" id="qtdadultos">
+
       <label for="qtdcriancas">Quantas crianças? </label>
       <input type="number" id="qtdcriancas">
+
       <label for="qtdbebes">Quantos bebês? (De 0 a 2 anos)</label>
       <input type="number" id="qtdbebes">
+
       <label for="qtdidosos">Quantos Idosos?</label>
       <input type="number" id="qtdidosos">
     </section>
     
     <section id="dadoshospedagem">
       <h3>Detalhes da Hospedagem</h3>
+
       <label for="descriquarto">Descrição do quarto</label>
       <input type="text" id="descriquarto">
+
       <label for="checkin">Data de Check-in</label>
       <input type="date" id="checkin">
+
       <label for="checkout">Data de Check-out</label>
       <input type="date" id="checkout">
+
+      <label for="hotel">Nome do Hotel/Hospedagem</label>
+      <input type="text" id="hotel">
+
+      <label for="novoenderecohotel">Digite o Endereço</label>
+      <input type="text" id="novoenderecohotel">
     </section>
   </div>
 
     <div id="organizer1">
       <section id="info-voo-ida">
+
+        <h3> Informações de Embarque (ida)</h3> <br> 
 
           <label for="aeroporto">Selecione o aeroporto do embarque</label>
           <select id="aeroporto">
@@ -132,7 +143,9 @@
           <input type="number" id="numerovoo">
       
           <label for="ciaaereaida">Companhia aérea</label>
-          <input type="text" id="ciaaereaida">
+          <input type="text" id="ciaaereaida"> <br><br>
+
+          <h3> Informações de Desmbarque (ida)</h3> <br> 
       
           <label for="aeroporto-desembarque">Selecione o aeroporto de desembarque</label>
           <select id="aeroporto-desembarque">
@@ -183,7 +196,7 @@
       <!-- abaixo informações da volta -->
       
       <section id="info-voo-volta">
-        <h3>Informações do Voo Volta</h3>
+        <h3>Informações do Embarque (Volta)</h3>
         <label for="aeroporto-embarque-volta">Selecione o aeroporto do embarque</label>
         <select id="aeroporto-embarque-volta">
           <option value="Escolha um aeroporto">Escolha um aeroporto</option>
@@ -393,7 +406,7 @@
         <div>
           <div class="adultos"> 2 Adultos</div>
           <div ><span class="atualqtdcriancas"></span> Crianças</div>
-          <div ><span class="atualqtdbebes"></span> Bebes</div>
+          <span class="atualqtdbebes"></span> 
         </div>
 
 
@@ -449,7 +462,7 @@
         <div>
           <div class="adultos"> 2 Adultos</div>
           <div ><span class="atualqtdcriancas"></span> Crianças</div>
-          <div ><span class="atualqtdbebes"></span> Bebes</div>
+          <span class="atualqtdbebes"></span> 
         </div>
 
 

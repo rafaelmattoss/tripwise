@@ -99,7 +99,27 @@ $("#alterar").click(() => {
         {id:"titulo", nome: "Destino"},
         {id:"hotel", nome:"Nome do Hotel"},
         {id:"novoenderecohotel", nome:"Endereço do Hotel"},
-
+        {id:"qtdadultos", nome: "Quantidade de Adultos"},
+        {id:"checkin", nome: "Data Checkin"},
+        {id:"checkout", nome: "Data Checkout"}, 
+        {id:"aeroporto", nome: "Aeroporto (ida)"},
+        {id:"dataembarque", nome: "Data de Embarque(ida)"},
+        {id:"horaembarque", nome: "Hora de Embarque (ida)"},
+        {id:"classe", nome: "Classe (ida)"},
+        {id:"numerovoo", nome: "Numero do Voo (ida)"},
+        {id:"aeroporto-desembarque", nome: "Aeroporto Desembaque (ida)"}, 
+        {id:"datadesembarque", nome: "Data de Desembarque (ida)"},
+        {id:"horadesembarque", nome: "Hora de desembaque (ida)"},
+        {id:"aeroporto-embarque-volta", nome: "Aeroporto de Embarque (Volta)"},
+        {id:"dataembarque-volta", nome: "Data de Embarque (Volta)"},
+        {id:"horaembarque-volta", nome: "Hora de Embarque (volta)"},
+        {id:"classe-volta", nome: "Classe (volta)"},
+        {id:"numerovoo-volta", nome: "Numero do Voo (volta)"},
+        {id:"ciaaereavolta", nome: "Companhia Aerea (volta)"},
+        {id:"aeroporto-desembarque-volta", nome: "Aeroporto de Desembarque (Volta)"},
+        {id:"datadesembarque-volta", nome: "Data de Desembarque (Volta)"},
+        {id:"horadesembarque-volta", nome: "Hora de Desembarque (volta)"},
+          
     ]
 
     let camposVazios = []; // Alterei para camposVazios
@@ -118,6 +138,8 @@ $("#alterar").click(() => {
     alert("Preencha os seguintes campos obrigatórios:\n" + camposVazios.join("\n"));
     return;
     }
+
+    
 
 
     let titulo = $("#titulo").val();
@@ -150,6 +172,7 @@ $("#alterar").click(() => {
     let horadesembarquevolta = $("#horadesembarque-volta").val();
     let datadesembarquevolta = $("#datadesembarque-volta").val();
     let numerobebes = $("#qtdbebes").val();
+
     let valorhospedagem = $("#valorhotel").val();
     let valorvoo = $("#valorvoo").val();
     
@@ -182,9 +205,9 @@ $("#alterar").click(() => {
     let atualciavolta = $("#atual-cia-volta")
     let atualnumerovoovolta = $("#atual-numero-voo-volta")
     let atualclassevolta = $("#atual-classe-volta")
-    let atualqtdbebes = $(".atualqtdbebes")
     let atualvalorhospedagem = $("#atualvalorhospedagem")
     let atualvalorvoo = $("#atualvalorvoo")
+    
     
 
 
@@ -210,12 +233,12 @@ $("#alterar").click(() => {
     atualciavolta.text(ciavolta)
     atualnumerovoovolta.text(numerovoovolta)
     atualclassevolta.text(classevolta)
-    atualqtdbebes.text(numerobebes)
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
     
     
-
+   
+    
 
     if (checkin) {
         let data = new Date(checkin + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
@@ -272,6 +295,7 @@ $("#alterar").click(() => {
         atualdatadesembarquevolta.text(dataFormatada);
     } 
 
+    
 
     
 
