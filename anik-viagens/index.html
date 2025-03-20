@@ -7,6 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=connecting_airports" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   
 </head>
@@ -405,7 +406,7 @@
 
         <div>
           <div class="adultos"> 2 Adultos</div>
-          <div ><span class="atualqtdcriancas"></span> Crianças</div>
+          <span class="atualqtdcriancas"></span> 
           <span class="atualqtdbebes"></span> 
         </div>
 
@@ -427,7 +428,21 @@
           <p id="data-aero-ida"> 10/05/2026</p>  <p id="hora-aero-ida">as 07:00 </p>
         </div>
 
-        <p><span class="icone-aviao-direita">flight</span></p>
+       <p><span class="icone-aviao-direita" >flight</span></p>
+
+        <div id="conexao">
+          <p><span class="material-symbols-outlined">
+            connecting_airports
+            </span></p>
+          <p>Rio de Janeiro (GRU)</p>
+          <p id="data-aero-conexao-ida"> 10/05/2026</p>  
+          <p id="hora-aero-conexao-ida">as 07:00 </p>
+          <p id="numero-aero-conexao-ida">numero voo: 16554</p>
+
+
+        </div>
+
+
 
 
         <div id="voostyle"> 
@@ -436,14 +451,11 @@
         </div>
 
 
-        <div>
-          <p id="atualclasse">Economica</p>
-        </div>
-
+       
 
         <div> 
+          <p id="atualclasse">Economica</p>
           <p>Cia Aerea: <span id="atual-cia">LaTAM</span></p>
-          <p>Numero do Voo: <span id="atual-numero-voo">165252</span></p>
         </div>
 
       </div>
@@ -461,7 +473,7 @@
 
         <div>
           <div class="adultos"> 2 Adultos</div>
-          <div ><span class="atualqtdcriancas"></span> Crianças</div>
+          <span class="atualqtdcriancas"></span> 
           <span class="atualqtdbebes"></span> 
         </div>
 

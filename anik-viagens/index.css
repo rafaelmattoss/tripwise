@@ -109,6 +109,17 @@
 
   }
 
+  #conexao{
+    align-items: center;
+    text-align: center;
+  }
+  
+
+  #conexao > p{
+    font-size: 12px;
+    
+  }
+
   #agencia {
     font-size: 18px;
     border-left: 4px solid  rgb(255, 179, 0);

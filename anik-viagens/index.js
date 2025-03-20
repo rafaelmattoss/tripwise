@@ -181,7 +181,6 @@ $("#alterar").click(() => {
     let hotel = $("#nomehotel");
     let atualenderecohotel = $("#enderecohotel");
     let atualqtdadultos = $(".adultos");
-    let atualcriancas = $(".atualqtdcriancas")
     let atualidosos = $(".atualqtdidosos")
     let atualdescri = $("#atualdescri")
     let atualcheckin = $("#atualcheckin")
@@ -206,16 +205,12 @@ $("#alterar").click(() => {
     let atualclassevolta = $("#atual-classe-volta")
     let atualvalorhospedagem = $("#atualvalorhospedagem")
     let atualvalorvoo = $("#atualvalorvoo")
-    
-    
-
 
 
     tituloatual.text(titulo + ' ' + dias + ' dias ' + 'e ' + noites + ' noites');
     hotel.text(nomehotel);
     atualenderecohotel.text(novoenderecohotel);
     atualqtdadultos.text(qtdadultos + ' Adultos')
-    atualcriancas.text(qtdcriancas )
     atualidosos.text(qtdidosos)
     atualdescri.text(drescriquarto)
     atualaeroporto.text(aeroembaqueida)
@@ -239,6 +234,11 @@ $("#alterar").click(() => {
     if(numerobebes > 0){
         $(".atualqtdbebes").text(numerobebes + " Bebes")
     }
+
+    if(qtdcriancas > 0){
+        $(".atualqtdcriancas").text(qtdcriancas + " Crianças")
+    }
+
     
     
 
