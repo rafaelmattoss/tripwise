@@ -1,4 +1,4 @@
-$("#organizer, #organizer1").hide();
+$("#organizer, #organizer1, #dados-conect").hide();
 
 $("#vizudestin").click(()=>{
     $("#organizer").fadeToggle();
@@ -7,6 +7,11 @@ $("#vizudestin").click(()=>{
 $("#vizuvoo").click(()=>{
     $("#organizer1").fadeToggle();
 });
+
+$("#add-conection").click(()=>{
+    $("#dados-conect").fadeToggle();
+});
+
 
 
 
