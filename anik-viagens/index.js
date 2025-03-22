@@ -1,15 +1,36 @@
-$("#organizer, #organizer1, #dados-conect").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais").hide();
+
+$("#vizuorcar").click(()=>{
+    $("#orcar").fadeToggle();
+});
+
 
 $("#vizudestin").click(()=>{
+    $("#valoresfinais").hide();
+    $("#organizer1").hide();
     $("#organizer").fadeToggle();
 });
 
 $("#vizuvoo").click(()=>{
+    $("#organizer").hide();
+    $("#valoresfinais").hide();
     $("#organizer1").fadeToggle();
 });
 
+$("#vizuvalores").click(()=>{
+    $("#organizer").hide();
+    $("#organizer1").hide();
+    $("#valoresfinais").fadeToggle();
+});
+
+
+
 $("#add-conection").click(()=>{
     $("#dados-conect").fadeToggle();
+});
+
+$("#add-conection-volta").click(()=>{
+    $("#dados-conect-volta").fadeToggle();
 });
 
 
@@ -245,8 +266,6 @@ $("#alterar").click(() => {
     }
 
     
-    
-
     if (checkin) {
         let data = new Date(checkin + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
         let dia = String(data.getDate()).padStart(2, "0");

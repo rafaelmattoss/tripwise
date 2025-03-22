@@ -16,27 +16,33 @@
   <header>
     <nav>
       <ul>
-        <li id="vizudestin">DESTINO E HOSPEDAGEM </li>
-        <li id="vizuvoo">INFORMAÇÕES DE VOO</li>
-        <li id="vizuvalores">VALORES</li>
+        <li id="vizuorcar">ORÇAMENTOS </li>
         <li id="vizuclientes">CLIENTES</li>
       </ul>
     </nav>
+
+    <ul id="orcar">
+      <li id="vizudestin">Destino e Hospedagem</li>
+      <li id="vizuvoo">Aereo</li>
+      <li id="vizuvalores">Valores</li>
+    </ul>
   </header>
 
-  <div id="servicos-org">
-    <label for="servicos">o que o orçamento inclui?</label>
-    <select id="servicos">
-      <option value="Hospedagem">Hospedagem</option>
-      <option value="Aereo">Aereo</option>
-      <option value="hospedagem e aereo">Hospedagem + Aereo</option>
-    </select>
+  
 
-  </div>
 
   <div id="organizer">
+
     <section id="destino">
-      <h3> Informações sobre o Destino</h3> <br> <br>
+
+      <label for="servicos">o que o orçamento inclui?</label>
+        <select id="servicos">
+          <option value="Hospedagem">Hospedagem</option>
+          <option value="Aereo">Aereo</option>
+          <option value="hospedagem e aereo">Hospedagem + Aereo</option>
+        </select>
+
+      <h3> Informações sobre o Destino</h3> <br> 
 
       <label for="titulo">Digite o Destino</label>
       <input type="text" id="titulo" required>
@@ -264,6 +270,15 @@
         <label for="ciaaereavolta">Companhia aérea</label>
         <input type="text" id="ciaaereavolta"> <br><br> 
 
+        <button id="add-conection-volta"> + </button>
+        
+        <form action="" id="dados-conect-volta">
+          <input type="text" placeholder="Digite o Aeroporto da conexão">
+          <input type="date" placeholder="Digite a Data da conexão">
+          <input type="datetime" placeholder="Digite o horario de embarque da conexão">
+          <input type="number" placeholder="Digite o numero do voo da conexão">
+        </form>
+
 
         <h3> Informações de Desmbarque (Volta)</h3> <br> 
       
@@ -351,7 +366,6 @@
         <ul>
           <li id="servico-hospedagem" >Hospedagem</li>
           <li id="servico-aereo">Aéreo</li>
-          <li>serviços</li>
         </ul>
       </div>
 

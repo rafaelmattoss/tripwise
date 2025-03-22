@@ -270,6 +270,30 @@
     margin-bottom: 80px;
   }
 
+  /*SEÇÃO ORÇAR*/
+
+  #orcar {
+    width: 100%; /* Ocupa 100% da largura da tela */
+    height: 50px; /* Altura fixa da barra */
+    background-color: #f7d200; /* Cor de fundo */
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Espaçamento uniforme entre os itens */
+    text-align: center;
+}
+
+#orcar > li {
+    flex: 1; /* Faz com que cada item ocupe o mesmo espaço */
+    text-align: center;
+    padding: 10px 0;
+}
+
+#orcar > li:hover {
+    background-color: #f4f753;
+    cursor: pointer;
+}
+
   /* Seção de Voo */
 
   #voo > h1 {
@@ -515,7 +539,7 @@ input:focus {
     outline: none;
 }
 
-#add-conection{
+#add-conection, #add-conection-volta{
  width: 40px;
  height: 40px;
  background-color: #2791f3;
@@ -527,13 +551,15 @@ input:focus {
  font-size: 20px;
  border: none;
  margin-bottom: 20px;
+ margin-top: -50px;
 }
 
-#dados-conect{
+#dados-conect,#dados-conect-volta {
   background-color: #f4f753a1;
   border-radius: 20px;
   padding: 10px;
   align-items: center;
+  margin-bottom: 20px;
 }
 #dados-conect > input{
   margin-bottom: 20px;
@@ -545,7 +571,7 @@ input:focus {
   
 }
 /* Estilização do container */
-#destino, #dadopassageiros,#dadoshospedagem,#info-voo-ida,#info-voo-volta, #valoresfinais, #servicos-org{
+#destino, #dadopassageiros,#dadoshospedagem,#info-voo-ida,#info-voo-volta, #valoresfinais{
     max-width: 500px;
     margin: 50px auto;
     border: 3px solid rgb(255, 153, 0);
@@ -557,9 +583,12 @@ input:focus {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+
+
 #organizer, #organizer1{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+
 }
 
 /* Estilização dos rótulos */
