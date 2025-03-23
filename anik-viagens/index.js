@@ -85,6 +85,22 @@ $(document).ready(function () {
             $("#servico-hospedagem, #servico-aereo").show();
         }
     });
+
+    
+      sincronizarDatas("#checkin", "#checkout");
+      sincronizarDatas("#dataembarque", "#datadesembarque");
+      sincronizarDatas("dataembarque-volta", "datadesembarque-volta" )
+      
+      function sincronizarDatas(sourceSelector, targetSelector) {
+        $(sourceSelector).on("change", function() {
+          let sourceDate = $(this).val();
+          let $target = $(targetSelector);
+          $target.attr("min", sourceDate);
+          if ($target.val() < sourceDate) {
+            $target.val(sourceDate);
+          }
+        });
+      }
 });
 
 
@@ -121,6 +137,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
+    
     let camposObrigatorios = [
         {id:"titulo", nome: "Destino"},
         {id:"hotel", nome:"Nome do Hotel"},
@@ -165,8 +182,6 @@ $("#alterar").click(() => {
     return;
     }
 
-    
-
 
     let titulo = $("#titulo").val();
     let dias = $("#dias").val();
@@ -203,7 +218,7 @@ $("#alterar").click(() => {
 
     
    
-    let tituloatual = $("#tituloprincipal");
+    let tituloatual = $("#tituloprincipal").text(titulo + ' ' + dias + ' dias ' + 'e ' + noites + ' noites');
     let hotel = $("#nomehotel");
     let atualenderecohotel = $("#enderecohotel");
     let atualqtdadultos = $(".adultos");
