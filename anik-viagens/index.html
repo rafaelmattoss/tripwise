@@ -33,6 +33,12 @@
 
   <div id="organizer">
 
+    <section>
+      <div>
+        <label for=""></label>
+      </div>
+    </section>
+
     <section id="destino">
 
       <label for="servicos">o que o orçamento inclui?</label>
@@ -131,6 +137,9 @@
             <option value="Palmas (PMW)">Palmas (PMW)</option>
             <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
             <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+            <option value="Macapá (MCP)">Macapá (MCP)</option>
+          <option value="Porto Velho (PVH)">Porto Velho (PVH)</option>
+          <option value="Boa Vista (BVB)">Boa Vista (BVB)</option>
           </select>
       
           <label for="dataembarque">Data de embarque</label>
@@ -155,10 +164,12 @@
           <button id="add-conection"> + </button>
         
           <form action="" id="dados-conect">
-            <input type="text" placeholder="Digite o Aeroporto da conexão">
-            <input type="date" placeholder="Digite a Data da conexão">
-            <input type="datetime" placeholder="Digite o horario de embarque da conexão">
-            <input type="number" placeholder="Digite o numero do voo da conexão">
+            <input type="text" placeholder="Digite o Aeroporto da conexão" id="aero-conect">
+            <input type="date" placeholder="Digite a Data da conexão" id="data-conect">
+            <input type="datetime" placeholder="Digite o horario de embarque da conexão" id="hora-conect">
+            <input type="number" placeholder="Digite o numero do voo da conexão" id="number-conect">
+
+            <button id="adicionarconexao">Adicionar Conexão</button>
           </form>
 
 
@@ -199,6 +210,9 @@
             <option value="Palmas (PMW)">Palmas (PMW)</option>
             <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
             <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+            <option value="Macapá (MCP)">Macapá (MCP)</option>
+          <option value="Porto Velho (PVH)">Porto Velho (PVH)</option>
+          <option value="Boa Vista (BVB)">Boa Vista (BVB)</option>
           </select>
       
           <label for="datadesembarque">Data do desembarque</label>
@@ -249,6 +263,9 @@
           <option value="Palmas (PMW)">Palmas (PMW)</option>
           <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
           <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+          <option value="Macapá (MCP)">Macapá (MCP)</option>
+          <option value="Porto Velho (PVH)">Porto Velho (PVH)</option>
+          <option value="Boa Vista (BVB)">Boa Vista (BVB)</option>
         </select>
       
         <label for="dataembarque-volta">Data de embarque</label>
@@ -277,6 +294,8 @@
           <input type="date" placeholder="Digite a Data da conexão">
           <input type="datetime" placeholder="Digite o horario de embarque da conexão">
           <input type="number" placeholder="Digite o numero do voo da conexão">
+
+          <button id="adicionarconexao-volta">Adicionar Conexão</button>
         </form>
 
 
@@ -317,6 +336,9 @@
           <option value="Palmas (PMW)">Palmas (PMW)</option>
           <option value="Rio Branco (RBR)">Rio Branco (RBR)</option>
           <option value="Campo Grande (CGR)">Campo Grande (CGR)</option>
+          <option value="Macapá (MCP)">Macapá (MCP)</option>
+          <option value="Porto Velho (PVH)">Porto Velho (PVH)</option>
+          <option value="Boa Vista (BVB)">Boa Vista (BVB)</option>
       
         </select>
       
@@ -462,7 +484,7 @@
           <p><span class="material-symbols-outlined">
             connecting_airports
             </span></p>
-          <p>Rio de Janeiro (GRU)</p>
+          <p id="aeroporto-conect">Rio de Janeiro (GRU)</p>
           <p id="data-aero-conexao-ida"> 10/05/2026</p>  
           <p id="hora-aero-conexao-ida">as 07:00 </p>
           <p id="numero-aero-conexao-ida">numero voo: 16554</p>

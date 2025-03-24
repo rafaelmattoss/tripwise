@@ -27,6 +27,7 @@ $("#vizuvalores").click(()=>{
 
 $("#add-conection").click(()=>{
     $("#dados-conect").fadeToggle();
+
 });
 
 $("#add-conection-volta").click(()=>{
@@ -134,6 +135,27 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
     });
 });
 
+$("#adicionarconexao").click(function(event){
+    
+    event.preventDefault(); 
+
+   $("#aeroporto-conect").text($("#aero-conect").val())
+   $("#data-aero-conexao-ida").text($("#data-conect").val())
+   $("#hora-aero-conexao-ida").text($("#hora-conect").val())
+   $("#numero-aero-conexao-ida").text("Numero Voo: " + $("#number-conect").val())
+
+   if ( $("#data-conect").val()) {
+    let data = new Date( $("#data-conect").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
+    let dia = String(data.getDate()).padStart(2, "0");
+    let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
+    let ano = data.getFullYear();
+    let dataFormatada = `${dia}/${mes}/${ano}`;
+
+    $("#data-aero-conexao-ida").text(dataFormatada);
+} 
+
+})
+
 
 $("#alterar").click(() => {
 
@@ -218,7 +240,7 @@ $("#alterar").click(() => {
 
     
    
-    let tituloatual = $("#tituloprincipal").text(titulo + ' ' + dias + ' dias ' + 'e ' + noites + ' noites');
+    let tituloatual = $("#tituloprincipal");
     let hotel = $("#nomehotel");
     let atualenderecohotel = $("#enderecohotel");
     let atualqtdadultos = $(".adultos");
@@ -257,7 +279,7 @@ $("#alterar").click(() => {
     atualaeroporto.text(aeroembaqueida)
     atualhoraida.text(horaembarqueida)
     atualclasse.text(classeida)
-    atualnumerovoo.text(numerovoo)
+    atualnumerovoo.text("Numero do Voo: " + numerovoo)
     atualcia.text(ciaida)
     atualaeroportodesembarque.text(aeroportodesembaqueida)
     atualhoradesembarque.text(horadesembarqueida)
@@ -266,7 +288,7 @@ $("#alterar").click(() => {
     atualaeroportodesembarquevolta.text(aeroportodesembaquevolta)
     atualhoradesembarquevolta.text(horadesembarquevolta)
     atualciavolta.text(ciavolta)
-    atualnumerovoovolta.text(numerovoovolta)
+    atualnumerovoovolta.text("Numero do Voo: " + numerovoovolta)
     atualclassevolta.text(classevolta)
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
@@ -335,6 +357,8 @@ $("#alterar").click(() => {
         let dataFormatada = `${dia}/${mes}/${ano}`;
         atualdatadesembarquevolta.text(dataFormatada);
     } 
+
+
 
     
 
