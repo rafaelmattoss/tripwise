@@ -135,26 +135,9 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
     });
 });
 
-$("#adicionarconexao").click(function(event){
-    
-    event.preventDefault(); 
 
-   $("#aeroporto-conect").text($("#aero-conect").val())
-   $("#data-aero-conexao-ida").text($("#data-conect").val())
-   $("#hora-aero-conexao-ida").text($("#hora-conect").val())
-   $("#numero-aero-conexao-ida").text("Numero Voo: " + $("#number-conect").val())
 
-   if ( $("#data-conect").val()) {
-    let data = new Date( $("#data-conect").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-    let dia = String(data.getDate()).padStart(2, "0");
-    let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-    let ano = data.getFullYear();
-    let dataFormatada = `${dia}/${mes}/${ano}`;
 
-    $("#data-aero-conexao-ida").text(dataFormatada);
-} 
-
-})
 
 
 $("#alterar").click(() => {
@@ -293,6 +276,38 @@ $("#alterar").click(() => {
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
 
+    $("#aeroporto-conect").text($("#aero-conect").val())
+    $("#data-aero-conexao-ida").text($("#data-conect").val())
+    $("#hora-aero-conexao-ida").text($("#hora-conect").val())
+    $("#numero-aero-conexao-ida").text("Numero Voo: " + $("#number-conect").val())
+    $("#aero-conect-volta").text($("#aeroporto-conect-volta").val())
+    $("#data-conexao-volta").text($("#data-aero-conexao-volta").val())
+    $("#hora-conexao-volta").text($("#hora-aero-conexao-volta").val())
+    $("#numero-aero-conexao-volta").text("Numero Voo: " + $("#number-conect-volta").val())
+
+        
+    if ( $("#data-conect").val()) {
+        let data = new Date( $("#data-conect").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
+        let dia = String(data.getDate()).padStart(2, "0");
+        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
+        let ano = data.getFullYear();
+        let dataFormatada = `${dia}/${mes}/${ano}`;
+            
+        $("#data-aero-conexao-ida").text(dataFormatada);
+    } 
+    
+    if ( $("#data-aero-conexao-volta").val()) {
+        let data = new Date( $("#data-aero-conexao-volta").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
+        let dia = String(data.getDate()).padStart(2, "0");
+        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
+        let ano = data.getFullYear();
+        let dataFormatada = `${dia}/${mes}/${ano}`;
+            
+        $("#data-conexao-volta").text(dataFormatada);
+    } 
+
+    
+
 
     if(numerobebes > 0){
         $(".atualqtdbebes").text(numerobebes + " Bebes")
@@ -360,11 +375,49 @@ $("#alterar").click(() => {
 
 
 
+    function adicionarConexao(){
+        $("#adicionarconexao").click(function(event){
     
-
-    
-
-  
+            event.preventDefault(); 
+        
+           $("#aeroporto-conect").text($("#aero-conect").val())
+           $("#data-aero-conexao-ida").text($("#data-conect").val())
+           $("#hora-aero-conexao-ida").text($("#hora-conect").val())
+           $("#numero-aero-conexao-ida").text("Numero Voo: " + $("#number-conect").val())
+        
+           if ( $("#data-conect").val()) {
+            let data = new Date( $("#data-conect").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
+            let dia = String(data.getDate()).padStart(2, "0");
+            let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
+            let ano = data.getFullYear();
+            let dataFormatada = `${dia}/${mes}/${ano}`;
+        
+            $("#data-aero-conexao-ida").text(dataFormatada);
+        } 
+        
+        })
+        
+        $("#adicionarconexao-volta").click(function(event){
+            
+            event.preventDefault(); 
+        
+           $("#aero-conect-volta").text($("#aeroporto-conect-volta").val())
+           $("#data-conexao-volta").text($("#data-aero-conexao-volta").val())
+           $("#hora-conexao-volta").text($("#hora-aero-conexao-volta").val())
+           $("#numero-aero-conexao-volta").text("Numero Voo: " + $("#number-conect-volta").val())
+        
+           if ( $("#data-aero-conexao-volta").val()) {
+            let data = new Date( $("#data-aero-conexao-volta").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
+            let dia = String(data.getDate()).padStart(2, "0");
+            let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
+            let ano = data.getFullYear();
+            let dataFormatada = `${dia}/${mes}/${ano}`;
+        
+            $("#data-conexao-volta").text(dataFormatada);
+        } 
+        
+        })
+    }
 
 
 
