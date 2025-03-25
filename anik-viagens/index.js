@@ -221,6 +221,11 @@ $("#alterar").click(() => {
     let valorhospedagem = $("#valorhotel").val();
     let valorvoo = $("#valorvoo").val();
 
+    let aeroportovolta = $("#aero-conect").val().trim();
+    let datavolta = $("#data-conect").val().trim();
+    let horavolta = $("#hora-conect").val().trim();
+    let numerovolta = $("#number-conect").val().trim();
+
     
    
     let tituloatual = $("#tituloprincipal");
@@ -276,14 +281,15 @@ $("#alterar").click(() => {
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
 
-    $("#aeroporto-conect").text($("#aero-conect").val())
-    $("#data-aero-conexao-ida").text($("#data-conect").val())
-    $("#hora-aero-conexao-ida").text($("#hora-conect").val())
-    $("#numero-aero-conexao-ida").text("Numero Voo: " + $("#number-conect").val())
-    $("#aero-conect-volta").text($("#aeroporto-conect-volta").val())
-    $("#data-conexao-volta").text($("#data-aero-conexao-volta").val())
-    $("#hora-conexao-volta").text($("#hora-aero-conexao-volta").val())
-    $("#numero-aero-conexao-volta").text("Numero Voo: " + $("#number-conect-volta").val())
+    if (!aeroportovolta && !datavolta && !horavolta && !numerovolta) {
+        $("#conexao-volta").hide(); // Esconde a div se nenhum campo for preenchido
+        return;
+    } else {
+        $("#aeroporto-conect").text(aeroportovolta);
+        $("#data-aero-conexao-ida").text(datavolta);
+        $("#hora-aero-conexao-ida").text(horavolta);
+        $("#numero-aero-conexao-ida").text("Numero Voo: " + numerovolta); 
+    }
 
         
     if ( $("#data-conect").val()) {
