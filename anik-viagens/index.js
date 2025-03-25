@@ -221,10 +221,15 @@ $("#alterar").click(() => {
     let valorhospedagem = $("#valorhotel").val();
     let valorvoo = $("#valorvoo").val();
 
-    let aeroportovolta = $("#aero-conect").val().trim();
-    let datavolta = $("#data-conect").val().trim();
-    let horavolta = $("#hora-conect").val().trim();
-    let numerovolta = $("#number-conect").val().trim();
+    let aeroportoconectida = $("#aero-conect").val().trim();
+    let dataconectida = $("#data-conect").val().trim();
+    let horaconectida = $("#hora-conect").val().trim();
+    let numeroconectida = $("#number-conect").val().trim();
+
+    let aeroportovolta = $("#aeroporto-conect-volta").val().trim();
+    let datavolta = $("#data-aero-conexao-volta").val().trim();
+    let horavolta = $("#hora-aero-conexao-volta").val().trim();
+    let numerovolta = $("#number-conect-volta").val().trim();
 
     
    
@@ -285,10 +290,11 @@ $("#alterar").click(() => {
         $("#conexao-volta").hide(); // Esconde a div se nenhum campo for preenchido
         return;
     } else {
-        $("#aeroporto-conect").text(aeroportovolta);
-        $("#data-aero-conexao-ida").text(datavolta);
-        $("#hora-aero-conexao-ida").text(horavolta);
-        $("#numero-aero-conexao-ida").text("Numero Voo: " + numerovolta); 
+        $("#conexao-volta").show(); // Mostra a div se pelo menos um campo estiver preenchido
+        $("#aero-conect-volta").text(aeroportovolta);
+        $("#data-conexao-volta").text(datavolta);
+        $("#hora-conexao-volta").text(horavolta);
+        $("#numero-aero-conexao-volta").text("Numero Voo: " + numerovolta);
     }
 
         
