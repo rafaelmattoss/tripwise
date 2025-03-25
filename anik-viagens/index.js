@@ -75,15 +75,21 @@ $(document).ready(function () {
     });
 
     $("#servicos").change(function () {
-        $("#servico-hospedagem, #servico-aereo").hide();
+        $("#servico-hospedagem, #servico-aereo").hide(); // Esconde os dois por padrão
+        $("#voo, #info-hotel").show(); // Garante que ambas as sections sejam mostradas inicialmente
+    
         let servico = $(this).val();
-
+    
         if (servico === "Hospedagem") {
             $("#servico-hospedagem").show();
+            $("#voo").hide(); // Esconde a section de voo
         } else if (servico === "Aereo") {
             $("#servico-aereo").show();
+            $("#separar1").hide()
+            $("#info-hotel").hide(); // Esconde a section de hospedagem
         } else if (servico === "hospedagem e aereo") {
             $("#servico-hospedagem, #servico-aereo").show();
+            $("#voo, #info-hotel").show(); // Mostra ambas as sections
         }
     });
 
@@ -142,52 +148,6 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
-    
-    let camposObrigatorios = [
-        {id:"titulo", nome: "Destino"},
-        {id:"hotel", nome:"Nome do Hotel"},
-        {id:"novoenderecohotel", nome:"Endereço do Hotel"},
-        {id:"qtdadultos", nome: "Quantidade de Adultos"},
-        {id:"checkin", nome: "Data Checkin"},
-        {id:"checkout", nome: "Data Checkout"}, 
-        {id:"aeroporto", nome: "Aeroporto (ida)"},
-        {id:"dataembarque", nome: "Data de Embarque(ida)"},
-        {id:"horaembarque", nome: "Hora de Embarque (ida)"},
-        {id:"classe", nome: "Classe (ida)"},
-        {id:"numerovoo", nome: "Numero do Voo (ida)"},
-        {id:"aeroporto-desembarque", nome: "Aeroporto Desembaque (ida)"}, 
-        {id:"datadesembarque", nome: "Data de Desembarque (ida)"},
-        {id:"horadesembarque", nome: "Hora de desembaque (ida)"},
-        {id:"aeroporto-embarque-volta", nome: "Aeroporto de Embarque (Volta)"},
-        {id:"dataembarque-volta", nome: "Data de Embarque (Volta)"},
-        {id:"horaembarque-volta", nome: "Hora de Embarque (volta)"},
-        {id:"classe-volta", nome: "Classe (volta)"},
-        {id:"numerovoo-volta", nome: "Numero do Voo (volta)"},
-        {id:"ciaaereavolta", nome: "Companhia Aerea (volta)"},
-        {id:"aeroporto-desembarque-volta", nome: "Aeroporto de Desembarque (Volta)"},
-        {id:"datadesembarque-volta", nome: "Data de Desembarque (Volta)"},
-        {id:"horadesembarque-volta", nome: "Hora de Desembarque (volta)"},
-          
-    ]
-    
-    let camposVazios = []; // Alterei para camposVazios
-    
-    camposObrigatorios.forEach(campo => {
-    let valor = $("#" + campo.id).val().trim();
-    if (!valor) {
-        camposVazios.push(campo.nome); // Certifique-se de usar a mesma variável
-        $("#" + campo.id).css("border", "2px solid red"); // Destaca o campo
-    } else {
-        $("#" + campo.id).css("border", ""); // Remove o destaque se estiver preenchido
-    }
-    });
-    
-    if (camposVazios.length > 0) { // Mudei "erros" para "camposVazios"
-    alert("Preencha os seguintes campos obrigatórios:\n \n" + camposVazios.join("\n"));
-    return;
-    }
-
-
     let titulo = $("#titulo").val();
     let dias = $("#dias").val();
     let noites = $("#noites").val();
@@ -220,12 +180,10 @@ $("#alterar").click(() => {
     let numerobebes = $("#qtdbebes").val();
     let valorhospedagem = $("#valorhotel").val();
     let valorvoo = $("#valorvoo").val();
-
     let aeroportoconectida = $("#aero-conect").val().trim();
     let dataconectida = $("#data-conect").val().trim();
     let horaconectida = $("#hora-conect").val().trim();
     let numeroconectida = $("#number-conect").val().trim();
-
     let aeroportovolta = $("#aeroporto-conect-volta").val().trim();
     let datavolta = $("#data-aero-conexao-volta").val().trim();
     let horavolta = $("#hora-aero-conexao-volta").val().trim();
@@ -271,7 +229,7 @@ $("#alterar").click(() => {
     atualdescri.text(drescriquarto)
     atualaeroporto.text(aeroembaqueida)
     atualhoraida.text(horaembarqueida)
-    atualclasse.text(classeida)
+    atualclasse.text("Classe: " + classeida)
     atualnumerovoo.text("Numero do Voo: " + numerovoo)
     atualcia.text(ciaida)
     atualaeroportodesembarque.text(aeroportodesembaqueida)
@@ -282,14 +240,27 @@ $("#alterar").click(() => {
     atualhoradesembarquevolta.text(horadesembarquevolta)
     atualciavolta.text(ciavolta)
     atualnumerovoovolta.text("Numero do Voo: " + numerovoovolta)
-    atualclassevolta.text(classevolta)
+    atualclassevolta.text("Classe: " + classevolta)
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
 
+    if (!aeroportoconectida && !dataconectida && !horaconectida && !numeroconectida) {
+        $("#conexao").hide(); // Esconde a div se nenhum campo for preenchido
+    
+    } else {
+        $(".icone-aviao-direita").hide()
+        $("#conexao-ida").show(); // Mostra a div se pelo menos um campo estiver preenchido
+        $("#aeroporto-conect").text(aeroportoconectida);
+        $("#data-aero-conexao-ida").text(dataconectida);
+        $("#hora-aero-conexao-ida").text(horaconectida);
+        $("#numero-aero-conexao-ida").text("Numero Voo: " + numeroconectida);
+    }
+
     if (!aeroportovolta && !datavolta && !horavolta && !numerovolta) {
         $("#conexao-volta").hide(); // Esconde a div se nenhum campo for preenchido
-        return;
+        
     } else {
+        $(".icone-aviao-esquerda").hide()
         $("#conexao-volta").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aero-conect-volta").text(aeroportovolta);
         $("#data-conexao-volta").text(datavolta);
@@ -387,49 +358,7 @@ $("#alterar").click(() => {
 
 
 
-    function adicionarConexao(){
-        $("#adicionarconexao").click(function(event){
     
-            event.preventDefault(); 
-        
-           $("#aeroporto-conect").text($("#aero-conect").val())
-           $("#data-aero-conexao-ida").text($("#data-conect").val())
-           $("#hora-aero-conexao-ida").text($("#hora-conect").val())
-           $("#numero-aero-conexao-ida").text("Numero Voo: " + $("#number-conect").val())
-        
-           if ( $("#data-conect").val()) {
-            let data = new Date( $("#data-conect").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-            let dia = String(data.getDate()).padStart(2, "0");
-            let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-            let ano = data.getFullYear();
-            let dataFormatada = `${dia}/${mes}/${ano}`;
-        
-            $("#data-aero-conexao-ida").text(dataFormatada);
-        } 
-        
-        })
-        
-        $("#adicionarconexao-volta").click(function(event){
-            
-            event.preventDefault(); 
-        
-           $("#aero-conect-volta").text($("#aeroporto-conect-volta").val())
-           $("#data-conexao-volta").text($("#data-aero-conexao-volta").val())
-           $("#hora-conexao-volta").text($("#hora-aero-conexao-volta").val())
-           $("#numero-aero-conexao-volta").text("Numero Voo: " + $("#number-conect-volta").val())
-        
-           if ( $("#data-aero-conexao-volta").val()) {
-            let data = new Date( $("#data-aero-conexao-volta").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-            let dia = String(data.getDate()).padStart(2, "0");
-            let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-            let ano = data.getFullYear();
-            let dataFormatada = `${dia}/${mes}/${ano}`;
-        
-            $("#data-conexao-volta").text(dataFormatada);
-        } 
-        
-        })
-    }
 
 
 

@@ -75,7 +75,7 @@
     
   }
 
-  #separar{
+  #separar1, #separar2, #separar3 {
     height: 4px;
     width: 500px;
     background-color: #ff7b00;
@@ -109,17 +109,7 @@
 
   }
 
-  #conexao{
-    align-items: center;
-    text-align: center;
-  }
-  
-
-  #conexao > p{
-    font-size: 12px;
-    
-  }
-
+ 
   #agencia {
     font-size: 18px;
     border-left: 4px solid  rgb(255, 179, 0);
@@ -562,16 +552,7 @@ input:focus {
   margin-bottom: 20px;
 }
 
-#adicionarconexao, #adicionarconexao-volta{
-  padding: 10px;
-  background-color: #2791f3;
-  border-radius: 10px;
-  display: block;
-  margin: auto;
-  font-size: 18px;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-}
+
 
 #dados-conect > input{
   margin-bottom: 20px;

@@ -43,6 +43,7 @@
 
       <label for="servicos">o que o orçamento inclui?</label>
         <select id="servicos">
+          <option value=""></option>
           <option value="Hospedagem">Hospedagem</option>
           <option value="Aereo">Aereo</option>
           <option value="hospedagem e aereo">Hospedagem + Aereo</option>
@@ -168,8 +169,6 @@
             <input type="date" placeholder="Digite a Data da conexão" id="data-conect">
             <input type="datetime" placeholder="Digite o horario de embarque da conexão" id="hora-conect">
             <input type="number" placeholder="Digite o numero do voo da conexão" id="number-conect">
-
-            <button id="adicionarconexao">Adicionar Conexão</button>
           </form>
 
 
@@ -276,8 +275,8 @@
       
         <label for="classe-volta">Selecione a classe do voo</label>
         <select id="classe-volta">
-            <option value="economica">Econômica</option>
-            <option value="executiva">Executiva</option>
+            <option value="Economica">Econômica</option>
+            <option value="Executiva">Executiva</option>
             <option value="Primeira Classe">Primeira classe</option>
         </select>
       
@@ -295,7 +294,6 @@
           <input type="datetime" placeholder="Digite o horario de embarque da conexão" id="hora-aero-conexao-volta">
           <input type="number" placeholder="Digite o numero do voo da conexão" id="number-conect-volta">
 
-          <button id="adicionarconexao-volta">Adicionar Conexão</button>
         </form>
 
         <h3> Informações de Desmbarque (Volta)</h3> <br> 
@@ -401,7 +399,7 @@
       </div>
     </section>
 
-    <div id="separar"></div>
+    <div id="separar2"></div>
 
   
     
@@ -437,7 +435,7 @@
       </div>
     </section>
 
-    <div id="separar"></div>
+    <div id="separar1"></div>
 
     <section id="voo">
 
@@ -464,8 +462,10 @@
           <p>Mala de Cabine (10kg)</p>
         </div>
 
-
-        
+        <div> 
+          <p id="atualclasse">Economica</p>
+          <p>Cia Aerea: <span id="atual-cia">LaTAM</span></p>
+        </div>
 
       </div>
 
@@ -500,10 +500,7 @@
 
        
 
-        <div> 
-          <p id="atualclasse">Economica</p>
-          <p>Cia Aerea: <span id="atual-cia">LaTAM</span></p>
-        </div>
+        
 
       </div>
 
@@ -531,8 +528,11 @@
           <p>Mala de Cabine (10kg)</p>
         </div>
 
+        <div> 
+          <p id="atual-classe-volta">Economica</p>
+          <p>Cia Aerea: <span id="atual-cia-volta">LaTAM</span></p>
+        </div>
 
-        
         
       </div>
 
@@ -562,18 +562,12 @@
         </div>
 
 
-
-        <div> 
-          <p>Cia Aerea: <span id="atual-cia-volta">LaTAM</span></p>
-          <p id="atual-classe-volta">Economica</p>
-        </div>
-
       </div>
 
 
     </section>
 
-    <div id="separar"></div>
+    <div id="separar3"></div>
 
     <section id="orcamento-total">
 
