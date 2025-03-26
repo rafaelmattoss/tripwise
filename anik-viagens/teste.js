@@ -1,29 +1,40 @@
+let servicoSelecionado = $("#servicos").val();
+
+// Define os campos obrigatórios com uma propriedade 'tipo'
 let camposObrigatorios = [
-    {id:"titulo", nome: "Destino"},
-    {id:"hotel", nome:"Nome do Hotel"},
-    {id:"novoenderecohotel", nome:"Endereço do Hotel"},
-    {id:"qtdadultos", nome: "Quantidade de Adultos"},
-    {id:"checkin", nome: "Data Checkin"},
-    {id:"checkout", nome: "Data Checkout"}, 
-    {id:"aeroporto", nome: "Aeroporto (ida)"},
-    {id:"dataembarque", nome: "Data de Embarque(ida)"},
-    {id:"horaembarque", nome: "Hora de Embarque (ida)"},
-    {id:"classe", nome: "Classe (ida)"},
-    {id:"numerovoo", nome: "Numero do Voo (ida)"},
-    {id:"aeroporto-desembarque", nome: "Aeroporto Desembaque (ida)"}, 
-    {id:"datadesembarque", nome: "Data de Desembarque (ida)"},
-    {id:"horadesembarque", nome: "Hora de desembaque (ida)"},
-    {id:"aeroporto-embarque-volta", nome: "Aeroporto de Embarque (Volta)"},
-    {id:"dataembarque-volta", nome: "Data de Embarque (Volta)"},
-    {id:"horaembarque-volta", nome: "Hora de Embarque (volta)"},
-    {id:"classe-volta", nome: "Classe (volta)"},
-    {id:"numerovoo-volta", nome: "Numero do Voo (volta)"},
-    {id:"ciaaereavolta", nome: "Companhia Aerea (volta)"},
-    {id:"aeroporto-desembarque-volta", nome: "Aeroporto de Desembarque (Volta)"},
-    {id:"datadesembarque-volta", nome: "Data de Desembarque (Volta)"},
-    {id:"horadesembarque-volta", nome: "Hora de Desembarque (volta)"},
-      
-]
+    {id:"titulo", nome: "Destino", tipo: "hotel"},
+    {id:"hotel", nome:"Nome do Hotel", tipo: "hotel"},
+    {id:"novoenderecohotel", nome:"Endereço do Hotel", tipo: "hotel"},
+    {id:"qtdadultos", nome: "Quantidade de Adultos", tipo: "hotel"},
+    {id:"checkin", nome: "Data Checkin", tipo: "hotel"},
+    {id:"checkout", nome: "Data Checkout", tipo: "hotel"},
+    {id:"aeroporto", nome: "Aeroporto (ida)", tipo: "voo"},
+    {id:"dataembarque", nome: "Data de Embarque (ida)", tipo: "voo"},
+    {id:"horaembarque", nome: "Hora de Embarque (ida)", tipo: "voo"},
+    {id:"classe", nome: "Classe (ida)", tipo: "voo"},
+    {id:"numerovoo", nome: "Número do Voo (ida)", tipo: "voo"},
+    {id:"aeroporto-desembarque", nome: "Aeroporto Desembarque (ida)", tipo: "voo"},
+    {id:"datadesembarque", nome: "Data de Desembarque (ida)", tipo: "voo"},
+    {id:"horadesembarque", nome: "Hora de Desembarque (ida)", tipo: "voo"},
+    {id:"aeroporto-embarque-volta", nome: "Aeroporto de Embarque (Volta)", tipo: "voo"},
+    {id:"dataembarque-volta", nome: "Data de Embarque (Volta)", tipo: "voo"},
+    {id:"horaembarque-volta", nome: "Hora de Embarque (Volta)", tipo: "voo"},
+    {id:"classe-volta", nome: "Classe (Volta)", tipo: "voo"},
+    {id:"numerovoo-volta", nome: "Número do Voo (Volta)", tipo: "voo"},
+    {id:"ciaaereavolta", nome: "Companhia Aérea (Volta)", tipo: "voo"},
+    {id:"aeroporto-desembarque-volta", nome: "Aeroporto de Desembarque (Volta)", tipo: "voo"},
+    {id:"datadesembarque-volta", nome: "Data de Desembarque (Volta)", tipo: "voo"},
+    {id:"horadesembarque-volta", nome: "Hora de Desembarque (Volta)", tipo: "voo"}
+];
+
+let camposParaVerificar = camposObrigatorios.filter(campo => {
+    if (servicoSelecionado === "Hospedagem" && campo.tipo === "voo") {
+        return false;
+    } else if (servicoSelecionado === "Aereo" && campo.tipo === "hotel") {
+        return false;
+    }
+    return true;
+});
 
 let camposVazios = []; // Alterei para camposVazios
 
