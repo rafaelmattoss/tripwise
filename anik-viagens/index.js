@@ -83,20 +83,26 @@ $(document).ready(function () {
         if (servico === "Hospedagem") {
             $("#servico-hospedagem").show();
             $("#voo").hide(); // Esconde a section de voo
+            $("#separar3").hide()
+            $("#valorvoo").hide()
+
         } else if (servico === "Aereo") {
             $("#servico-aereo").show();
+            $("#valorhospedagem").hide()
             $("#separar1").hide()
             $("#info-hotel").hide(); // Esconde a section de hospedagem
         } else if (servico === "hospedagem e aereo") {
             $("#servico-hospedagem, #servico-aereo").show();
             $("#voo, #info-hotel").show(); // Mostra ambas as sections
+            $("#valorvoo").show()
+            $("#valorhospedagem").show()
         }
     });
 
     
       sincronizarDatas("#checkin", "#checkout");
       sincronizarDatas("#dataembarque", "#datadesembarque");
-      sincronizarDatas("dataembarque-volta", "datadesembarque-volta" )
+      sincronizarDatas("dataembarque-volta", "datadesembarque-volta")
       
       function sincronizarDatas(sourceSelector, targetSelector) {
         $(sourceSelector).on("change", function() {
@@ -108,6 +114,17 @@ $(document).ready(function () {
           }
         });
       }
+
+    
+    $("#situacaoreserva").change(function(){
+        let situacao = $(this).val();
+            
+        $("#atualreserva").text(situacao).css("color", situacao === "Reservas Finalizadas" ? "green" : "red");
+     });
+        
+        
+
+      
 });
 
 
@@ -147,6 +164,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 
 $("#alterar").click(() => {
+
 
     let titulo = $("#titulo").val();
     let dias = $("#dias").val();

@@ -105,7 +105,7 @@
 
           <label for="aeroporto">Selecione o aeroporto do embarque</label>
           <select id="aeroporto">
-            <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+            <option value=""></option>
             <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
             <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
             <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
@@ -176,7 +176,7 @@
       
           <label for="aeroporto-desembarque">Selecione o aeroporto de desembarque</label>
           <select id="aeroporto-desembarque">
-            <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+            <option value=""></option>
             <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
             <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
             <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
@@ -229,7 +229,7 @@
         <h3>Informações do Embarque (Volta)</h3>
         <label for="aeroporto-embarque-volta">Selecione o aeroporto do embarque</label>
         <select id="aeroporto-embarque-volta">
-          <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+          <option value=""></option>
           <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
           <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
           <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
@@ -300,7 +300,7 @@
       
         <label for="aeroporto-desembarque-volta">Selecione o aeroporto de desembarque</label>
         <select id="aeroporto-desembarque-volta">
-          <option value="Escolha um aeroporto">Escolha um aeroporto</option>
+          <option value=""></option>
           <option value="São Paulo - Guarulhos (GRU)">São Paulo - Guarulhos (GRU)</option>
           <option value="São Paulo - Congonhas (CGH)">São Paulo - Congonhas (CGH)</option>
           <option value="Campinas - Viracopos (VCP)">Campinas - Viracopos (VCP)</option>
@@ -349,6 +349,16 @@
 
     <section id="valoresfinais">
       <div>
+        <label for="">Situação da Reserva</label>
+
+        <select id="situacaoreserva">
+          <option value=""></option>
+          <option value="Reservas Finalizadas">Reservas finalizadas</option>
+          <option value="Reservas Não Finalizadas">Reservas Não Finalizadas</option>
+        </select>
+        
+
+
         <label for="valorhotel">Digite o valor total da Hospedagem</label>
         <input type="text" id="valorhotel" placeholder="R$ 0,00">
         <input type="hidden" id="valorhotel_real">
@@ -377,7 +387,7 @@
 
       <div id="resumo-viagem">
         <h2>RESUMO DA VIAGEM</h2>
-        <p>Reservas ainda não finalizadas</p>
+        <p id="atualreserva">Reservas ainda não finalizadas</p>
       </div>
 
       <div id="inclusos">
@@ -480,9 +490,9 @@
        <p><span class="icone-aviao-direita" >flight</span></p>
 
         <div id="conexao">
-          <p><span class="material-symbols-outlined">
+          <span class="material-symbols-outlined" >
             connecting_airports
-            </span></p>
+            </span>
           <p id="aeroporto-conect">Rio de Janeiro (GRU)</p>
           <p id="data-aero-conexao-ida"> 10/05/2026</p>  
           <p id="hora-aero-conexao-ida">as 07:00 </p>
@@ -548,7 +558,7 @@
 
         <div id="conexao-volta">
 
-          <p><span class="material-symbols-outlined"> connecting_airports</span></p>
+          <span class="material-symbols-outlined" > connecting_airports</span>
           <p id="aero-conect-volta">Rio de Janeiro (GRU)</p>
           <p id="data-conexao-volta"> 10/05/2026</p>  
           <p id="hora-conexao-volta">as 07:00 </p>
@@ -583,13 +593,13 @@
       <div id="valores">
         <h2 id="orcamento">Orçamento Total</h2>
 
-        <div class="organizarvalores">
+        <div class="organizarvalores" id="valorhospedagem">
           <div>Hospedagem:</div>
           <div id="atualvalorhospedagem">7.000,00 R$</div>
         </div>
 
 
-        <div class="organizarvalores">
+        <div class="organizarvalores" id="valorvoo">
           <div>Aereo:</div>
           <div id="atualvalorvoo">7.000,00 R$</div>
         </div>

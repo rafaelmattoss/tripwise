@@ -1,3 +1,4 @@
+// Recupera o serviço selecionado
 let servicoSelecionado = $("#servicos").val();
 
 // Define os campos obrigatórios com uma propriedade 'tipo'
@@ -27,6 +28,12 @@ let camposObrigatorios = [
     {id:"horadesembarque-volta", nome: "Hora de Desembarque (Volta)", tipo: "voo"}
 ];
 
+// Cria um array para armazenar os campos vazios
+let camposVazios = [];
+
+// Filtra os campos obrigatórios conforme a opção selecionada
+// Se for apenas "Hospedagem", não valida os campos do tipo "voo"
+// Se for apenas "Aereo", não valida os campos do tipo "hotel"
 let camposParaVerificar = camposObrigatorios.filter(campo => {
     if (servicoSelecionado === "Hospedagem" && campo.tipo === "voo") {
         return false;
@@ -36,19 +43,19 @@ let camposParaVerificar = camposObrigatorios.filter(campo => {
     return true;
 });
 
-let camposVazios = []; // Alterei para camposVazios
-
-camposObrigatorios.forEach(campo => {
-let valor = $("#" + campo.id).val().trim();
-if (!valor) {
-    camposVazios.push(campo.nome); // Certifique-se de usar a mesma variável
-    $("#" + campo.id).css("border", "2px solid red"); // Destaca o campo
-} else {
-    $("#" + campo.id).css("border", ""); // Remove o destaque se estiver preenchido
-}
+// Verifica os campos filtrados
+camposParaVerificar.forEach(campo => {
+    let valor = $("#" + campo.id).val().trim();
+    if (!valor) {
+        camposVazios.push(campo.nome);
+        $("#" + campo.id).css("border", "2px solid red"); // Destaca o campo
+    } else {
+        $("#" + campo.id).css("border", ""); // Remove o destaque se preenchido
+    }
 });
 
-if (camposVazios.length > 0) { // Mudei "erros" para "camposVazios"
-alert("Preencha os seguintes campos obrigatórios:\n \n" + camposVazios.join("\n"));
-return;
+// Se houver campos vazios, exibe alerta e interrompe a execução
+if (camposVazios.length > 0) {
+    alert("Preencha os seguintes campos obrigatórios:\n\n" + camposVazios.join("\n"));
+    return;
 }

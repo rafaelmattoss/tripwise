@@ -75,6 +75,12 @@
     
   }
 
+  #conexao-volta > span, #conexao >span{
+    text-align: center;
+    display: block;
+    color: #001e3b;
+  }
+
   #separar1, #separar2, #separar3 {
     height: 4px;
     width: 500px;
@@ -390,6 +396,10 @@
     color: #001e3b;
     font-family: 'Montserrat', sans-serif;
     
+  }
+
+  .reservafinalizada{
+    color: rgb(8, 231, 0);
   }
   
   /* Seção Orçamento Total */
