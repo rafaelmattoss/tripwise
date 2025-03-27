@@ -460,6 +460,26 @@
     margin-bottom: 10px;
   }
 
+  #alterar{
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    background-color: #f4f753;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    margin-top: 10%;
+  }
+
+  #alterar:hover{
+    background-color: #f48600;
+    padding: 12px;
+    transition: 1s;
+  }
+
 
   /* Seção Informações Adicionais */
   #info-adicionais {
