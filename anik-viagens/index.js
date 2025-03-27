@@ -1,4 +1,5 @@
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca").hide();
+
 
 $("#vizuorcar").click(()=>{
     $("#orcar").fadeToggle();
@@ -89,8 +90,11 @@ $(document).ready(function () {
         } else if (servico === "Aereo") {
             $("#servico-aereo").show();
             $("#valorhospedagem").hide()
+            $("#organizer").hide();
+            $("#organizer1").show();
             $("#separar1").hide()
-            $("#info-hotel").hide(); // Esconde a section de hospedagem
+            $("#info-hotel").hide(); 
+            $("#aereo-adulto, #aereo-bebe, #aereo-crianca").show();
         } else if (servico === "hospedagem e aereo") {
             $("#servico-hospedagem, #servico-aereo").show();
             $("#voo, #info-hotel").show(); // Mostra ambas as sections
@@ -206,6 +210,7 @@ $("#alterar").click(() => {
     let datavolta = $("#data-aero-conexao-volta").val().trim();
     let horavolta = $("#hora-aero-conexao-volta").val().trim();
     let numerovolta = $("#number-conect-volta").val().trim();
+    
 
     
    
