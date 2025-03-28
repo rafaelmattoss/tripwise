@@ -471,7 +471,7 @@
     border: none;
     border-radius: 20px;
     margin-bottom: 50px;
-    margin-top: 10%;
+    margin-top: 05%;
   }
 
   #alterar:hover{
@@ -604,6 +604,16 @@ input:focus {
     border-radius: 12px;
     background-color: #fff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#proximo, #proximo1{
+  margin: auto;
+  background-color: #f48600;
+ padding: 20px;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 

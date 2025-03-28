@@ -12,13 +12,13 @@ $("#vizudestin").click(()=>{
     $("#organizer").fadeToggle();
 });
 
-$("#vizuvoo").click(()=>{
+$("#vizuvoo, #proximo").click(()=>{
     $("#organizer").hide();
     $("#valoresfinais").hide();
     $("#organizer1").fadeToggle();
 });
 
-$("#vizuvalores").click(()=>{
+$("#vizuvalores, #proximo1").click(()=>{
     $("#organizer").hide();
     $("#organizer1").hide();
     $("#valoresfinais").fadeToggle();
@@ -161,6 +161,9 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
         pdf.save("orcamento_viagem.pdf");
     });
 });
+
+
+
 
 
 
