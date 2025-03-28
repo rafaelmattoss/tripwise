@@ -339,8 +339,16 @@ $("#alterar").click(() => {
     if (qtdcriancas === "" && numerobebes === "" && qtdadultos === "") {
         $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças")
         $(".atualqtdbebes").text(numeroaerobebes + " Bebes")
-        $(".atualqtdadultos").text(numeroaeroadultos + " Adultos")
+        $(".adultos").text(numeroaeroadultos + " Adultos")
     }
+
+    if (numeroaeroadultos === "" && numeroaerobebes === "" && numeroaerocrianca === "") {
+        $(".atualqtdcriancas").text(qtdcriancas + " Crianças")
+        $(".atualqtdbebes").text(numerobebes + " Bebes")
+        $(".adultos").text(qtdadultos + " Adultos")
+
+    }
+
     
 
     
