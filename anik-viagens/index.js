@@ -386,6 +386,7 @@ if (camposVazios.length > 0) {
 
     if(qtdcriancas > 0){
         $(".atualqtdcriancas").text(qtdcriancas + " Crianças")
+        
     }
 
     
