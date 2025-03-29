@@ -192,6 +192,8 @@
     
   }
 
+ 
+
   #apart h1 {
     margin-top: 50px;
     font-size: 18px;
@@ -214,7 +216,7 @@
   /* Blocos de dados do apartamento e categorias */
   .categoria {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 8px;
     align-items: center;
     text-align: center;

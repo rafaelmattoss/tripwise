@@ -184,7 +184,7 @@ $("#alterar").click(() => {
     let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input
     let qtdadultos = $("#qtdadultos").val();
     let qtdcriancas = $("#qtdcriancas").val();
-    let qtdidosos = $("#qtdidosos").val();
+    
     let drescriquarto =  $("#descriquarto").val();
     let checkin = $("#checkin").val();
     let checkout = $("#checkout").val();
@@ -228,7 +228,6 @@ $("#alterar").click(() => {
     let tituloatual = $("#tituloprincipal");
     let hotel = $("#nomehotel");
     let atualenderecohotel = $("#enderecohotel");
-    let atualidosos = $(".atualqtdidosos")
     let atualdescri = $("#atualdescri")
     let atualcheckin = $("#atualcheckin")
     let atualcheckout = $("#atualcheckout")
@@ -257,7 +256,6 @@ $("#alterar").click(() => {
     tituloatual.text(titulo + ' ' + dias + ' dias ' + 'e ' + noites + ' noites');
     hotel.text(nomehotel);
     atualenderecohotel.text(novoenderecohotel);
-    atualidosos.text(qtdidosos)
     atualdescri.text(drescriquarto)
     atualaeroporto.text(aeroembaqueida)
     atualhoraida.text(horaembarqueida)
@@ -329,6 +327,8 @@ $("#alterar").click(() => {
 
     if(numerobebes > 0){
         $(".atualqtdbebes").text(numerobebes + " Bebes")
+    } else{
+        $(".atualqtdbebes").hide
     }
 
     if(qtdcriancas > 0){
@@ -336,20 +336,6 @@ $("#alterar").click(() => {
         
     }
 
-    if (qtdcriancas === "" && numerobebes === "" && qtdadultos === "") {
-        $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças")
-        $(".atualqtdbebes").text(numeroaerobebes + " Bebes")
-        $(".adultos").text(numeroaeroadultos + " Adultos")
-    }
-
-    if (numeroaeroadultos === "" && numeroaerobebes === "" && numeroaerocrianca === "") {
-        $(".atualqtdcriancas").text(qtdcriancas + " Crianças")
-        $(".atualqtdbebes").text(numerobebes + " Bebes")
-        $(".adultos").text(qtdadultos + " Adultos")
-
-    }
-
-    
 
     
     if (checkin) {
