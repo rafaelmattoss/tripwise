@@ -169,7 +169,7 @@
           </select>
       
           <label for="numerovoo">Número do voo</label>
-          <input type="number" id="numerovoo">
+          <input type="text" id="numerovoo">
       
           <label for="ciaaereaida">Companhia aérea</label>
           <input type="text" id="ciaaereaida"> <br><br>
@@ -180,7 +180,7 @@
             <input type="text" placeholder="Digite o Aeroporto da conexão" id="aero-conect">
             <input type="date" placeholder="Digite a Data da conexão" id="data-conect">
             <input type="datetime" placeholder="Digite o horario de embarque da conexão" id="hora-conect">
-            <input type="number" placeholder="Digite o numero do voo da conexão" id="number-conect">
+            <input type="text" placeholder="Digite o numero do voo da conexão" id="number-conect">
           </form>
 
 
@@ -296,7 +296,7 @@
         </select>
       
         <label for="numerovoo-volta">Número do voo</label>
-        <input type="number" id="numerovoo-volta">
+        <input type="text" id="numerovoo-volta">
       
         <label for="ciaaereavolta">Companhia aérea</label>
         <input type="text" id="ciaaereavolta"> <br><br> 
@@ -307,11 +307,11 @@
           <input type="text" placeholder="Digite o Aeroporto da conexão" id="aeroporto-conect-volta">
           <input type="date" placeholder="Digite a Data da conexão" id="data-aero-conexao-volta">
           <input type="datetime" placeholder="Digite o horario de embarque da conexão" id="hora-aero-conexao-volta">
-          <input type="number" placeholder="Digite o numero do voo da conexão" id="number-conect-volta">
+          <input type="text" placeholder="Digite o numero do voo da conexão" id="number-conect-volta">
 
         </form>
 
-        <h3> Informações de Desmbarque (Volta)</h3> <br> 
+        <h3> Informações de Desembarque (Volta)</h3> <br> 
       
         <label for="aeroporto-desembarque-volta">Selecione o aeroporto de desembarque</label>
         <select id="aeroporto-desembarque-volta">
@@ -394,7 +394,7 @@
   
 
 
-  <button id="alterar">VIZUALIZAR PDF</button>
+  <button id="alterar">VISUALIZAR PDF</button>
 
   <div id="container">
 
@@ -506,12 +506,12 @@
           <p id="atual-numero-voo">Numero do Voo: 16546</p>
         </div>
 
+
        <p><span class="icone-aviao-direita" >flight</span></p>
 
         <div id="conexao">
-          <span class="material-symbols-outlined" >
-            connecting_airports
-            </span>
+          <span class="material-icons">connecting_airports</span>
+
           <p id="aeroporto-conect">Rio de Janeiro (GRU)</p>
           <p id="data-aero-conexao-ida"> 10/05/2026</p>  
           <p id="hora-aero-conexao-ida">as 07:00 </p>
@@ -540,7 +540,7 @@
     
         <div>
           <span class="material-icons">flight</span>
-          <p>volta</p>
+          <p>Volta</p>
         </div>
 
 
@@ -573,11 +573,12 @@
           <p id="atual-numero-voo-volta">Numero Voo: 165475</p>
         </div>
 
-        <p><span class="icone-aviao-esquerda">flight</span></p>
+        <p><span class="icone-aviao-direita">flight</span></p>
 
         <div id="conexao-volta">
 
-          <span class="material-symbols-outlined" > connecting_airports</span>
+          <span class="material-icons">connecting_airports</span>
+
           <p id="aero-conect-volta">Rio de Janeiro (GRU)</p>
           <p id="data-conexao-volta"> 10/05/2026</p>  
           <p id="hora-conexao-volta">as 07:00 </p>

@@ -1,4 +1,4 @@
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #container, #botao-pdf").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #botao-pdf").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -126,6 +126,16 @@ $(document).ready(function () {
             
         $("#atualreserva").text(situacao).css("color", situacao === "Reservas Finalizadas" ? "green" : "red");
      });
+
+
+     function capitalizarPalavras(str) {
+        return str.replace(/\b\w/g, letra => letra.toUpperCase());
+    }
+    
+    $("input").on("input", function() {
+        let textoFormatado = capitalizarPalavras($(this).val());
+        $(this).val(textoFormatado);
+    });
         
         
 
@@ -138,34 +148,71 @@ $(document).ready(function () {
 document.getElementById("botao-pdf").addEventListener("click", async function () {
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF("p", "mm", "a4");
-
+  
+    // Captura do elemento como um único canvas
     const elemento = document.getElementById("container");
-
-    html2canvas(elemento, { scale: 2 }).then(canvas => {
-        const imgData = canvas.toDataURL("image/png");
-        const imgWidth = 210; // Largura A4
-        const pageHeight = 297; // Altura A4
-        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Mantém proporção
-        let heightLeft = imgHeight;
-        let position = 0; // Primeira página sem margem
-
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-
-        while (heightLeft > 0) {
-            position = heightLeft - imgHeight + 10; // Apenas páginas novas terão margem de 10px no topo
-            pdf.addPage();
-            pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-        }
-
-        pdf.save("orcamento_viagem.pdf");
-    });
+    const originalCanvas = await html2canvas(elemento, { scale: 3 });
+  
+    // Dimensões em mm (A4 retrato)
+    const pdfWidth = 210; 
+    const pdfHeight = 297;
+  
+    // Margem superior, se desejar
+    const marginTop = 10; 
+    // Se quiser margem lateral, ajuste também x e a largura do addImage.
+  
+    // Calcula o fator de escala para a largura completa em 210mm
+    const scaleFactor = pdfWidth / originalCanvas.width;
+  
+    // Altura útil na página em mm (descontando a margem superior)
+    const usablePageHeightMm = pdfHeight - marginTop;
+  
+    // Converte essa altura útil de mm para pixels, considerando o mesmo fator de escala
+    const usablePageHeightPx = usablePageHeightMm / scaleFactor;
+  
+    // Função que extrai uma “fatia” (sub-canvas) do canvas original
+    function cropCanvas(sourceCanvas, startPx, endPx) {
+      const newCanvas = document.createElement("canvas");
+      newCanvas.width = sourceCanvas.width;
+      newCanvas.height = endPx - startPx;
+  
+      const ctx = newCanvas.getContext("2d");
+      // Desenha a parte do canvas original (startPx -> endPx)
+      ctx.drawImage(sourceCanvas, 0, -startPx);
+  
+      return newCanvas;
+    }
+  
+    let position = 0;
+    let pageCount = 0;
+    const totalHeight = originalCanvas.height;
+  
+    // Enquanto ainda houver canvas para “fatiar”
+    while (position < totalHeight) {
+      // Define o tamanho da fatia que cabe na página
+      const sliceHeightPx = Math.min(usablePageHeightPx, totalHeight - position);
+  
+      // Cria sub-canvas só com a parte necessária
+      const canvasSlice = cropCanvas(originalCanvas, position, position + sliceHeightPx);
+      const sliceData = canvasSlice.toDataURL("image/png");
+  
+      // Calcula a altura que essa fatia terá no PDF (em mm)
+      const sliceHeightMm = sliceHeightPx * scaleFactor;
+  
+      // Caso não seja a primeira página, adiciona uma nova
+      if (pageCount > 0) {
+        pdf.addPage();
+      }
+  
+      // Adiciona a imagem (fatia) na página, com ou sem margem superior
+      pdf.addImage(sliceData, "PNG", 0, pageCount > 0 ? marginTop : 0, pdfWidth, sliceHeightMm);
+  
+      position += sliceHeightPx;
+      pageCount++;
+    }
+  
+    pdf.save("orcamento_viagem.pdf");
 });
-
-
-
-
 
 
 
