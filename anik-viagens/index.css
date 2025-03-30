@@ -74,11 +74,14 @@
     
   }
 
-  #conexao-volta > span, #conexao >span{
-    text-align: center;
-    display: block;
-    color: #001e3b;
+  #conexao-volta, #conexao {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+  
+    
   }
+  
+ 
 
   #separar1, #separar2, #separar3 {
     height: 4px;
@@ -229,7 +232,11 @@
   }
 
   .adultos{
-    margin-top: 20px;
+    margin-top: 10px;
+  }
+
+   #info-passageiros {
+    margin-bottom:10px ;
   }
 
   #categoria1 {
@@ -329,12 +336,24 @@
     color: #001e3b;
     transform: rotate(90deg);
     display: inline-block;
+    margin-right: 20px;
+  }
+
+  .icone-conexao{
+    display: block;
+    text-align: center;
+    margin: auto;
+    font-size: 50px;
+  }
+
+  #icone-ida{
+    color: white;
   }
   
   .icone-aviao-esquerda {
     font-family: 'Material Icons';
     font-size: 24px;
-    color: #001e3b;
+    color: #ffffff;
     transform: rotate(270deg); /* Gira o avião para a esquerda */
     display: inline-block;
   }
@@ -380,30 +399,34 @@
     color: #ffffff;
     margin-right: 15px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600 ;
+    font-weight: 500 ;
   }
   
   /* Dados detalhados dos voos (origem, destino, horários etc.) */
   #datasida, #datasvolta {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 15px;
     margin-bottom: 10px;
+    gap: 40px;
+    margin-left: 50px;
+    
   }
   
   #datasida div, #datasvolta div {
     font-size: 14px;
     color: #555;
-    
     width: 200px;
   }
   
-  #datasida p, #datasvolta p {
-    margin: 0;
-    color: #001e3b;
-    font-family: 'Montserrat', sans-serif;
-    
-  }
+  #datasida  span.icone-aviao-direita, 
+  #datasvolta  span.icone-aviao-direita {
+    display: block;
+    text-align: center;
+}
+
+ 
 
   .reservafinalizada{
     color: rgb(8, 231, 0);
@@ -662,16 +685,6 @@ label {
     border-color: #ff9900;
 }
 
-
-@media print {
-  body {
-    -webkit-print-color-adjust: exact;
-  }
-  
-  #container {
-    page-break-inside: avoid; /* Evita cortes dentro do conteúdo */
-  }
-}
 
 
 

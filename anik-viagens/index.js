@@ -1,4 +1,4 @@
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #botao-pdf").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #botao-pdf, #aviao-conect, #aviao-conect-volta").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -23,6 +23,7 @@ $("#vizuvalores, #proximo1").click(()=>{
     $("#organizer1").hide();
     $("#valoresfinais").fadeToggle();
 });
+
 
 
 
@@ -325,8 +326,8 @@ $("#alterar").click(() => {
         $("#conexao").hide(); // Esconde a div se nenhum campo for preenchido
     
     } else {
-        $(".icone-aviao-direita").hide()
-        $("#conexao-ida").show(); // Mostra a div se pelo menos um campo estiver preenchido
+        $("#aviao-conect").show()
+        $("#conexao").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aeroporto-conect").text(aeroportoconectida);
         $("#data-aero-conexao-ida").text(dataconectida);
         $("#hora-aero-conexao-ida").text(horaconectida);
@@ -337,7 +338,7 @@ $("#alterar").click(() => {
         $("#conexao-volta").hide(); // Esconde a div se nenhum campo for preenchido
         
     } else {
-        $(".icone-aviao-esquerda").hide()
+        $("#aviao-conect").show()
         $("#conexao-volta").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aero-conect-volta").text(aeroportovolta);
         $("#data-conexao-volta").text(datavolta);
@@ -369,19 +370,28 @@ $("#alterar").click(() => {
     
     if(qtdadultos > 0){
         $(".adultos").text(qtdadultos + " Adultos")
+    } else if(qtdadultos==="" && numeroaeroadultos >0){
+        $(".adultos").text(numeroaeroadultos + " Adultos")
     }
 
 
     if(numerobebes > 0){
         $(".atualqtdbebes").text(numerobebes + " Bebes")
+    } else if(numerobebes === "" && numeroaerobebes>0){
+        $(".atualqtdbebes").text(numeroaerobebes + " Bebes")
+
     } else{
         $(".atualqtdbebes").hide
     }
 
     if(qtdcriancas > 0){
         $(".atualqtdcriancas").text(qtdcriancas + " Crianças")
-        
+        $(".atualqtdcriancass").text(qtdcriancas)  
+    } else if(qtdcriancas === "" && numeroaerocrianca >0){
+        $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças")
     }
+
+    
 
 
     
