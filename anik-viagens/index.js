@@ -1,4 +1,4 @@
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #botao-pdf, #aviao-conect, #aviao-conect-volta").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca ").hide();
 
 
 $("#vizuorcar").click(()=>{

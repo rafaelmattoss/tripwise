@@ -624,6 +624,8 @@ input:focus {
   margin-bottom: 30px;
   
 }
+
+
 /* Estilização do container */
 #destino, #dadopassageiros,#dadoshospedagem,#info-voo-ida,#info-voo-volta, #valoresfinais{
     max-width: 500px;
