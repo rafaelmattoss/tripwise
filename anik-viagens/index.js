@@ -1,4 +1,4 @@
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca ").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #aviao-conect-volta, #aviao-conect").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -338,7 +338,7 @@ $("#alterar").click(() => {
         $("#conexao-volta").hide(); // Esconde a div se nenhum campo for preenchido
         
     } else {
-        $("#aviao-conect").show()
+        $("#aviao-conect-volta").show()
         $("#conexao-volta").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aero-conect-volta").text(aeroportovolta);
         $("#data-conexao-volta").text(datavolta);

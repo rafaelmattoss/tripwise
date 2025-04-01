@@ -410,20 +410,25 @@
     padding: 10px 15px;
     margin-bottom: 10px;
     gap: 40px;
-    margin-left: 50px;
+    
     
   }
   
   #datasida div, #datasvolta div {
     font-size: 14px;
     color: #555;
-    width: 200px;
+    
   }
   
   #datasida  span.icone-aviao-direita, 
   #datasvolta  span.icone-aviao-direita {
     display: block;
     text-align: center;
+}
+
+#organizar-conect{
+  display: flex;
+  gap: 20px;
 }
 
  
