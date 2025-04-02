@@ -80,6 +80,11 @@
   
     
   }
+
+  #conexao p {
+    font-size: 13px;
+    width: 210px;
+  }
   
  
 
@@ -336,7 +341,7 @@
     color: #001e3b;
     transform: rotate(90deg);
     display: inline-block;
-    margin-right: 20px;
+    
   }
 
   .icone-conexao{
@@ -413,9 +418,18 @@
     
     
   }
+
+  #desembarque-ida{
+    width: 250px;
+    
+  }
+
+  #embarque-ida {
+    width: 380px;
+  }
   
   #datasida div, #datasvolta div {
-    font-size: 14px;
+    font-size: 13px;
     color: #555;
     
   }
