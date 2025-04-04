@@ -1,3 +1,35 @@
+function formatarData(dataStr) {
+    if (!dataStr) return "";
+    let data = new Date(dataStr + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
+    let dia = String(data.getDate()).padStart(2, "0");
+    let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
+    let ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+}
+
+function formatarHora(horaStr) {
+    if (!horaStr) return "";
+    const [hora, minutos] = horaStr.split(":");
+    return `${hora}h${minutos}`;
+}
+
+function sincronizarDatas(sourceSelector, targetSelector) {
+    $(sourceSelector).on("change", function() {
+      let sourceDate = $(this).val();
+      let $target = $(targetSelector);
+      $target.attr("min", sourceDate);
+      if ($target.val() < sourceDate) {
+        $target.val(sourceDate);
+      }
+    });
+  }
+
+
+  function capitalizarPalavras(str) {
+    return str.replace(/\b\w/g, letra => letra.toUpperCase());
+}
+
+
 $("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca").hide();
 
 
@@ -110,16 +142,7 @@ $(document).ready(function () {
       sincronizarDatas("#dataembarque", "#datadesembarque");
       sincronizarDatas("dataembarque-volta", "datadesembarque-volta")
       
-      function sincronizarDatas(sourceSelector, targetSelector) {
-        $(sourceSelector).on("change", function() {
-          let sourceDate = $(this).val();
-          let $target = $(targetSelector);
-          $target.attr("min", sourceDate);
-          if ($target.val() < sourceDate) {
-            $target.val(sourceDate);
-          }
-        });
-      }
+      
 
     
     $("#situacaoreserva").change(function(){
@@ -128,10 +151,6 @@ $(document).ready(function () {
         $("#atualreserva").text(situacao).css("color", situacao === "Reservas Finalizadas" ? "green" : "red");
      });
 
-
-     function capitalizarPalavras(str) {
-        return str.replace(/\b\w/g, letra => letra.toUpperCase());
-    }
     
     $("input").on("input", function() {
         let textoFormatado = capitalizarPalavras($(this).val());
@@ -232,10 +251,10 @@ $("#alterar").click(() => {
     let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input
     let qtdadultos = $("#qtdadultos").val();
     let qtdcriancas = $("#qtdcriancas").val();
-    
     let drescriquarto =  $("#descriquarto").val();
     let checkin = $("#checkin").val();
     let checkout = $("#checkout").val();
+    //dados voo ida
     let aeroembaqueida = $("#aeroporto").val();
     let dataembarqueida = $("#dataembarque").val();
     let horaembarqueida = $("#horaembarque").val();
@@ -245,6 +264,7 @@ $("#alterar").click(() => {
     let aeroportodesembaqueida =  $("#aeroporto-desembarque").val();
     let horadesembarqueida = $("#horadesembarque").val();
     let datadesembarqueida = $("#datadesembarque").val();
+    //dados voo volta
     let aeroembaquevolta = $("#aeroporto-embarque-volta").val();
     let dataembarquevolta = $("#dataembarque-volta").val();
     let horaembarquevolta = $("#horaembarque-volta").val();
@@ -255,8 +275,10 @@ $("#alterar").click(() => {
     let horadesembarquevolta = $("#horadesembarque-volta").val();
     let datadesembarquevolta = $("#datadesembarque-volta").val();
     let numerobebes = $("#qtdbebes").val();
+    //valores
     let valorhospedagem = $("#valorhotel").val();
     let valorvoo = $("#valorvoo").val();
+    //dados conexão
     let aeroportoconectida = $("#aero-conect").val().trim();
     let dataconectida = $("#data-conect").val().trim();
     let horaconectida = $("#hora-conect").val().trim();
@@ -265,7 +287,9 @@ $("#alterar").click(() => {
     let datavolta = $("#data-aero-conexao-volta").val().trim();
     let horavolta = $("#hora-aero-conexao-volta").val().trim();
     let numerovolta = $("#number-conect-volta").val().trim();
-
+    let datadesembarqueConect =$("#datadesembarque-conect").val().trim();
+    let horadesembarqueConect =$("#horadesembarque-conect").val().trim();
+    //dados somente voo
     let numeroaeroadultos = $("#aereo-adulto").val().trim();
     let numeroaerobebes = $("#aereo-bebe").val().trim();
     let numeroaerocrianca = $("#aereo-crianca").val().trim();
@@ -322,6 +346,8 @@ $("#alterar").click(() => {
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
 
+    
+
     if (!aeroportoconectida && !dataconectida && !horaconectida && !numeroconectida) {
         $("#conexao").hide(); // Esconde a div se nenhum campo for preenchido
     
@@ -329,9 +355,13 @@ $("#alterar").click(() => {
         $("#aviao-conect").show()
         $("#conexao").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aeroporto-conect").text(aeroportoconectida);
-        $("#data-aero-conexao-ida").text(dataconectida);
-        $("#hora-aero-conexao-ida").text(horaconectida);
         $("#numero-aero-conexao-ida").text("Numero Voo: " + numeroconectida);
+        if ($("#data-conect").val() && horaconectida) {
+            let dataFormatada = formatarData($("#data-conect").val());
+            let horaFormatada = formatarHora(horaconectida);
+            $("#data-aero-conexao-ida").text(`Embarque: ${dataFormatada} - ${horaFormatada}`);
+        }
+       
     }
 
     if (!aeroportovolta && !datavolta && !horavolta && !numerovolta) {
@@ -345,27 +375,20 @@ $("#alterar").click(() => {
         $("#hora-conexao-volta").text(horavolta);
         $("#numero-aero-conexao-volta").text("Numero Voo: " + numerovolta);
     }
+    
+    
+
+    if (horadesembarqueConect) {
+        const horaFormatada = formatarHora(horadesembarqueConect);
+        if (datadesembarqueConect) {
+            const dataFormatada = formatarData(datadesembarqueConect);
+            $("#data-chegada-conect").text(`Desembarque: ${dataFormatada} - ${horaFormatada}`);
+        }
+    }
+
+
 
         
-    if ( $("#data-conect").val()) {
-        let data = new Date( $("#data-conect").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-            
-        $("#data-aero-conexao-ida").text(dataFormatada);
-    } 
-    
-    if ( $("#data-aero-conexao-volta").val()) {
-        let data = new Date( $("#data-aero-conexao-volta").val() + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-            
-        $("#data-conexao-volta").text(dataFormatada);
-    } 
 
     
     if(qtdadultos > 0){
@@ -391,73 +414,39 @@ $("#alterar").click(() => {
         $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças")
     }
 
+
     
-
-
+    if ($("#data-aero-conexao-volta").val()) {
+        let dataFormatada = formatarData($("#data-aero-conexao-volta").val());
+        $("#data-conexao-volta").text(dataFormatada);
+    }
     
     if (checkin) {
-        let data = new Date(checkin + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-        atualcheckin.text(dataFormatada);
-    } 
-
+        atualcheckin.text(formatarData(checkin));
+    }
+    
     if (checkout) {
-        let data = new Date(checkout + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-        atualcheckout.text(dataFormatada);
-    } 
-
-    if ( dataembarqueida) {
-        let data = new Date( dataembarqueida + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-        atualdataida.text(dataFormatada);
-    } 
-
+        atualcheckout.text(formatarData(checkout));
+    }
+    
+    if (dataembarqueida) {
+        atualdataida.text(formatarData(dataembarqueida));
+    }
+    
     if (datadesembarqueida) {
-        let data = new Date( datadesembarqueida + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-        atualdatadesembarque.text(dataFormatada);
-    } 
-
-
-    if ( dataembarquevolta) {
-        let data = new Date(  dataembarquevolta + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-        atualdataembarquevolta.text(dataFormatada);
-    } 
-
-    if ( datadesembarquevolta) {
-        let data = new Date( datadesembarquevolta + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
-        let dia = String(data.getDate()).padStart(2, "0");
-        let mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro = 0, então +1
-        let ano = data.getFullYear();
-        let dataFormatada = `${dia}/${mes}/${ano}`;
-        atualdatadesembarquevolta.text(dataFormatada);
-    } 
-
-    $("#container, #botao-pdf").show()
-
-
-
+        atualdatadesembarque.text(formatarData(datadesembarqueida));
+    }
+    
+    if (dataembarquevolta) {
+        atualdataembarquevolta.text(formatarData(dataembarquevolta));
+    }
+    
+    if (datadesembarquevolta) {
+        atualdatadesembarquevolta.text(formatarData(datadesembarquevolta));
+    }
     
 
-
-
+    $("#container, #botao-pdf").show()
     
     
 });
