@@ -26,8 +26,14 @@ function sincronizarDatas(sourceSelector, targetSelector) {
 
 
   function capitalizarPalavras(str) {
-    return str.replace(/\b\w/g, letra => letra.toUpperCase());
-}
+    return str
+      .split(' ')
+      .map(palavra => 
+        palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase()
+      )
+      .join(' ');
+  }
+  
 
 
   function formatarMoeda(input, hiddenInput) {
@@ -222,12 +228,11 @@ $(document).ready(function () {
      });
 
     
-    $("input").on("input", function() {
+     $("input").on("input", function() {
         let textoFormatado = capitalizarPalavras($(this).val());
         $(this).val(textoFormatado);
-
-    
-    });
+      });
+      
         
         
     $(".inputAeroporto").on("input", function () {
