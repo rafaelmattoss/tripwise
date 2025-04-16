@@ -2,11 +2,13 @@ const pup = require('puppeteer');
 
   
 async function scrap() {
-    const navegador = await pup.launch({ headless: false }) // "hadless" estava errado
+    const navegador = await pup.launch({ headless: false }) 
 
     const pagina = await navegador.newPage()
 
     await pagina.goto("https://www.latamairlines.com/br/pt/minhas-viagens")
+
+  
 
     await pagina.click("#cookies-politics-button", { timeout: 3000 })
 
@@ -17,7 +19,7 @@ async function scrap() {
     await pagina.type("#code--text-field", "Qgvgji")
     await pagina.type("#lastname--text-field", "Da Silva")
 
-    await Promise.all([ // "Promisse" estava errado
+    await Promise.all([
         pagina.waitForNavigation(),
         pagina.click("#submit-search-code-mobile")
     ])
@@ -45,7 +47,7 @@ async function scrap() {
       horaembarque: await pagina.$eval('[data-testid="order-detail-departure-time-outbound"] span', el => el.innerText.trim()),
       horaDesembarque: await pagina.$eval("[data-testid='order-detail-arrival-time-outbound'] span", el => el.innerText.trim()),
       destino: await pagina.$eval("#order-detail-city-destination-outbound", el => el.innerText.trim()),
-      modeloAeronave // aqui você já coloca a variável que foi definida acima
+      modeloAeronave 
     };
 
     
@@ -58,5 +60,4 @@ async function scrap() {
 }
 
 scrap()
-
 
