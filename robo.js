@@ -31,8 +31,8 @@ async function login() {
   await pagina.waitForSelector("#code--text-field", { timeout: 60000 });
   await pagina.waitForSelector("#lastname--text-field", { timeout: 60000 });
 
-  await pagina.type("#code--text-field", "Qgvgji", { delay: 100 });
-  await pagina.type("#lastname--text-field", "Da Silva", { delay: 100 });
+  await pagina.type("#code--text-field", "Qnqbzd", { delay: 100 });
+  await pagina.type("#lastname--text-field", "rangel", { delay: 100 });
 
   // Clica no botão de login e espera a navegação.
   await Promise.all([
