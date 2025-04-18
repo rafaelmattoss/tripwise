@@ -19,6 +19,9 @@ async function login() {
   await pagina.goto("https://www.latamairlines.com/br/pt/minhas-viagens", { waitUntil: 'networkidle2' });
   console.log("Fui até a página de login");
 
+ 
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
   try {
     await pagina.waitForSelector("#cookies-politics-button", { timeout: 60000 });
     await pagina.click("#cookies-politics-button", { timeout: 3000 });
@@ -27,12 +30,17 @@ async function login() {
     console.log("Cookie banner não encontrado ou já fechado.");
   }
 
+ 
+
   // Aguarda os campos de login e preenche os dados
   await pagina.waitForSelector("#code--text-field", { timeout: 60000 });
   await pagina.waitForSelector("#lastname--text-field", { timeout: 60000 });
 
-  await pagina.type("#code--text-field", "Qnqbzd", { delay: 100 });
-  await pagina.type("#lastname--text-field", "rangel", { delay: 100 });
+  await delay(2000)
+  
+try{
+  await pagina.type("#code--text-field", "Qgvgji", { delay: 100 });
+  await pagina.type("#lastname--text-field", "Da Silva", { delay: 100 });
 
   // Clica no botão de login e espera a navegação.
   await Promise.all([
@@ -41,36 +49,59 @@ async function login() {
   ]);
   console.log("Loguei com sucesso");
 
-  // Opcional: se houver banner de cookies, clique nele.
-  await pagina.waitForSelector("#order-detail-trip-date-outbound", { timeout: 60000 });
-  await pagina.waitForSelector('[data-testid="order-detail-flight-number-outbound"] span', { timeout: 60000 });
-  await pagina.waitForSelector('#order-detail-city-origin-outbound', { timeout: 60000 });
-  await pagina.waitForSelector('#order-detail-flight-duration-outbound', { timeout: 60000 });
-  await pagina.waitForSelector('[data-testid="order-detail-departure-time-outbound"] span', { timeout: 60000 });
-  await pagina.waitForSelector('[data-testid="order-detail-arrival-time-outbound"] span', { timeout: 60000 });
-  await pagina.waitForSelector('#order-detail-city-destination-outbound', { timeout: 60000 });
+}catch{
+  console.log("erro ao consultar a reserva")
+  navegador.close()
+}
 
-  // Captura o modelo do avião
-  const containerModelo = await pagina.$('[data-testid="order-detail-flight-number-outbound"]');
-  const spans = await containerModelo.$$('span');
-  const modeloAeronaveRaw = await pagina.evaluate(el => el.innerText, spans[1]);
-  const modeloAeronave = modeloAeronaveRaw.replace(' - Avião ', '').trim();
 
-  // Monta o objeto com os dados extraídos
-  const dadosVoo = {
-    datavoo: await pagina.$eval("#order-detail-trip-date-outbound", el => el.innerText.trim()),
-    numeroVoo: await pagina.$eval('[data-testid="order-detail-flight-number-outbound"] span', el => el.innerText.trim()),
-    origem: await pagina.$eval("#order-detail-city-origin-outbound", el => el.innerText.trim()),
-    duracaoVoo: await pagina.$eval("#order-detail-flight-duration-outbound", el => el.innerText.trim()),
-    horaembarque: await pagina.$eval('[data-testid="order-detail-departure-time-outbound"] span', el => el.innerText.trim()),
-    horaDesembarque: await pagina.$eval("[data-testid='order-detail-arrival-time-outbound'] span", el => el.innerText.trim()),
-    destino: await pagina.$eval("#order-detail-city-destination-outbound", el => el.innerText.trim()),
-    modeloAeronave
-  };
+  try{
+    await pagina.waitForSelector("#order-detail-trip-date-outbound", { timeout: 30000 });
+    await pagina.waitForSelector('[data-testid="order-detail-flight-number-outbound"] span', { timeout: 30000 });
+    await pagina.waitForSelector('#order-detail-city-origin-outbound', { timeout: 30000 });
+    await pagina.waitForSelector('#order-detail-flight-duration-outbound', { timeout: 30000 });
+    await pagina.waitForSelector('[data-testid="order-detail-departure-time-outbound"] span', { timeout: 30000 });
+    await pagina.waitForSelector('[data-testid="order-detail-arrival-time-outbound"] span', { timeout: 30000 });
+    await pagina.waitForSelector('[data-testid="order-detail-city-destination-outbound"]', { timeout: 30000 });
+    await pagina.waitForSelector('[data-testid="order-detail-iata-origin-outbound"]', { timeout: 30000 });
 
-  console.log("Dados do voo:", dadosVoo);
-  await navegador.close();
+    
 
+
+    
+    
+    // Captura o modelo do avião
+    const containerModelo = await pagina.$('[data-testid="order-detail-flight-number-outbound"]');
+    const spans = await containerModelo.$$('span');
+    const modeloAeronaveRaw = await pagina.evaluate(el => el.innerText, spans[1]);
+    const modeloAeronave = modeloAeronaveRaw.replace(' - Avião ', '').trim();
+
+    // Monta o objeto com os dados extraídos
+    const dadosVoo = {
+      datavoo: await pagina.$eval("#order-detail-trip-date-outbound", el => el.innerText.trim()),
+      numeroVoo: await pagina.$eval('[data-testid="order-detail-flight-number-outbound"] span', el => el.innerText.trim()),
+      origem: await pagina.$eval("#order-detail-city-origin-outbound", el => el.innerText.trim()),
+      duracaoVoo: await pagina.$eval("#order-detail-flight-duration-outbound", el => el.innerText.trim()),
+      aeroportoEmbarque: await pagina.$eval('[data-testid="order-detail-iata-origin-outbound"]', el => el.innerText.trim()),
+      horaembarque: await pagina.$eval('[data-testid="order-detail-departure-time-outbound"] span', el => el.innerText.trim()),
+      horaDesembarque: await pagina.$eval("[data-testid='order-detail-arrival-time-outbound'] span", el => el.innerText.trim()),
+      destino: await pagina.$eval("#order-detail-city-destination-outbound", el => el.innerText.trim()),
+      
+
+      modeloAeronave
+    };
+    
+
+    console.log("Dados do voo:", dadosVoo);
+    await navegador.close();// Fecha a página
+
+  }catch{
+    console.log("erro ao buscar passagens")
+    navegador.close()
+  }
+  
+  navegador.close()
+  
 }
 
 login();
