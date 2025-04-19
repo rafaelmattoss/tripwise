@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+
+  .ticket {
+    display: flex;
+    border: 1px solid #ccc;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .left {
+    background-color: #eee;
+    padding: 15px;
+    width: 30%;
+  }
+
+  .left strong {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    border-left: 1px solid #ccc;
+  }
+
+  .section {
+    flex: 1 1 33%;
+    padding: 15px;
+    border-left: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .section:first-child {
+    border-left: none;
+  }
+
+  .city {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .time {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+
+  .label {
+    font-size: 12px;
+    color: #666;
+  }
