@@ -9,6 +9,16 @@ body {
     margin: auto;
   }
 
+  header{
+    border: 1px solid #ccc;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  header p{
+    
+  }
+
   .left {
     background-color: #eee;
     padding: 15px;

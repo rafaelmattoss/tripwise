@@ -66,10 +66,6 @@ try{
     await pagina.waitForSelector('[data-testid="order-detail-iata-origin-outbound"]', { timeout: 30000 });
 
     
-
-
-    
-    
     // Captura o modelo do avião
     const containerModelo = await pagina.$('[data-testid="order-detail-flight-number-outbound"]');
     const spans = await containerModelo.$$('span');
