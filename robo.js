@@ -1,9 +1,11 @@
 const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+
 
 async function login() {
   // Inicia o navegador em modo não headless para fazer o login manualmente.
   const navegador = await puppeteer.launch({ 
-    headless: 'new', 
+    headless: false, 
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox'
@@ -55,6 +57,7 @@ try{
 }
 
 
+
   try{
     await pagina.waitForSelector("#order-detail-trip-date-outbound", { timeout: 30000 });
     await pagina.waitForSelector('[data-testid="order-detail-flight-number-outbound"] span', { timeout: 30000 });
@@ -100,5 +103,76 @@ try{
   
 }
 
-login();
+login()
+
+
+async function azul() {
+  // Inicia o navegador em modo não headless para fazer o login manualmente.
+  const navegador = await puppeteer.launch({ 
+    headless: false, 
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]
+  });
+  const pagina = await navegador.newPage();
+
+  
+  await pagina.setUserAgent(
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'
+  );
+
+  await pagina.goto("https://www.voeazul.com.br/br/pt/home/reservas.html", { waitUntil: 'networkidle2' });
+  console.log("Fui até a página azul");
+
+  try {
+    await pagina.waitForSelector("#onetrust-accept-btn-handler", { timeout: 60000 });
+    await pagina.click("#onetrust-accept-btn-handler", { timeout: 3000 });
+    console.log("Cookie banner clicado");
+  } catch (error) {
+    console.log("Cookie banner não encontrado ou já fechado.");
+  }
+  
+
+ 
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+
+
+ 
+
+  // Aguarda os campos de login e preenche os dados
+  await pagina.waitForSelector("#recordLocator", { timeout: 60000 });
+  await pagina.waitForSelector("#origin-id", { timeout: 60000 });
+
+  await delay(2000)
+  
+try{
+  await pagina.type("#recordLocator", "xmwryg", { delay: 100 });
+  await pagina.type("#origin-id", "vcp", { delay: 100 });
+
+  await pagina.waitForSelector('[role="listbox"] li', { visible: true });
+
+  // Clica na primeira sugestão da lista
+  await pagina.click('[role="listbox"] li:first-child');
+
+  // Clica no botão de login e espera a navegação.
+  await Promise.all([
+    pagina.waitForNavigation({ waitUntil: 'networkidle2' }),
+    pagina.click('button[data-testid="search-box-hotel-date-picker-primary-button"]')
+  ]);
+  console.log("Loguei com sucesso");
+
+}catch{
+  console.log("erro ao consultar a reserva")
+  navegador.close()
+}
+
+
+  
+  navegador.close()
+  
+}
+
+
 
