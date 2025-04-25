@@ -5,7 +5,7 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 async function login() {
   // Inicia o navegador em modo não headless para fazer o login manualmente.
   const navegador = await puppeteer.launch({ 
-    headless: false, 
+    headless: 'new', 
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox'
@@ -67,6 +67,7 @@ try{
     await pagina.waitForSelector('[data-testid="order-detail-arrival-time-outbound"] span', { timeout: 30000 });
     await pagina.waitForSelector('[data-testid="order-detail-city-destination-outbound"]', { timeout: 30000 });
     await pagina.waitForSelector('[data-testid="order-detail-iata-origin-outbound"]', { timeout: 30000 });
+   
 
     
     // Captura o modelo do avião
@@ -74,6 +75,8 @@ try{
     const spans = await containerModelo.$$('span');
     const modeloAeronaveRaw = await pagina.evaluate(el => el.innerText, spans[1]);
     const modeloAeronave = modeloAeronaveRaw.replace(' - Avião ', '').trim();
+
+   
 
     // Monta o objeto com os dados extraídos
     const dadosVoo = {
@@ -86,7 +89,6 @@ try{
       horaDesembarque: await pagina.$eval("[data-testid='order-detail-arrival-time-outbound'] span", el => el.innerText.trim()),
       destino: await pagina.$eval("#order-detail-city-destination-outbound", el => el.innerText.trim()),
       
-
       modeloAeronave
     };
     
