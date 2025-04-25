@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
 
-async function login() {
+async function latam() {
   // Inicia o navegador em modo não headless para fazer o login manualmente.
   const navegador = await puppeteer.launch({ 
     headless: 'new', 
@@ -105,7 +105,7 @@ try{
   
 }
 
-login()
+latam()
 
 
 async function azul() {
