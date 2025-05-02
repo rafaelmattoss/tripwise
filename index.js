@@ -213,6 +213,7 @@ $(document).ready(function () {
        
     
         if (servico === "Hospedagem") {
+            $("#organizer").show();
             $("#servico-hospedagem").show();
             $("#info-hotel").show();
             $("#valorhospedagem").show();
@@ -224,8 +225,6 @@ $(document).ready(function () {
             $("#organizer1").show();
             $("#aereo-adulto, #aereo-bebe, #aereo-crianca, #voo-inf, #valorvoo").show();
             $("#hotel-inf").hide();
-            
-            
     
         } else if (servico === "hospedagem e aereo") {
             $("#servico-hospedagem, #servico-aereo").show();
