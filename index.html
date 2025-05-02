@@ -96,6 +96,20 @@
       <label for="novoenderecohotel">Digite o Endereço</label>
       <input type="text" id="novoenderecohotel">
 
+      <input list="regime-pensao" id="modalidade-pensao" placeholder="Digite o Regime da Pensao">
+      <datalist id="regime-pensao">
+        <option value="Pensão Completa">Pensão Completa</option>
+        <option value="Café da Manhã">Café da Manhã </option>
+        <option value="All Inclusive">All Inclusive</option>
+        <option value="Meia Pensão">Meia Pensão</option>
+        <option value="Somente Hospedagem">Somente Hospedagem</option>
+
+      </datalist>
+      
+      
+
+      
+
       <button id="addquartos">Adicionar Mais quartos</button>
 
     </section>  <br>
@@ -365,7 +379,7 @@
         <div id="categoria1" class="categoria">
           <div>Check-in  <br><span id="atualcheckin">26/05/2026</span></div>
           <div>Check-out  <br><span id="atualcheckout">26/05/2026</span></div>
-          <div>Regime: Café da manhã incluso</div>
+          <div id="atual-regime">Regime: Café da manhã incluso</div>
         </div>
         
 

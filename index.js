@@ -152,7 +152,7 @@ if (camposVazios.length > 0) {
   
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #botao-pdf").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,  #botao-pdf").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -348,7 +348,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 $("#alterar").click(() => {
 
     Validacao()
-
+    $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
     let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input
     let qtdadultos = $("#qtdadultos").val();

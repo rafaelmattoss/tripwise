@@ -108,3 +108,21 @@ body {
     font-size: 12px;
     color: #666;
   }
+
+  #preencher-latam{
+    
+    margin: 20px auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+  }
+
+  #preencher-latam input{
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 250px;
+  }
