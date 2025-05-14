@@ -1,11 +1,11 @@
 const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+
 
 
 async function latam() {
   // Inicia o navegador em modo não headless para fazer o login manualmente.
-  const navegador = await puppeteer.launch({ 
-    headless: 'new', 
+  const navegador = await puppeteer.launch({
+    headless: false,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox'
@@ -13,7 +13,7 @@ async function latam() {
   });
   const pagina = await navegador.newPage();
 
-  
+
   await pagina.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'
   );
@@ -21,7 +21,7 @@ async function latam() {
   await pagina.goto("https://www.latamairlines.com/br/pt/minhas-viagens", { waitUntil: 'networkidle2' });
   console.log("Fui até a página de login");
 
- 
+
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   try {
@@ -32,14 +32,14 @@ async function latam() {
     console.log("Cookie banner não encontrado ou já fechado.");
   }
 
- 
+
 
   // Aguarda os campos de login e preenche os dados
   await pagina.waitForSelector("#code--text-field", { timeout: 60000 });
   await pagina.waitForSelector("#lastname--text-field", { timeout: 60000 });
 
   await delay(2000)
-  
+
 try{
   await pagina.type("#code--text-field", "Qgvgji", { delay: 100 });
   await pagina.type("#lastname--text-field", "Da Silva", { delay: 100 });
@@ -67,16 +67,16 @@ try{
     await pagina.waitForSelector('[data-testid="order-detail-arrival-time-outbound"] span', { timeout: 30000 });
     await pagina.waitForSelector('[data-testid="order-detail-city-destination-outbound"]', { timeout: 30000 });
     await pagina.waitForSelector('[data-testid="order-detail-iata-origin-outbound"]', { timeout: 30000 });
-   
 
-    
+
+
     // Captura o modelo do avião
     const containerModelo = await pagina.$('[data-testid="order-detail-flight-number-outbound"]');
     const spans = await containerModelo.$$('span');
     const modeloAeronaveRaw = await pagina.evaluate(el => el.innerText, spans[1]);
     const modeloAeronave = modeloAeronaveRaw.replace(' - Avião ', '').trim();
 
-   
+
 
     // Monta o objeto com os dados extraídos
     const dadosVoo = {
@@ -88,10 +88,10 @@ try{
       horaembarque: await pagina.$eval('[data-testid="order-detail-departure-time-outbound"] span', el => el.innerText.trim()),
       horaDesembarque: await pagina.$eval("[data-testid='order-detail-arrival-time-outbound'] span", el => el.innerText.trim()),
       destino: await pagina.$eval("#order-detail-city-destination-outbound", el => el.innerText.trim()),
-      
+
       modeloAeronave
     };
-    
+
 
     console.log("Dados do voo:", dadosVoo);
     await navegador.close();// Fecha a página
@@ -100,9 +100,9 @@ try{
     console.log("erro ao buscar passagens")
     navegador.close()
   }
-  
+
   navegador.close()
-  
+
 }
 
 latam()
@@ -110,8 +110,8 @@ latam()
 
 async function azul() {
   // Inicia o navegador em modo não headless para fazer o login manualmente.
-  const navegador = await puppeteer.launch({ 
-    headless: false, 
+  const navegador = await puppeteer.launch({
+    headless: false,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox'
@@ -119,7 +119,7 @@ async function azul() {
   });
   const pagina = await navegador.newPage();
 
-  
+
   await pagina.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'
   );
@@ -134,21 +134,21 @@ async function azul() {
   } catch (error) {
     console.log("Cookie banner não encontrado ou já fechado.");
   }
-  
 
- 
+
+
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 
 
- 
+
 
   // Aguarda os campos de login e preenche os dados
   await pagina.waitForSelector("#recordLocator", { timeout: 60000 });
   await pagina.waitForSelector("#origin-id", { timeout: 60000 });
 
   await delay(2000)
-  
+
 try{
   await pagina.type("#recordLocator", "xmwryg", { delay: 100 });
   await pagina.type("#origin-id", "vcp", { delay: 100 });
@@ -171,10 +171,12 @@ try{
 }
 
 
-  
+
   navegador.close()
-  
+
 }
+
+
 
 
 

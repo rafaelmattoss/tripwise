@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>Orçamento de Viagem</title>
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=connecting_airports" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  
+
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <nav>
       <ul>
         <li id="vizuorcar">ORÇAMENTOS </li>
-       
+
         <li id="vizuclientes">CLIENTES</li>
       </ul>
     </nav>
@@ -30,7 +30,7 @@
     </ul>
   </header>
 
-  
+
 
 
   <div id="organizer">
@@ -46,7 +46,7 @@
           <option value="hospedagem e aereo">Hospedagem + Aereo</option>
         </select>
 
-      <h3> Informações sobre o Destino</h3> <br> 
+      <h3> Informações sobre o Destino</h3> <br>
 
       <label for="titulo">Digite o Destino</label>
       <input type="text" id="titulo" required>
@@ -58,21 +58,21 @@
       <input type="number" id="noites">
 
     </section>
-    
+
     <section id="dadopassageiros">
       <h3>Dados dos Viajantes</h3> <br> <br>
 
       <input type="number" id="qtdadultos" placeholder="Quantos Adultos?">
 
-    
+
       <input type="number" id="qtdcriancas"  placeholder="Quantas crianças?">
 
-      
+
       <input type="number" id="qtdbebes" placeholder="Quantos bebês? (De 0 a 2 anos)">
 
-      
+
     </section>
-    
+
     <section id="dadoshospedagem">
       <h3>Detalhes da Hospedagem</h3>
 
@@ -100,10 +100,10 @@
         <option value="Somente Hospedagem">Somente Hospedagem</option>
 
       </datalist>
-      
-      
 
-      
+
+
+
 
       <button id="addquartos">Adicionar Mais quartos</button>
 
@@ -113,7 +113,7 @@
       arrow_forward
       </span>
 
-    
+
   </div>
 
 
@@ -121,13 +121,13 @@
     <div id="organizer1">
       <section id="info-voo-ida">
 
-        <h3> Informações de Embarque (Ida)</h3> <br> 
+        <h3> Informações de Embarque (Ida)</h3> <br>
 
         <input type="number" placeholder="Digite o Numero de Adultos" id="aereo-adulto">
         <input type="number" placeholder="Digite o Numero de Bebês" id="aereo-bebe">
         <input type="number" placeholder="Digite o Numero de Crianças" id="aereo-crianca">
 
-          
+
           <input list="listaAeroportos" id="aeroporto" placeholder="Selecione o aeroporto do embarque">
           <datalist id="listaAeroportos">
             <option value=""></option>
@@ -168,31 +168,31 @@
             <option value="Boa Vista (BVB)">Boa Vista (BVB)</option>
             <option value="Fernando de Noronha (FEN)">Fernando de Noronha (FEN)</option>
           </datalist>
-          
-            
-        
-      
+
+
+
+
           <label for="dataembarque">Data de embarque</label>
           <input type="date" id="dataembarque">
-      
+
           <label for="horaembarque">Hora de embarque</label>
           <input type="time" id="horaembarque">
-      
+
           <label for="classe">Selecione a classe do voo</label>
           <select id="classe">
               <option value="Economica">Econômica</option>
               <option value="Executiva">Executiva</option>
               <option value="Primeira Classe">Primeira classe</option>
           </select>
-      
+
           <label for="numerovoo">Número do voo</label>
           <input type="text" id="numerovoo">
-      
+
           <label for="ciaaereaida">Companhia aérea</label>
           <input type="text" id="ciaaereaida"> <br><br>
 
           <button id="add-conection"> + </button>
-        
+
           <form action="" id="dados-conect">
             <input list="listaAeroportos" placeholder="Digite o Aeroporto da conexão" id="aero-conect">
 
@@ -212,21 +212,21 @@
           </form>
 
 
-          <h3> Informações de Desmbarque (Ida)</h3> <br> 
-    
+          <h3> Informações de Desmbarque (Ida)</h3> <br>
+
           <input list="listaAeroportos" id="aeroporto-desembarque" placeholder="Selecione o aeroporto de desembarque">
-          
+
           <label for="datadesembarque">Data do desembarque</label>
           <input type="date" id="datadesembarque">
-      
+
           <label for="horadesembarque">Hora de desembarque</label>
           <input type="time" id="horadesembarque">
-      
+
         </section>
       <!-- acima informações da ida -->
-      
+
       <!-- abaixo informações da volta -->
-      
+
       <section id="info-voo-volta">
         <h3>Informações do Embarque (Volta)</h3>
 
@@ -234,25 +234,25 @@
 
         <label for="dataembarque-volta">Data de embarque</label>
         <input type="date" id="dataembarque-volta">
-      
+
         <label for="horaembarque-volta">Hora de embarque</label>
         <input type="time" id="horaembarque-volta">
-      
+
         <label for="classe-volta">Selecione a classe do voo</label>
         <select id="classe-volta">
             <option value="Economica">Econômica</option>
             <option value="Executiva">Executiva</option>
             <option value="Primeira Classe">Primeira classe</option>
         </select>
-      
+
         <label for="numerovoo-volta">Número do voo</label>
         <input type="text" id="numerovoo-volta">
-      
+
         <label for="ciaaereavolta">Companhia aérea</label>
-        <input type="text" id="ciaaereavolta"> <br><br> 
+        <input type="text" id="ciaaereavolta"> <br><br>
 
         <button id="add-conection-volta"> + </button>
-        
+
         <form action="" id="dados-conect-volta">
           <input list="listaAeroportos" placeholder="Digite o Aeroporto da conexão" id="aeroporto-conect-volta">
 
@@ -272,14 +272,14 @@
 
         </form>
 
-        <h3> Informações de Desembarque (Volta)</h3> <br> 
-      
+        <h3> Informações de Desembarque (Volta)</h3> <br>
+
         <label for="aeroporto-desembarque-volta">Selecione o aeroporto de desembarque</label>
         <input list="listaAeroportos" id="aeroporto-desembarque-volta">
-        
+
         <label for="datadesembarque-volta">Data do desembarque</label>
         <input type="date" id="datadesembarque-volta">
-      
+
         <label for="horadesembarque-volta">Hora de desembarque</label>
         <input type="time" id="horadesembarque-volta">
       </section>
@@ -297,7 +297,7 @@
           <option value="Reservas Finalizadas">Reservas finalizadas</option>
           <option value="Reservas Não Finalizadas">Reservas Não Finalizadas</option>
         </select>
-        
+
 
 
         <div id="hotel-inf">
@@ -313,11 +313,11 @@
         </div>
       </div>
 
-      
-    </section>
-  
 
-  
+    </section>
+
+
+
 
 
   <button id="alterar">VISUALIZAR PDF</button>
@@ -358,8 +358,8 @@
 
     <div id="separar2"></div>
 
-  
-    
+
+
 
     <section id="info-hotel">
       <div id="endereco">
@@ -376,7 +376,7 @@
           <div>Check-out  <br><span id="atualcheckout">26/05/2026</span></div>
           <div id="atual-regime">Regime: Café da manhã incluso</div>
         </div>
-        
+
 
         <div id="categoria2" class="categoria">
           <div class="adultos">Adultos: 2</div>
@@ -408,7 +408,7 @@
         <div id="info-passageiros">
           <div class="adultos"> 2 Adultos</div>
           <span class="atualqtdcriancas"></span>  <br>
-          <span class="atualqtdbebes"></span> 
+          <span class="atualqtdbebes"></span>
         </div>
 
 
@@ -417,7 +417,7 @@
           <p>Mala de Cabine (10kg)</p>
         </div>
 
-        <div> 
+        <div>
           <p id="atualclasse">Economica</p>
           <p>Cia Aerea: <span id="atual-cia">LaTAM</span></p>
         </div>
@@ -439,24 +439,24 @@
 
           <p id="aeroporto-conect">Rio de Janeiro (GRU)</p>
           <p id="data-chegada-conect">Desembarque: 10/05/2025 - 07h15 </p>
-          <p id="data-aero-conexao-ida"> Embarque: 10/05/2026 - 18h30</p>  
+          <p id="data-aero-conexao-ida"> Embarque: 10/05/2026 - 18h30</p>
           <p id="numero-aero-conexao-ida">numero voo: 16554</p>
         </div>
 
         <span class="icone-aviao-direita" id="aviao-conect" >flight</span>
 
-        <div id="desembarque-ida"> 
+        <div id="desembarque-ida">
           <p id="desembarque-aero-ida">Maceió (GRU)</p>
-          <p id="data-desembarque-aero-ida">Desembarque: 10/05/2026 - 10h15</p> 
+          <p id="data-desembarque-aero-ida">Desembarque: 10/05/2026 - 10h15</p>
         </div>
-        
+
       </div>
 
 
       <h2>VOLTA</h2>
       <div id="voovolta">
 
-    
+
         <div>
           <span class="icone-aviao-esquerda">flight</span>
           <p>Volta</p>
@@ -466,7 +466,7 @@
         <div>
           <div class="adultos"> 2 Adultos</div>
           <span class="atualqtdcriancas"></span> <br>
-          <span class="atualqtdbebes"></span> 
+          <span class="atualqtdbebes"></span>
         </div>
 
 
@@ -476,12 +476,12 @@
           <p>Mala de Cabine (10kg)</p>
         </div>
 
-        <div> 
+        <div>
           <p id="atual-classe-volta">Economica</p>
           <p>Cia Aerea: <span id="atual-cia-volta">LaTAM</span></p>
         </div>
 
-        
+
       </div>
 
       <div id="datasvolta">
@@ -497,16 +497,16 @@
         <div id="conexao-volta">
           <p id="aero-conect-volta">Rio de Janeiro (GRU)</p>
           <p id="data-desembarque-conect-volta">Desembarque: 16/04/2025 - 07h15</p>
-          <p id="data-conexao-volta"> Embarque: 10/05/2026 - 07h15</p>  
+          <p id="data-conexao-volta"> Embarque: 10/05/2026 - 07h15</p>
           <p id="numero-aero-conexao-volta">numero voo: 16554</p>
         </div>
 
         <span class="icone-aviao-direita" id="aviao-conect-volta">flight</span>
 
 
-        <div > 
+        <div >
           <p id="atual-aeroporto-desembarque-volta">São Paulo (GRU)</p>
-          <p id="atual-data-desembarque-volta">Desembarque: 10/05/2026 - 08h45</p> 
+          <p id="atual-data-desembarque-volta">Desembarque: 10/05/2026 - 08h45</p>
         </div>
 
 
@@ -527,7 +527,7 @@
           <li>Cartão de Débito</li>
         </ul>
       </div>
-      
+
       <div id="valores">
         <h2 id="orcamento">Orçamento Total</h2>
 
@@ -549,18 +549,18 @@
         </div>
       </div>
 
-      
-      
+
+
 
   </section>
-  
+
 
     <section id="info-adicionais">
 
       <p>Politica de Cancelamento</p>
-      <p> Anik Viagens informa que todas as reservas são definitivas e não podem ser canceladas ou alteradas após a confirmação sem pagamento de multas. Recomendamos que os clientes estejam cientes dessa política antes de finalizar sua reserva. <br> Caso tenha dúvidas, entre em contato pelo telefone (16) 99700-3986 ou pelo e-mail: 
+      <p> Anik Viagens informa que todas as reservas são definitivas e não podem ser canceladas ou alteradas após a confirmação sem pagamento de multas. Recomendamos que os clientes estejam cientes dessa política antes de finalizar sua reserva. <br> Caso tenha dúvidas, entre em contato pelo telefone (16) 99700-3986 ou pelo e-mail:
         adm@anikviagens.com.br</p>
-      
+
 
     </section>
   </div>
