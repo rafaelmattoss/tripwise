@@ -36,14 +36,14 @@ function sincronizarDatas(sourceSelector, targetSelector) {
       })
       .join(' ');
   }
-  
-  
+
+
 
 
   function formatarMoeda(input, hiddenInput) {
     let value = input.value.replace(/\D/g, ""); // Remove tudo que não for número
     if (value === "") value = "0"; // Evita erro ao apagar tudo
-    
+
     let valorNumerico = parseInt(value) / 100; // Converte para centavos
     let valorFormatado = valorNumerico.toLocaleString("pt-BR", {
         style: "currency",
@@ -73,7 +73,7 @@ let servicoSelecionado = $("#servicos").val();
 if (servicoSelecionado === "Aereo") {
     $("#tituloprincipal").text("");  // Deixa o título vazio
     $("#valorhospedagem").hide();
-    $("#valorhotel").hide() 
+    $("#valorhotel").hide()
      // Esconde a hospedagem
 } else{
     let dias = $("#dias").val();
@@ -121,7 +121,7 @@ let camposParaVerificar = camposObrigatorios.filter(campo => {
     if (servicoSelecionado === "Hospedagem" && campo.tipo === "voo") {
         return false;
     } else if (servicoSelecionado === "Aereo" && campo.tipo === "hotel") {
-       
+
         return false;
     }
     return true;
@@ -141,7 +141,7 @@ camposParaVerificar.forEach(campo => {
 // Se houver campos vazios, exibe alerta e interrompe a execução
 if (camposVazios.length > 0) {
     alert("Preencha os seguintes campos obrigatórios:\n\n" + camposVazios.join("\n"));
-    
+
     return;
 } else{
     $("#container, #botao-pdf").show()
@@ -149,7 +149,7 @@ if (camposVazios.length > 0) {
 
 
 }
-  
+
 
 
 $("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,  #botao-pdf").hide();
@@ -203,60 +203,60 @@ $(document).ready(function () {
 
     $("#servicos").change(function () {
         let servico = $(this).val();
-    
+
         // Esconde tudo primeiro
         $("#servico-hospedagem, #servico-aereo, #voo, #info-hotel").hide();
         $("#valorhospedagem, #valorvoo").hide();
         $("#organizer, #organizer1").hide();
         $("#separar1, #separar3").hide();
         $("#aereo-adulto, #aereo-bebe, #aereo-crianca").hide();
-       
-    
+
+
         if (servico === "Hospedagem") {
             $("#organizer").show();
             $("#servico-hospedagem").show();
             $("#info-hotel").show();
             $("#valorhospedagem").show();
             $("#voo-inf").hide()
-            
+
         } else if (servico === "Aereo") {
             $("#servico-aereo").show();
             $("#voo").show();
             $("#organizer1").show();
             $("#aereo-adulto, #aereo-bebe, #aereo-crianca, #voo-inf, #valorvoo").show();
             $("#hotel-inf").hide();
-    
+
         } else if (servico === "hospedagem e aereo") {
             $("#servico-hospedagem, #servico-aereo").show();
             $("#voo, #info-hotel").show();
             $("#voo-inf, #valorhospedagem, #organizer, #hotel-inf, #valorvoo").show();
         }
     });
-    
-    
+
+
       sincronizarDatas("#checkin", "#checkout");
       sincronizarDatas("#dataembarque", "#datadesembarque");
       sincronizarDatas("#dataembarque-volta", "#datadesembarque-volta")
       sincronizarDatas("#datadesembarque-conect", "#data-conect")
       sincronizarDatas("#datadesembarque-conect-volta", "#data-aero-conexao-volta")
-      
-      
 
-    
+
+
+
     $("#situacaoreserva").change(function(){
         let situacao = $(this).val();
-            
+
         $("#atualreserva").text(situacao).css("color", situacao === "Reservas Finalizadas" ? "green" : "red");
      });
 
-    
+
      $("input").on("input", function() {
         let textoFormatado = capitalizarPalavras($(this).val());
         $(this).val(textoFormatado);
       });
-      
-        
-        
+
+
+
     $(".inputAeroporto").on("input", function () {
         const termo = $(this).val();
         const inputAtual = $(this);
@@ -265,7 +265,7 @@ $(document).ready(function () {
         buscarAeroportos(termo, selectRelacionado);
     });
 
-      
+
 });
 
 
@@ -274,69 +274,69 @@ $(document).ready(function () {
 document.getElementById("botao-pdf").addEventListener("click", async function () {
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF("p", "mm", "a4");
-  
+
     // Captura do elemento como um único canvas
     const elemento = document.getElementById("container");
-    const originalCanvas = await html2canvas(elemento, { scale: 3 });
-  
+    const originalCanvas = await html2canvas(elemento, { scale: 2 });
+
     // Dimensões em mm (A4 retrato)
-    const pdfWidth = 210; 
+    const pdfWidth = 210;
     const pdfHeight = 297;
-  
+
     // Margem superior, se desejar
-    const marginTop = 10; 
+    const marginTop = 10;
     // Se quiser margem lateral, ajuste também x e a largura do addImage.
-  
+
     // Calcula o fator de escala para a largura completa em 210mm
     const scaleFactor = pdfWidth / originalCanvas.width;
-  
+
     // Altura útil na página em mm (descontando a margem superior)
     const usablePageHeightMm = pdfHeight - marginTop;
-  
+
     // Converte essa altura útil de mm para pixels, considerando o mesmo fator de escala
     const usablePageHeightPx = usablePageHeightMm / scaleFactor;
-  
+
     // Função que extrai uma “fatia” (sub-canvas) do canvas original
     function cropCanvas(sourceCanvas, startPx, endPx) {
       const newCanvas = document.createElement("canvas");
       newCanvas.width = sourceCanvas.width;
       newCanvas.height = endPx - startPx;
-  
+
       const ctx = newCanvas.getContext("2d");
       // Desenha a parte do canvas original (startPx -> endPx)
       ctx.drawImage(sourceCanvas, 0, -startPx);
-  
+
       return newCanvas;
     }
-  
+
     let position = 0;
     let pageCount = 0;
     const totalHeight = originalCanvas.height;
-  
+
     // Enquanto ainda houver canvas para “fatiar”
     while (position < totalHeight) {
       // Define o tamanho da fatia que cabe na página
       const sliceHeightPx = Math.min(usablePageHeightPx, totalHeight - position);
-  
+
       // Cria sub-canvas só com a parte necessária
       const canvasSlice = cropCanvas(originalCanvas, position, position + sliceHeightPx);
       const sliceData = canvasSlice.toDataURL("image/png");
-  
+
       // Calcula a altura que essa fatia terá no PDF (em mm)
       const sliceHeightMm = sliceHeightPx * scaleFactor;
-  
+
       // Caso não seja a primeira página, adiciona uma nova
       if (pageCount > 0) {
         pdf.addPage();
       }
-  
+
       // Adiciona a imagem (fatia) na página, com ou sem margem superior
       pdf.addImage(sliceData, "PNG", 0, pageCount > 0 ? marginTop : 0, pdfWidth, sliceHeightMm);
-  
+
       position += sliceHeightPx;
       pageCount++;
     }
-  
+
     pdf.save("orcamento_viagem.pdf");
 });
 
@@ -346,7 +346,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
-    Validacao()
+   $("#container").show()
     $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
     let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input
@@ -398,9 +398,9 @@ $("#alterar").click(() => {
     let numeroaerocrianca = $("#aereo-crianca").val().trim();
 
 
-    
-   
-    
+
+
+
     let hotel = $("#nomehotel");
     let atualenderecohotel = $("#enderecohotel");
     let atualdescri = $("#atualdescri")
@@ -423,10 +423,10 @@ $("#alterar").click(() => {
     let atualclassevolta = $("#atual-classe-volta")
     let atualvalorhospedagem = $("#atualvalorhospedagem")
     let atualvalorvoo = $("#atualvalorvoo")
-   
 
 
-    
+
+
     hotel.text(nomehotel);
     atualenderecohotel.text(novoenderecohotel);
     atualdescri.text(drescriquarto)
@@ -455,7 +455,7 @@ $("#alterar").click(() => {
     atualdataembarquevolta.text("Embarque: " + formatarData(dataembarquevolta)+ " - "+ formatarHora(horaembarquevolta))
     atualdatadesembarquevolta.text("Desembarque: " + formatarData(datadesembarquevolta) + " - "+ formatarHora(horadesembarquevolta))
 
-    
+
 
     if (aeroportoconectida && dataconectida && horaconectida && numeroconectida) {
         $("#aviao-conect").show()
@@ -469,7 +469,7 @@ $("#alterar").click(() => {
             $("#data-aero-conexao-ida").text(`Embarque: ${dataFormatada} - ${horaFormatada}`);
         }
 
-    
+
     }
 
     if (aeroportovolta && datavolta && horavolta && numerovolta) {
@@ -477,10 +477,10 @@ $("#alterar").click(() => {
         $("#conexao-volta").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aero-conect-volta").text(aeroportovolta);
         $("#numero-aero-conexao-volta").text("Numero Voo: " + numerovolta);
-        
-    } 
-    
-    
+
+    }
+
+
 
     if (horadesembarqueConect) {
         const horaFormatada = formatarHora(horadesembarqueConect);
@@ -492,9 +492,9 @@ $("#alterar").click(() => {
 
 
 
-        
 
-    
+
+
     if(qtdadultos > 0){
         $(".adultos").text(qtdadultos + " Adultos")
     } else if(qtdadultos==="" && numeroaeroadultos >0){
@@ -513,24 +513,24 @@ $("#alterar").click(() => {
 
     if(qtdcriancas > 0){
         $(".atualqtdcriancas").text(qtdcriancas + " Crianças")
-        $(".atualqtdcriancass").text(qtdcriancas)  
+        $(".atualqtdcriancass").text(qtdcriancas)
     } else if(qtdcriancas === "" && numeroaerocrianca >0){
         $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças")
     }
 
-    
+
     if (checkin) {
         atualcheckin.text(formatarData(checkin));
     }
-    
+
     if (checkout) {
         atualcheckout.text(formatarData(checkout));
     }
 
 
-    
-    
-    
+
+
+
 });
 
 
