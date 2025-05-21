@@ -43,6 +43,8 @@
           <option value="Hospedagem">Hospedagem</option>
           <option value="Aereo">Aereo</option>
           <option value="hospedagem e aereo">Hospedagem + Aereo</option>
+          <option value="hospedagem, aereo e transfer">Hospedagem + Aereo + Transfer </option>
+          <option value="hospedagem, aereo, transfer e seguro viagem">Pacote Completo</option>
         </select>
 
       <h3> Informações sobre o Destino</h3> <br>
@@ -310,6 +312,21 @@
           <input type="text" id="valorvoo" placeholder="R$ 0,00">
           <input type="hidden" id="valorvoo_real">
         </div>
+
+        <div id="inf-transfer">
+          <label>Digite o Valor do Translado</label>
+          <input type="text" id="valor-transfer" placeholder="R$ 0,00">
+          <input type="hidden" id="valortransfer_real">
+        </div>
+
+        <div id="inf-seguro">
+          <label>Digite o Valor Do Seguro Viagem</label>
+          <input type="text" id="valor-seguro" placeholder="R$ 0,00">
+          <input type="hidden" id="valorseguro_real">
+        </div>
+
+
+
       </div>
 
 
@@ -341,6 +358,8 @@
         <ul>
           <li id="servico-hospedagem" >Hospedagem</li>
           <li id="servico-aereo">Aéreo</li>
+          <li id="servico-transfer">Translado</li>
+          <li id="servico-seguro">Seguro Viagem</li>
         </ul>
       </div>
 
@@ -541,10 +560,20 @@
           <div id="atualvalorvoo">7.000,00 R$</div>
         </div>
 
+        <div class="organizarvalores" id="valorseguro">
+          <div>Seguro Viagem: </div>
+          <div id="atualvalorseguro"></div>
+        </div>
+
+        <div class="organizarvalores" id="valortransfer">
+          <div>Translado: </div>
+          <div id="atualvalortransfer"></div>
+        </div>
+
 
         <div class="organizarvalores">
           <div>TOTAL:</div>
-          <div id="atualtotal">14.000.00 R$</div>
+          <div id="atualtotal"></div>
         </div>
       </div>
 

@@ -59,7 +59,11 @@ function sincronizarDatas(sourceSelector, targetSelector) {
 function atualizarTotal() {
     let valorHospedagem = parseFloat($("#valorhotel_real").val()) || 0;
     let valorVoo = parseFloat($("#valorvoo_real").val()) || 0;
-    let total = valorHospedagem + valorVoo;
+    let valorseguro = parseFloat($("#valortransfer_real").val()) || 0;
+    let valortransfer =parseFloat($("#valorseguro_real").val()) || 0;
+    let total = valorHospedagem + valorVoo + valortransfer + valorseguro;
+
+
 
     $("#atualtotal").text(total.toLocaleString("pt-BR", {
         style: "currency",
@@ -152,7 +156,7 @@ if (camposVazios.length > 0) {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,  #botao-pdf").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,  #botao-pdf, #inf-transfer, #inf-seguro").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -201,6 +205,14 @@ $(document).ready(function () {
         formatarMoeda(this, document.getElementById("valorvoo_real"));
     });
 
+    $("#valor-seguro").on("input", function () {
+        formatarMoeda(this, document.getElementById("valorvoo_real"));
+    });
+
+    $("#valor-transfer").on("input", function () {
+        formatarMoeda(this, document.getElementById("valorvoo_real"));
+    });
+
     $("#servicos").change(function () {
         let servico = $(this).val();
 
@@ -213,24 +225,29 @@ $(document).ready(function () {
 
 
         if (servico === "Hospedagem") {
-            $("#organizer").show();
-            $("#servico-hospedagem").show();
-            $("#info-hotel").show();
-            $("#valorhospedagem").show();
-            $("#voo-inf").hide()
+            $("#organizer, #servico-hospedagem, #info-hotel, #valorhospedagem").show();
+            $("#voo-inf, #valortransfer, #valorseguro, #servico-transfer, #servico-seguro").hide();
 
         } else if (servico === "Aereo") {
-            $("#servico-aereo").show();
-            $("#voo").show();
-            $("#organizer1").show();
-            $("#aereo-adulto, #aereo-bebe, #aereo-crianca, #voo-inf, #valorvoo").show();
-            $("#hotel-inf").hide();
+            $("#servico-aereo, #voo, #organizer1, #aereo-adulto, #aereo-bebe, #aereo-crianca, #voo-inf, #valorvoo").show();
+            $("#hotel-inf, #valortransfer, #valorseguro, #servico-seguro, #servico-transfer ").hide();
 
         } else if (servico === "hospedagem e aereo") {
-            $("#servico-hospedagem, #servico-aereo").show();
-            $("#voo, #info-hotel").show();
-            $("#voo-inf, #valorhospedagem, #organizer, #hotel-inf, #valorvoo").show();
+           $("#servico-hospedagem, #servico-aereo, #voo, #info-hotel, #voo-inf, #valorhospedagem, #organizer, #hotel-inf, #valorvoo").show();
+
+           $("#servico-seguro, #servico-transfer").hide()
+
+        } else if( servico === "hospedagem, aereo e transfer" ){
+
+            $("#servico-hospedagem, #servico-aereo, #voo, #info-hotel, #voo-inf, #valorhospedagem, #organizer, #hotel-inf, #valorvoo, #inf-transfer, #valortransfer, #servico-transfer").show();
+
+            $("#valorseguro, #servico-seguro").hide()
+
+        }else if(servico === "hospedagem, aereo, transfer e seguro viagem" ){
+            $("#inf-seguro, #voo-inf, #hotel-inf, #inf-transfer, #valorvoo, #valorseguro, #servico-seguro, #servico-transfer, #servico-aereo, #servico-hospedagem, #organizer, #valorhospedagem").show()
         }
+
+
     });
 
 
@@ -277,7 +294,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
     // Captura do elemento como um único canvas
     const elemento = document.getElementById("container");
-    const originalCanvas = await html2canvas(elemento, { scale: 2 });
+    const originalCanvas = await html2canvas(elemento, { scale: 1.5 });
 
     // Dimensões em mm (A4 retrato)
     const pdfWidth = 210;
@@ -346,7 +363,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
-   $("#container").show()
+    Validacao()
     $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
     let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input
@@ -427,6 +444,7 @@ $("#alterar").click(() => {
 
 
 
+
     hotel.text(nomehotel);
     atualenderecohotel.text(novoenderecohotel);
     atualdescri.text(drescriquarto)
@@ -446,6 +464,10 @@ $("#alterar").click(() => {
      //altera conexão ida
     atualdataida.text("Embarque: " + formatarData(dataembarqueida) + " - " + formatarHora(horaembarqueida));
     atualdatadesembarque.text("Desembarque: " + formatarData(datadesembarqueida) + " - " + formatarHora(horadesembarqueida))
+
+   $("#atualvalorseguro").text($("#valor-seguro").val());
+   $("#atualvalortransfer").text($("#valor-transfer").val());
+
 
     //altera conexão volta
     $("#data-desembarque-conect-volta").text("Desembarque: " + formatarData(dataDesembarqueConectVolta) + " - " + formatarHora(horaDesembarqueConectVolta));
