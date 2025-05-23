@@ -57,19 +57,21 @@ function sincronizarDatas(sourceSelector, targetSelector) {
 }
 
 function atualizarTotal() {
-    let valorHospedagem = parseFloat($("#valorhotel_real").val()) || 0;
-    let valorVoo = parseFloat($("#valorvoo_real").val()) || 0;
-    let valorseguro = parseFloat($("#valortransfer_real").val()) || 0;
-    let valortransfer =parseFloat($("#valorseguro_real").val()) || 0;
-    let total = valorHospedagem + valorVoo + valortransfer + valorseguro;
+    let valorHospedagem = parseFloat($("#valorhotel_real").val())    || 0;
+    let valorVoo        = parseFloat($("#valorvoo_real").val())     || 0;
+    let valorseguro     = parseFloat($("#valorseguro_real").val())  || 0; // CORRETO
+    let valortransfer   = parseFloat($("#valortransfer_real").val())|| 0; // CORRETO
 
 
+    let total = valorHospedagem + valorVoo + valorseguro + valortransfer;
 
-    $("#atualtotal").text(total.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    }));
+    $("#atualtotal").text(
+      total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
+    );
+
+
 }
+
 
 function Validacao(){
 let servicoSelecionado = $("#servicos").val();
@@ -206,11 +208,11 @@ $(document).ready(function () {
     });
 
     $("#valor-seguro").on("input", function () {
-        formatarMoeda(this, document.getElementById("valorvoo_real"));
+        formatarMoeda(this, document.getElementById("valorseguro_real"));
     });
 
     $("#valor-transfer").on("input", function () {
-        formatarMoeda(this, document.getElementById("valorvoo_real"));
+        formatarMoeda(this, document.getElementById("valortransfer_real"));
     });
 
     $("#servicos").change(function () {
@@ -364,7 +366,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
-    Validacao()
+    $("#container").show()
     $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
     let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input
@@ -414,6 +416,9 @@ $("#alterar").click(() => {
     let numeroaeroadultos = $("#aereo-adulto").val().trim();
     let numeroaerobebes = $("#aereo-bebe").val().trim();
     let numeroaerocrianca = $("#aereo-crianca").val().trim();
+    let valortransfer = $("#valor-transfer").val()
+    let valorseguro = $("#valor-seguro").val()
+
 
 
 
@@ -441,6 +446,8 @@ $("#alterar").click(() => {
     let atualclassevolta = $("#atual-classe-volta")
     let atualvalorhospedagem = $("#atualvalorhospedagem")
     let atualvalorvoo = $("#atualvalorvoo")
+    let atualseguro = $("#atualvalorseguro")
+    let atualtransfer = $("#atualvalortransfer")
 
 
 
@@ -462,12 +469,12 @@ $("#alterar").click(() => {
     atualclassevolta.text("Classe: " + classevolta)
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
-     //altera conexão ida
+    atualtransfer.text(valortransfer)
+    atualseguro.text(valorseguro)
     atualdataida.text("Embarque: " + formatarData(dataembarqueida) + " - " + formatarHora(horaembarqueida));
     atualdatadesembarque.text("Desembarque: " + formatarData(datadesembarqueida) + " - " + formatarHora(horadesembarqueida))
 
-   $("#atualvalorseguro").text($("#valor-seguro").val());
-   $("#atualvalortransfer").text($("#valor-transfer").val());
+
 
 
     //altera conexão volta
