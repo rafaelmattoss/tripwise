@@ -413,6 +413,8 @@ $("#alterar").click(() => {
     let numeroaeroadultos = $("#aereo-adulto").val().trim();
     let numeroaerobebes = $("#aereo-bebe").val().trim();
     let numeroaerocrianca = $("#aereo-crianca").val().trim();
+    let seguro = parseFloat($("#valor-seguro").val()) || 0;
+    let transfer = parseFloat($("#valor-transfer").val()) || 0;
 
 
 
@@ -445,6 +447,9 @@ $("#alterar").click(() => {
 
 
 
+
+
+
     hotel.text(nomehotel);
     atualenderecohotel.text(novoenderecohotel);
     atualdescri.text(drescriquarto)
@@ -465,8 +470,10 @@ $("#alterar").click(() => {
     atualdataida.text("Embarque: " + formatarData(dataembarqueida) + " - " + formatarHora(horaembarqueida));
     atualdatadesembarque.text("Desembarque: " + formatarData(datadesembarqueida) + " - " + formatarHora(horadesembarqueida))
 
-   $("#atualvalorseguro").text($("#valor-seguro").val());
-   $("#atualvalortransfer").text($("#valor-transfer").val());
+
+
+   $("#atualvalorseguro").text(seguro);
+   $("#atualvalortransfer").text(transfer);
 
 
     //altera conexão volta
@@ -513,6 +520,14 @@ $("#alterar").click(() => {
     }
 
 
+
+    if(seguro == "" ){
+        $("#valorseguro").hide()
+    }
+
+    if(transfer == ""){
+        $("#valortransfer").hide()
+    }
 
 
 
