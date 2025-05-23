@@ -366,7 +366,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
-    Validacao()
+   Validacao()
     $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
     let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input

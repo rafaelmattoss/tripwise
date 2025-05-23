@@ -117,11 +117,14 @@
   }
 
 
-  #inclusos > ul> li {
-    margin-left: 20px;
-    font-size: 15px;
-
-  }
+ #inclusos > ul > li {
+  margin-left: 20px;
+  font-size: 15px;
+  list-style: none;
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
+  gap: 5px; /* Espaçamento entre o ícone e o texto */
+}
 
 
   #agencia {
