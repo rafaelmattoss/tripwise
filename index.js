@@ -158,7 +158,7 @@ if (camposVazios.length > 0) {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,   #inf-transfer, #inf-seguro").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,#botao-pdf, #inf-transfer, #inf-seguro").hide();
 
 
 $("#vizuorcar").click(()=>{
