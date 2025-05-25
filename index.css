@@ -56,18 +56,22 @@
 
   #tituloprincipal {
     font-size: 25px;
-    color: #ff7b00;
+    color: rgb(23, 34, 98);
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 70px;
     font-family: 'Montserrat', sans-serif;
   }
 
+  .tit{
+    color:rgb(23, 34, 98) ;
+  }
+
 
 
 
   #resumo {
-    padding: 10px px;
+    padding: 10px ;
     display: flex;
     justify-content: space-around;
     align-items: first baseline ;
@@ -102,7 +106,7 @@
   #resumo-viagem h2 {
     border-left: 4px solid  #ff7b00;
     font-size: 18px;
-    color: #2C3E50;
+    color: rgb(23, 34, 98);
     text-transform: uppercase;
     margin-bottom: 8px;
     padding-left: 10px; ;
@@ -512,7 +516,7 @@
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     margin: auto;
-    background-color: #f4f753;
+    background-color: #ff7b00;
     border: none;
     border-radius: 20px;
     margin-bottom: 50px;
