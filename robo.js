@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
 async function latam() {
   // Inicia o navegador em modo não headless para fazer o login manualmente.
   const navegador = await puppeteer.launch({
-    headless: 'new',
+    headless: false,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox'
