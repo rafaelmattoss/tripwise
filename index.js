@@ -158,7 +158,7 @@ if (camposVazios.length > 0) {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,#botao-pdf, #inf-transfer, #inf-seguro").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,#botao-pdf, #inf-transfer, #inf-seguro, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4 ").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -562,6 +562,66 @@ $("#alterar").click(() => {
 
 
 });
+
+
+const mediaQuery = window.matchMedia("(max-width: 780px)");
+
+function setupMobileView() {
+  // Esconder todos os blocos no início
+  $("#dadopassageiros, #dadoshospedagem").hide();
+  $("#proximocel").show();
+
+  // Primeiro botão
+  $("#proximocel").off("click").on("click", () => {
+    toggleSections({
+      show: ["#dadopassageiros", "#proximocel1"],
+      hide: ["#destino", "#proximocel"]
+    });
+  });
+
+  // Segundo botão
+  $("#proximocel1").off("click").on("click", () => {
+    toggleSections({
+      show: ["#dadoshospedagem", "#proximocel2"],
+      hide: ["#destino", "#proximocel1", "#dadopassageiros"]
+    });
+  });
+
+  // Terceiro botão (voo de ida)
+  $("#proximocel2").off("click").on("click", () => {
+    toggleSections({
+      show: ["#organizer1", "#proximocel3"],
+      hide: ["#destino", "#proximocel2", "#dadopassageiros", "#dadoshospedagem"]
+    });
+  });
+
+  // Quarto botão (voo de volta)
+  $("#proximocel3").off("click").on("click", () => {
+    toggleSections({
+      show: ["#info-voo-volta", "#proximocel4"],
+      hide: ["#destino", "#proximocel3", "#dadopassageiros", "#dadoshospedagem", "#info-voo-ida"]
+    });
+  });
+}
+
+
+function toggleSections({ show = [], hide = [] }) {
+  show.forEach(selector => $(selector).show());
+  hide.forEach(selector => $(selector).hide());
+}
+
+function executarFuncionalidade(e) {
+  if (e.matches) {
+    setupMobileView();
+  }
+}
+
+// Executa no carregamento
+executarFuncionalidade(mediaQuery);
+
+// Escuta mudanças no tamanho da tela
+mediaQuery.addEventListener("change", executarFuncionalidade);
+
 
 
 

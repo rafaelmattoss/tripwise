@@ -667,6 +667,21 @@ input:focus {
   cursor: pointer;
 }
 
+#proximocel,#proximocel1,#proximocel2,#proximocel3,#proximocel4 {
+  width: 60px;
+  height: 60px;
+  background-color: #f48600;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white; /* Deixa o ícone branco */
+  font-size: 32px; /* Tamanho do ícone */
+  margin: auto;
+}
+
+
 
 
 #organizer, #organizer1{
@@ -706,9 +721,36 @@ label {
     border-color: #ff9900;
 }
 
+@media (max-width: 768px) {
+   #orcar {
+
+    height: 80px; /* Altura fixa da barra */
+
+}
+
+#organizer1{
+  display: block;
+  width: 80%;
+  margin: auto;
+
+}
+
+#valoresfinais{
+  width: 80%;
+}
+
+
+#proximo{
+  display: none;
+}
 
 
 
 
 
 
+
+
+
+
+}
