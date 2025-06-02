@@ -568,8 +568,13 @@ const mediaQuery = window.matchMedia("(max-width: 780px)");
 
 function setupMobileView() {
   // Esconder todos os blocos no início
-  $("#dadopassageiros, #dadoshospedagem").hide();
+  $("#dadopassageiros, #dadoshospedagem, #proximo1").hide();
   $("#proximocel").show();
+
+  $("#vizudestin").click(()=>{
+    $("#destino,#proximocel ").show()
+    $("#proximocel1, #proximocel2, #proximocel3")
+ })
 
   // Primeiro botão
   $("#proximocel").off("click").on("click", () => {
@@ -588,20 +593,20 @@ function setupMobileView() {
   });
 
   // Terceiro botão (voo de ida)
-  $("#proximocel2").off("click").on("click", () => {
+ $("#proximocel2").off("click").on("click", () => {
     toggleSections({
-      show: ["#organizer1", "#proximocel3"],
-      hide: ["#destino", "#proximocel2", "#dadopassageiros", "#dadoshospedagem"]
+        show: ["#organizer1", "#info-voo-ida", "#proximocel3"],
+        hide: ["#destino", "#proximocel2", "#dadopassageiros", "#dadoshospedagem"]
     });
-  });
+});
 
-  // Quarto botão (voo de volta)
-  $("#proximocel3").off("click").on("click", () => {
+$("#proximocel3").off("click").on("click", () => {
     toggleSections({
-      show: ["#info-voo-volta", "#proximocel4"],
-      hide: ["#destino", "#proximocel3", "#dadopassageiros", "#dadoshospedagem", "#info-voo-ida"]
+        show: ["#valoresfinais", "#proximocel4"],
+        hide: ["#destino", "#proximocel3", "#dadopassageiros", "#dadoshospedagem", "#info-voo-ida, #organizer1"]
     });
-  });
+});
+
 }
 
 
