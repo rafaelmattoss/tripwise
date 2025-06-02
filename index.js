@@ -571,9 +571,11 @@ function setupMobileView() {
   $("#dadopassageiros, #dadoshospedagem, #proximo1").hide();
   $("#proximocel").show();
 
+
   $("#vizudestin").click(()=>{
     $("#destino,#proximocel ").show()
-    $("#proximocel1, #proximocel2, #proximocel3")
+    $("#proximocel1, #proximocel2, #proximocel3, #proximocel4").hide()
+
  })
 
   // Primeiro botão
