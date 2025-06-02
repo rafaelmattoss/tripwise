@@ -247,7 +247,7 @@ $(document).ready(function () {
             $("#valorseguro, #servico-seguro").hide()
 
         }else if(servico === "hospedagem, aereo, transfer e seguro viagem" ){
-            $("#inf-seguro, #voo-inf, #hotel-inf, #inf-transfer, #valorvoo, #valorseguro, #servico-seguro, #servico-transfer, #servico-aereo, #servico-hospedagem, #organizer, #valorhospedagem").show()
+            $("#inf-seguro, #voo-inf, #hotel-inf, #inf-transfer, #valorvoo, #valorseguro, #servico-seguro, #servico-transfer, #servico-aereo, #servico-hospedagem, #organizer, #valorhospedagem, #info-hotel, #voo").show()
         }
 
 
