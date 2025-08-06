@@ -92,7 +92,6 @@ if (servicoSelecionado === "Aereo") {
 let camposObrigatorios = [
     {id:"titulo", nome: "Destino", tipo: "hotel"},
     {id:"hotel", nome:"Nome do Hotel", tipo: "hotel"},
-    {id:"novoenderecohotel", nome:"Endereço do Hotel", tipo: "hotel"},
     {id:"qtdadultos", nome: "Quantidade de Adultos", tipo: "hotel"},
     {id:"checkin", nome: "Data Checkin", tipo: "hotel"},
     {id:"checkout", nome: "Data Checkout", tipo: "hotel"},
@@ -100,7 +99,6 @@ let camposObrigatorios = [
     {id:"dataembarque", nome: "Data de Embarque (ida)", tipo: "voo"},
     {id:"horaembarque", nome: "Hora de Embarque (ida)", tipo: "voo"},
     {id:"classe", nome: "Classe (ida)", tipo: "voo"},
-    {id:"numerovoo", nome: "Número do Voo (ida)", tipo: "voo"},
     {id:"aeroporto-desembarque", nome: "Aeroporto Desembarque (ida)", tipo: "voo"},
     {id:"datadesembarque", nome: "Data de Desembarque (ida)", tipo: "voo"},
     {id:"horadesembarque", nome: "Hora de Desembarque (ida)", tipo: "voo"},
@@ -108,7 +106,6 @@ let camposObrigatorios = [
     {id:"dataembarque-volta", nome: "Data de Embarque (Volta)", tipo: "voo"},
     {id:"horaembarque-volta", nome: "Hora de Embarque (Volta)", tipo: "voo"},
     {id:"classe-volta", nome: "Classe (Volta)", tipo: "voo"},
-    {id:"numerovoo-volta", nome: "Número do Voo (Volta)", tipo: "voo"},
     {id:"ciaaereavolta", nome: "Companhia Aérea (Volta)", tipo: "voo"},
     {id:"aeroporto-desembarque-volta", nome: "Aeroporto de Desembarque (Volta)", tipo: "voo"},
     {id:"datadesembarque-volta", nome: "Data de Desembarque (Volta)", tipo: "voo"},
@@ -247,7 +244,7 @@ $(document).ready(function () {
             $("#valorseguro, #servico-seguro").hide()
 
         }else if(servico === "hospedagem, aereo, transfer e seguro viagem" ){
-            $("#inf-seguro, #voo-inf, #hotel-inf, #inf-transfer, #valorvoo, #valorseguro, #servico-seguro, #servico-transfer, #servico-aereo, #servico-hospedagem, #organizer, #valorhospedagem, #info-hotel, #voo").show()
+            $("#inf-seguro, #voo-inf, #hotel-inf, #inf-transfer, #valorvoo, #valorseguro, #servico-seguro, #servico-transfer, #servico-aereo, #servico-hospedagem, #organizer, #valorhospedagem").show()
         }
 
 
@@ -369,7 +366,6 @@ $("#alterar").click(() => {
    Validacao()
     $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
-    let novoenderecohotel = $("#novoenderecohotel").val(); // Captura do input
     let qtdadultos = $("#qtdadultos").val();
     let qtdcriancas = $("#qtdcriancas").val();
     let drescriquarto =  $("#descriquarto").val();
@@ -380,7 +376,6 @@ $("#alterar").click(() => {
     let dataembarqueida = $("#dataembarque").val();
     let horaembarqueida = $("#horaembarque").val();
     let ciaida = $("#ciaaereaida").val();
-    let numerovoo = $("#numerovoo").val();
     let classeida = $("#classe").val();
     let aeroportodesembaqueida =  $("#aeroporto-desembarque").val();
     let horadesembarqueida = $("#horadesembarque").val();
@@ -390,7 +385,6 @@ $("#alterar").click(() => {
     let dataembarquevolta = $("#dataembarque-volta").val();
     let horaembarquevolta = $("#horaembarque-volta").val();
     let ciavolta = $("#ciaaereavolta").val();
-    let numerovoovolta = $("#numerovoo-volta").val();
     let classevolta = $("#classe-volta").val();
     let aeroportodesembaquevolta =  $("#aeroporto-desembarque-volta").val();
     let horadesembarquevolta = $("#horadesembarque-volta").val();
@@ -425,14 +419,12 @@ $("#alterar").click(() => {
 
 
     let hotel = $("#nomehotel");
-    let atualenderecohotel = $("#enderecohotel");
     let atualdescri = $("#atualdescri")
     let atualcheckin = $("#atualcheckin")
     let atualcheckout = $("#atualcheckout")
     let atualaeroporto = $("#embarque-aero-ida")
     let atualdataida = $("#data-aero-ida")
     let atualclasse = $("#atualclasse")
-    let atualnumerovoo = $("#atual-numero-voo")
     let atualcia = $("#atual-cia")
     let atualaeroportodesembarque = $("#desembarque-aero-ida")
     let atualdatadesembarque = $("#data-desembarque-aero-ida")
@@ -442,7 +434,6 @@ $("#alterar").click(() => {
     let atualaeroportodesembarquevolta = $("#atual-aeroporto-desembarque-volta")
     let atualdatadesembarquevolta = $("#atual-data-desembarque-volta")
     let atualciavolta = $("#atual-cia-volta")
-    let atualnumerovoovolta = $("#atual-numero-voo-volta")
     let atualclassevolta = $("#atual-classe-volta")
     let atualvalorhospedagem = $("#atualvalorhospedagem")
     let atualvalorvoo = $("#atualvalorvoo")
@@ -454,18 +445,15 @@ $("#alterar").click(() => {
 
 
     hotel.text(nomehotel);
-    atualenderecohotel.text(novoenderecohotel);
     atualdescri.text(drescriquarto)
     atualaeroporto.text(aeroembaqueida)
     atualclasse.text("Classe: " + classeida)
-    atualnumerovoo.text("Numero do Voo: " + numerovoo)
     atualcia.text(ciaida)
     atualaeroportodesembarque.text(aeroportodesembaqueida)
     atualaeroportoembarquevolta.text(aeroembaquevolta)
     atualhoraembarquevolta.text((horaembarquevolta))
     atualaeroportodesembarquevolta.text(aeroportodesembaquevolta)
     atualciavolta.text(ciavolta)
-    atualnumerovoovolta.text("Numero do Voo: " + numerovoovolta)
     atualclassevolta.text("Classe: " + classevolta)
     atualvalorhospedagem.text(valorhospedagem)
     atualvalorvoo.text(valorvoo)
@@ -571,11 +559,9 @@ function setupMobileView() {
   $("#dadopassageiros, #dadoshospedagem, #proximo1").hide();
   $("#proximocel").show();
 
-
   $("#vizudestin").click(()=>{
     $("#destino,#proximocel ").show()
-    $("#proximocel1, #proximocel2, #proximocel3, #proximocel4").hide()
-
+    $("#proximocel1, #proximocel2, #proximocel3")
  })
 
   // Primeiro botão
@@ -628,7 +614,6 @@ executarFuncionalidade(mediaQuery);
 
 // Escuta mudanças no tamanho da tela
 mediaQuery.addEventListener("change", executarFuncionalidade);
-
 
 
 
