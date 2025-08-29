@@ -7,6 +7,18 @@ function formatarData(dataStr) {
     return `${dia}/${mes}/${ano}`;
 }
 
+function irParaClientes(){
+    let senha = '45122'
+    let senhadigitada = $("#senhaparaseguir").val()
+
+    if(senhadigitada === senha){
+        window.location = "clientes.html"
+    }else{
+        alert("senha incorreta")
+    }
+
+}
+
 function formatarHora(horaStr) {
     if (!horaStr) return "";
     const [hora, minutos] = horaStr.split(":");
@@ -155,7 +167,7 @@ if (camposVazios.length > 0) {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,#botao-pdf, #inf-transfer, #inf-seguro, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4 ").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,#botao-pdf, #inf-transfer, #inf-seguro, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -192,6 +204,12 @@ $("#add-conection").click(()=>{
 $("#add-conection-volta").click(()=>{
     $("#dados-conect-volta").fadeToggle();
 });
+
+$("#vizuclientes").click(()=>{
+    $("#camposenha").toggle()
+})
+
+$("#avacar").click(irParaClientes)
 
 
 // ⬇️ Aqui os eventos são adicionados apenas uma vez, fora da função atualizarTotal()

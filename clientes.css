@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+input{
+    width: 400px;
+    padding: 10px;
+    display: block;
+    margin:50px auto ;
+}
+
+#addcliente{
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    display: block;
+}
+
+.cliente{
+    height: 150px;
+    width: 300px;
+    background-color: antiquewhite;
+    margin: auto;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 50px;
+}
+
+.nome{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.cpf, .rg{
+    margin-left: 10px;
+}
+
+#voltarhome{
+    background-color: aquamarine;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 80px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

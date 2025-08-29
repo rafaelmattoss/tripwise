@@ -120,6 +120,23 @@
 
   }
 
+  #linkclientes{
+    text-decoration: none;
+    color: black;
+  }
+
+  #camposenha{
+    width: 280px;
+    margin: 50px auto;
+    height: 120px;
+    background-color: #ccc;
+    padding: 20px;
+  }
+
+  #avacar{
+    padding: 5px;
+
+  }
 
  #inclusos > ul > li {
   margin-left: 20px;
@@ -140,7 +157,7 @@
   #info-agencia > ul> li {
     margin-left: 20px;
     font-size: 15px;
-    
+
 
   }
 
