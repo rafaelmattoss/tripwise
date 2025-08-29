@@ -8,14 +8,15 @@ function formatarData(dataStr) {
 }
 
 function irParaClientes(){
-    let senha = '45122'
-    let senhadigitada = $("#senhaparaseguir").val()
+      let senha = '45122';
+      let senhadigitada = $("#senhaparaseguir").val();
 
-    if(senhadigitada === senha){
-        window.location = "clientes.html"
-    }else{
-        alert("senha incorreta")
-    }
+      if(senhadigitada === senha){
+          sessionStorage.setItem("senhaDigitada", senhadigitada);
+          window.location = "clientes.html";
+      } else {
+          alert("Senha incorreta");
+      }
 
 }
 

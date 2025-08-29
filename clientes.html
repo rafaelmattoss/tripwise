@@ -31,6 +31,15 @@
 
 
 <script type="module" src="app.js"></script>
+ <script>
+    let senhaCorreta = "45122";
+    let senha = sessionStorage.getItem("senhaDigitada");
+
+    if (senha !== senhaCorreta) {
+      alert("Você não tem permissão para acessar esta página!");
+      window.location = "index.html"; // volta pra inicial
+    }
+  </script>
 
 </body>
 </html>
