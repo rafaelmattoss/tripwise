@@ -87,7 +87,7 @@ $("#filtro").on("input", function() {
 });
 
 $("#voltarhome").click(()=>{
-    window.location.href = "index.html"
+    window.location.href = "sistema.html"
 })
 
 onAuthStateChanged(auth, (user) => {
