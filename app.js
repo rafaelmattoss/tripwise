@@ -1,5 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, addDoc  } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+
+import { getFirestore, collection, getDocs, addDoc  } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+
+
 
     // Configuração do Firebase
     const firebaseConfig = {
@@ -15,6 +20,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebas
     // Inicializa Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const auth = getAuth(app);
+
 
 function renderCliente(cliente) {
   const clienteDiv = $(`
@@ -27,6 +34,8 @@ function renderCliente(cliente) {
   $("#clientesgerais").append(clienteDiv);
 }
 
+
+
 // 3️⃣ Buscar clientes do Firestore ao carregar
 async function carregarClientes() {
   const querySnapshot = await getDocs(collection(db, "pessoas"));
@@ -34,6 +43,8 @@ async function carregarClientes() {
     renderCliente(doc.data());
   });
 }
+
+
 
 // 4️⃣ Adicionar cliente com jQuery e salvar no Firestore
 $("#addcliente").click(async () => {
@@ -79,4 +90,12 @@ $("#voltarhome").click(()=>{
     window.location.href = "index.html"
 })
 
-carregarClientes();
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    // Redireciona para login se não estiver logado
+    window.location.href = "index.html";
+  } else {
+    // Carrega os clientes somente se o usuário estiver logado
+    carregarClientes();
+  }
+});
