@@ -8,7 +8,7 @@ function formatarData(dataStr) {
 }
 
 function irParaClientes(){
-      let senha = '45122';
+      let senha = '280419';
       let senhadigitada = $("#senhaparaseguir").val();
 
       if(senhadigitada === senha){
@@ -576,7 +576,7 @@ const mediaQuery = window.matchMedia("(max-width: 780px)");
 function setupMobileView() {
   // Esconder todos os blocos no início
   $("#dadopassageiros, #dadoshospedagem, #proximo1, #proximo").hide();
-  
+
 
   $("#vizudestin").click(()=>{
     $("#destino, #proximocel ").show()
