@@ -168,7 +168,7 @@ if (camposVazios.length > 0) {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect, #container,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -382,7 +382,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
-   Validacao()
+    Validacao()
     $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
     let qtdadultos = $("#qtdadultos").val();
@@ -541,11 +541,13 @@ $("#alterar").click(() => {
 
     if(numerobebes > 0){
         $(".atualqtdbebes").text(numerobebes + " Bebes")
+        $(".bebeshotel").text("Bebes: " + numerobebes)
     } else if(numerobebes === "" && numeroaerobebes>0){
         $(".atualqtdbebes").text(numeroaerobebes + " Bebes")
 
     } else{
-        $(".atualqtdbebes").hide
+        $(".bebeshotel").hide()
+        $(".atualqtdbebes").hide()
     }
 
     if(qtdcriancas > 0){
