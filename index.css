@@ -468,7 +468,7 @@ font-size: 15px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: linear-gradient(to right, rgb(17, 26, 82) 95%, transparent 100%);
+    background: linear-gradient(to right, rgb(17, 26, 82) 80%, transparent 100%);
     margin-bottom: 10px;
 
 
