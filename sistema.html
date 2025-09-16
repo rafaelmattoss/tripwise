@@ -84,6 +84,10 @@
 
       <input type="number" id="qtdbebes" placeholder="Quantos bebês? (De 0 a 2 anos)">
 
+      <input type="text" id="qtdmala10" placeholder="Quantas malas de 10 kilos">
+
+      <input type="text" id="qtdmala23" placeholder="Quantas malas de 23 kilos">
+
 
     </section>
 
@@ -154,10 +158,11 @@
       <section id="info-voo-ida">
 
         <h3> Informações de Embarque (Ida)</h3> <br>
-
+        <input type="text" placeholder="Digite o Nome do Destino" id="aero-destino">
         <input type="number" placeholder="Digite o Numero de Adultos" id="aereo-adulto">
         <input type="number" placeholder="Digite o Numero de Bebês" id="aereo-bebe">
-        <input type="number" placeholder="Digite o Numero de Crianças" id="aereo-crianca">
+        <input type="number" placeholder="Digite o Numero de Crianças" id="aereo-crianca"> <br> <br>
+
 
 
           <input list="listaAeroportos" id="aeroporto" placeholder="Selecione o aeroporto do embarque">
@@ -239,7 +244,6 @@
             <label for="hora-conect">Digite a Hora de Embarque</label>
             <input type="time" placeholder="Digite o horario de embarque da conexão" id="hora-conect">
 
-            <input type="text" placeholder="Digite o numero do voo da conexão" id="number-conect">
           </form>
 
 
@@ -297,7 +301,6 @@
           <label for="">Digite o horario de embarque da conexão</label>
           <input type="time" id="hora-aero-conexao-volta">
 
-          <input type="text" placeholder="Digite o numero do voo da conexão" id="number-conect-volta">
 
         </form>
 
@@ -369,40 +372,37 @@
 
   <div id="container">
 
-    <div id="imagemlogo"></div>
+
 
     <header>
-      <h1 id="tituloprincipal">MACEIÓ ( 8 DIAS E 7 NOITES)</h1>
+      <h1 id="tituloprincipal">Orçamento</h1>
     </header>
 
-    <section id="resumo">
+    <div id="imagemlogo"></div>
 
-      <div id="resumo-viagem">
-        <h2 class="tit">RESUMO DA VIAGEM</h2>
-        <p id="atualreserva">Reservas ainda não finalizadas</p>
-      </div>
+  <div id="inclusos">
+      <h2 class="tit">Resumo da Viagem</h2>
 
-      <div id="inclusos">
-    <h2 class="tit">INCLUI</h2>
-    <ul>
-      <li id="servico-hospedagem">
-        <span class="material-symbols-outlined">hotel</span> Hospedagem
-      </li>
-      <li id="servico-aereo">
-        <span class="material-symbols-outlined">flight</span> Aéreo
-      </li>
-      <li id="servico-transfer">
-        <span class="material-symbols-outlined">airport_shuttle</span> Traslado
-      </li>
-      <li id="servico-seguro">
-        <span class="material-symbols-outlined">health_and_safety</span> Seguro Viagem
-      </li>
-    </ul>
+
+      <ul>
+        <li id="servico-hospedagem">
+          <span class="material-symbols-outlined">hotel</span> Hospedagem
+        </li>
+        <li id="servico-aereo">
+          <span class="material-symbols-outlined">flight</span> Aéreo
+        </li>
+        <li id="servico-transfer">
+          <span class="material-symbols-outlined">airport_shuttle</span> Traslado
+        </li>
+        <li id="servico-seguro">
+          <span class="material-symbols-outlined">health_and_safety</span> Seguro Viagem
+        </li>
+      </ul>
 </div>
 
 
       <div id="info-agencia">
-        <h1 id="agencia" class="tit">AGÊNCIA ANIK VIAGENS</h1>
+        <h1 id="agencia" class="tit">Contato</h1>
         <ul>
           <li>Lucas / Renata</li>
           <li>
@@ -410,35 +410,49 @@
           <li>(16) 99700-3986 / 99730-1179</li>
         </ul>
       </div>
-    </section>
 
-    <div id="separar2"></div>
 
 
 
 
     <section id="info-hotel">
+
+      <h1 id="destinotit">FORTALEZA</h1>
+
+
       <div id="endereco">
-        <h1> Hotel </h1>
-        <h2 id="nomehotel"> Ritz Hotel</h2>
+
+        <h2 id="nomehotel"> Hotel: Ritz Hotel</h2>
 
       </div>
 
       <div id="apart">
-        <h1>Apartamento 1</h1>
+
+          <h1>Apartamento 1</h1>
+
+          <div class="qtdquarto">
+            <div class="bebeshotel"> </div>
+            <div class="atualqtdcriancass"> Crianças: 0 </div>
+            <div class="adultos">Adultos: 2</div>
+          </div>
+
 
         <div id="categoria1" class="categoria">
-          <div>Check-in  <br><span id="atualcheckin">26/05/2026</span></div>
-          <div>Check-out  <br><span id="atualcheckout">26/05/2026</span></div>
-          <div id="atual-regime">Regime: Café da manhã incluso</div>
+
+          <div class="organizardatas">
+            <span class="material-symbols-outlined">
+              calendar_add_on
+            </span> <p id="organizardatas1"><span id="atualcheckin">26/05/2026 </span>   Até   <span id="atualcheckout">26/05/2026</span></p>
+          </div>
+
+          <div class="organizardatas" id="regime">
+            <span class="material-symbols-outlined">
+            restaurant
+            </span>
+            <div id="atual-regime">Regime: Café da manhã incluso</div>
+          </div>
         </div>
 
-
-        <div id="categoria2" class="categoria">
-          <div class="adultos">Adultos: 2</div>
-          <div class="bebeshotel"> </div>
-          <div> Crianças: <span class="atualqtdcriancass"> 0</span>  </div>
-        </div>
       </div>
 
       <div id="info-quarto">
@@ -447,14 +461,16 @@
       </div>
     </section>
 
-    <div id="separar1"></div>
+
 
     <section id="voo">
 
-      <h1>informações sobre o voo</h1>
+      <h1 id="destino-soaereo">Cork</h1>
+
+      <h1>Aéreo</h1>
 
 
-     <h2>IDA</h2>
+
       <div id="vooida">
         <div>
           <span class="icone-aviao-direita" id="icone-ida">flight</span>
@@ -471,7 +487,8 @@
 
         <div>
           <span class="material-icons" id="mala">business_center</span>
-          <p>Mala de Cabine (10kg)</p>
+          <p class="malacabine">01 - Mala de cabine (10 kg)</p>
+          <p class="maladespachada">00 - Mala despachada (23 kg)</p>
         </div>
 
         <div>
@@ -497,7 +514,7 @@
           <p id="aeroporto-conect">Rio de Janeiro (GRU)</p>
           <p id="data-chegada-conect">Desembarque: 10/05/2025 - 07h15 </p>
           <p id="data-aero-conexao-ida"> Embarque: 10/05/2026 - 18h30</p>
-          <p id="numero-aero-conexao-ida">numero voo: 16554</p>
+
         </div>
 
         <span class="icone-aviao-direita" id="aviao-conect" >flight</span>
@@ -510,7 +527,7 @@
       </div>
 
 
-      <h2>VOLTA</h2>
+
       <div id="voovolta">
 
 
@@ -530,7 +547,8 @@
 
         <div>
           <span class="material-icons" id="mala">business_center</span>
-          <p>Mala de Cabine (10kg)</p>
+          <p class="malacabine">01 - Mala de cabine (10 kg)</p>
+          <p class="maladespachada">00 - Mala despachada (23 kg)</p>
         </div>
 
         <div>
@@ -555,7 +573,6 @@
           <p id="aero-conect-volta">Rio de Janeiro (GRU)</p>
           <p id="data-desembarque-conect-volta">Desembarque: 16/04/2025 - 07h15</p>
           <p id="data-conexao-volta"> Embarque: 10/05/2026 - 07h15</p>
-          <p id="numero-aero-conexao-volta">numero voo: 16554</p>
         </div>
 
         <span class="icone-aviao-direita" id="aviao-conect-volta">flight</span>
@@ -576,18 +593,8 @@
 
     <section id="orcamento-total">
 
-      <div id="pagamentos">
-        <h1>Formas de pagamento</h1>
-        <ul>
-          <li>Cartão de Crédito (10x sem juros)</li>
-          <li>PIX (5% de Desconto)</li>
-          <li>Cartão de Débito</li>
-        </ul>
-      </div>
 
-      <div>
-        <div id="valores">
-          <h2 id="orcamento">Orçamento Total</h2>
+
           <div class="organizarvalores" id="valorhospedagem">
             <div>Hospedagem:</div>
             <div id="atualvalorhospedagem">7.000,00 R$</div>
@@ -608,26 +615,48 @@
             <div>TOTAL:</div>
             <div id="atualtotal"></div>
           </div>
-        </div>
 
-        <p id="validadecot">*COTAÇÃO VALIDA PARA HOJE*</p>
-      </div>
-
-
-
-
-  </section>
+        </section>
 
 
     <section id="info-adicionais">
 
-      <p>Politica de Cancelamento</p>
-      <p> Anik Viagens informa que todas as reservas são definitivas e não podem ser canceladas ou alteradas após a confirmação sem pagamento de multas. Recomendamos que os clientes estejam cientes dessa política antes de finalizar sua reserva. <br> Caso tenha dúvidas, entre em contato pelo telefone (16) 99700-3986 ou pelo e-mail: adm@anikviagens.com.br</p>  <br>
+      <h2> informações adicionais</h2>
 
-    <p>Cotação sujeita a disponibilidade e/ou alteração sem aviso prévio. </p>
+      <ul id="infosgerais">
+        <li>Preços em Reais (R$) e válidos para o nº de passageiros definido na cotação;</li>
+        <li>Reserva sujeita à confirmação e alteração de valores sem prévio aviso;</li>
+        <li>Para qualquer orçamento internacional, informamos que os valores serão atualizados ao câmbio do dia do pagamento.</li>
+        <li>O valor referente a “criança” é considerado quando esse está acompanhado de no mínimo 2 adultos pagantes, de acordo com a configuração de acomodação selecionada;</li>
+        <li>A cotação foi baseada na menor tarifa aérea publicada, podendo sofrer alteração devido à disponibilidade de lugares no ato da compra;</li>
+        <li>Após a emissão dos bilhetes aéreos, os mesmos ficarão sujeitos a multas e taxas para a realização de eventuais alterações permitidas pela companhia aérea;</li>
+        <li>Todas as hospedagens estão sujeitas a cobranças de taxas locais (Resort Fee, Taxa de Turismo ou Taxas Municipais) que podem não estar previamente inclusas em sua reserva. O pagamento será no check in (entrada) ou check out (saída), diretamente pelo passageiro ao hotel.</li>
+    </ul>
+
+    <h2>Formas de Pagamentos</h2>
+    <ul>
+      <li>Cartão de Crédito: em 18x Com juros</li>
+      <li>PIX</li>
+    </ul>
+
+    <h2>Observações</h2>
+    <ul>
+      <li>Tarifas sujeitas a disponibilidade e alteração e sem aviso prévio, somente a emissão de sua reserva garante a tarifa;</li>
+      <li>Verifique o prazo de emissão informado na reserva;</li>
+      <li>Consulte sobre vistos, vacinas e documentação legal para embarque;</li>
+      <li>Algumas tarifas podem ser não reembolsáveis e não permitir mudança de data;</li>
+</ul>
+
+
 
 
     </section>
+
+
+
+
+
+
   </div>
 
   <button id="botao-pdf">Baixar PDF</button>

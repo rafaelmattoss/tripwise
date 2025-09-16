@@ -38,17 +38,21 @@ function sincronizarDatas(sourceSelector, targetSelector) {
   }
 
   function capitalizarPalavras(str) {
-    return str
-      .split(' ')
-      .map(palavra => {
-        if (palavra.startsWith('(') && palavra.endsWith(')')) {
-          return palavra.toUpperCase(); // Mantém siglas dentro de parênteses 100% maiúsculas
-        } else {
-          return palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase();
-        }
-      })
-      .join(' ');
-  }
+  if (!str) return str;
+  return str
+    .split(/(\([^\)]*\))/g) // divide em blocos: fora e dentro dos parênteses
+    .map(seg => {
+      if (/^\([^\)]*\)$/.test(seg)) {
+        return seg.toUpperCase(); // tudo dentro dos parênteses em caixa alta
+      }
+      // fora dos parênteses: só garante a primeira letra maiúscula
+      return seg.replace(/\S+/g, word =>
+        word.charAt(0).toUpperCase() + word.slice(1)
+      );
+    })
+    .join('');
+}
+
 
 
 
@@ -68,6 +72,25 @@ function sincronizarDatas(sourceSelector, targetSelector) {
 
     atualizarTotal(); // Atualiza o total sempre que um input for alterado
 }
+
+function atualizarMalas() {
+        let qtdmala10 = parseInt($("#qtdmala10").val()) || 0;
+        let qtdmala23 = parseInt($("#qtdmala23").val()) || 0;
+
+        // Atualiza mala de cabine
+        if (qtdmala10 > 0) {
+            $(".malacabine").text(qtdmala10 + " - Mala de cabine (10 kg)");
+        } else {
+            $(".malacabine").text("01 - Mala de cabine (10 kg)");
+        }
+
+        // Atualiza mala despachada
+        if (qtdmala23 > 0) {
+            $(".maladespachada").text(qtdmala23 + " - Mala despachada (23 kg)");
+        } else {
+            $(".maladespachada").text("00 - Mala despachada (23 kg)");
+        }
+    }
 
 function atualizarTotal() {
     let valorHospedagem = parseFloat($("#valorhotel_real").val())    || 0;
@@ -90,15 +113,18 @@ function Validacao(){
 let servicoSelecionado = $("#servicos").val();
 
 if (servicoSelecionado === "Aereo") {
-    $("#tituloprincipal").text("");  // Deixa o título vazio
+    $("#destino-soaereo").show()
+    let destinoaero = $("#aero-destino").val()
+    $("#destino-soaereo").text(destinoaero);
     $("#valorhospedagem").hide();
     $("#valorhotel").hide()
+
      // Esconde a hospedagem
 } else{
     let dias = $("#dias").val();
     let noites = $("#noites").val();
     let titulo = $("#titulo").val()
-   $("#tituloprincipal").text(`${titulo} (${dias} dias e ${noites} noites)`);
+   $("#destinotit").text(`${titulo} (${dias} dias e ${noites} noites)`);
 }
 
 // Define os campos obrigatórios com uma propriedade 'tipo'
@@ -168,7 +194,7 @@ if (camposVazios.length > 0) {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #container").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -239,7 +265,7 @@ $(document).ready(function () {
         $("#valorhospedagem, #valorvoo").hide();
         $("#organizer, #organizer1").hide();
         $("#separar1, #separar3").hide();
-        $("#aereo-adulto, #aereo-bebe, #aereo-crianca").hide();
+        $("#aereo-adulto, #aereo-bebe, #aereo-crianca, #aero-destino").hide();
 
 
         if (servico === "Hospedagem") {
@@ -247,7 +273,7 @@ $(document).ready(function () {
             $("#voo-inf, #valortransfer, #valorseguro, #servico-transfer, #servico-seguro").hide();
 
         } else if (servico === "Aereo") {
-            $("#servico-aereo, #voo, #organizer1, #aereo-adulto, #aereo-bebe, #aereo-crianca, #voo-inf, #valorvoo").show();
+            $("#servico-aereo, #voo, #organizer1, #aereo-adulto, #aereo-bebe, #aereo-crianca, #voo-inf, #valorvoo, #aero-destino").show();
             $("#hotel-inf, #valortransfer, #valorseguro, #servico-seguro, #servico-transfer ").hide();
 
         } else if (servico === "hospedagem e aereo") {
@@ -308,72 +334,41 @@ $(document).ready(function () {
 
 
 document.getElementById("botao-pdf").addEventListener("click", async function () {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF("p", "mm", "a4");
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF("p", "mm", "a4");
 
-    // Captura do elemento como um único canvas
-    const elemento = document.getElementById("container");
-    const originalCanvas = await html2canvas(elemento, { scale: 1.5 });
+  const elemento = document.getElementById("container");
+  const originalCanvas = await html2canvas(elemento, { scale: 1.5 });
 
-    // Dimensões em mm (A4 retrato)
-    const pdfWidth = 210;
-    const pdfHeight = 297;
+  // Dimensões do PDF em mm
+  const pdfWidth = 210;
+  const pdfHeight = 297;
 
-    // Margem superior, se desejar
-    const marginTop = 10;
-    // Se quiser margem lateral, ajuste também x e a largura do addImage.
+  // Converte o canvas para imagem
+  const imgData = originalCanvas.toDataURL("image/png");
 
-    // Calcula o fator de escala para a largura completa em 210mm
-    const scaleFactor = pdfWidth / originalCanvas.width;
+  // Dimensões originais do canvas
+  const canvasWidth = originalCanvas.width;
+  const canvasHeight = originalCanvas.height;
 
-    // Altura útil na página em mm (descontando a margem superior)
-    const usablePageHeightMm = pdfHeight - marginTop;
+  // Escala baseada na largura total
+  let imgWidth = pdfWidth;
+  let imgHeight = (canvasHeight * pdfWidth) / canvasWidth;
 
-    // Converte essa altura útil de mm para pixels, considerando o mesmo fator de escala
-    const usablePageHeightPx = usablePageHeightMm / scaleFactor;
+  // Se a altura calculada for maior que a página, reduz proporcionalmente
+  if (imgHeight > pdfHeight) {
+    imgHeight = pdfHeight;
+    imgWidth = (canvasWidth * pdfHeight) / canvasHeight;
+  }
 
-    // Função que extrai uma “fatia” (sub-canvas) do canvas original
-    function cropCanvas(sourceCanvas, startPx, endPx) {
-      const newCanvas = document.createElement("canvas");
-      newCanvas.width = sourceCanvas.width;
-      newCanvas.height = endPx - startPx;
+  // Centraliza horizontalmente (se sobrar margem nas laterais)
+  const x = (pdfWidth - imgWidth) / 2;
+  // Centraliza verticalmente (se sobrar margem no topo/rodapé)
+  const y = (pdfHeight - imgHeight) / 2;
 
-      const ctx = newCanvas.getContext("2d");
-      // Desenha a parte do canvas original (startPx -> endPx)
-      ctx.drawImage(sourceCanvas, 0, -startPx);
+  pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
 
-      return newCanvas;
-    }
-
-    let position = 0;
-    let pageCount = 0;
-    const totalHeight = originalCanvas.height;
-
-    // Enquanto ainda houver canvas para “fatiar”
-    while (position < totalHeight) {
-      // Define o tamanho da fatia que cabe na página
-      const sliceHeightPx = Math.min(usablePageHeightPx, totalHeight - position);
-
-      // Cria sub-canvas só com a parte necessária
-      const canvasSlice = cropCanvas(originalCanvas, position, position + sliceHeightPx);
-      const sliceData = canvasSlice.toDataURL("image/png");
-
-      // Calcula a altura que essa fatia terá no PDF (em mm)
-      const sliceHeightMm = sliceHeightPx * scaleFactor;
-
-      // Caso não seja a primeira página, adiciona uma nova
-      if (pageCount > 0) {
-        pdf.addPage();
-      }
-
-      // Adiciona a imagem (fatia) na página, com ou sem margem superior
-      pdf.addImage(sliceData, "PNG", 0, pageCount > 0 ? marginTop : 0, pdfWidth, sliceHeightMm);
-
-      position += sliceHeightPx;
-      pageCount++;
-    }
-
-    pdf.save("orcamento_viagem.pdf");
+  pdf.save("orcamento_viagem.pdf");
 });
 
 
@@ -416,11 +411,9 @@ $("#alterar").click(() => {
     let aeroportoconectida = $("#aero-conect").val().trim();
     let dataconectida = $("#data-conect").val().trim();
     let horaconectida = $("#hora-conect").val().trim();
-    let numeroconectida = $("#number-conect").val().trim();
     let aeroportovolta = $("#aeroporto-conect-volta").val().trim();
     let datavolta = $("#data-aero-conexao-volta").val().trim();
     let horavolta = $("#hora-aero-conexao-volta").val().trim();
-    let numerovolta = $("#number-conect-volta").val().trim();
     let datadesembarqueConect =$("#datadesembarque-conect").val().trim();
     let horadesembarqueConect =$("#horadesembarque-conect").val().trim();
     let dataDesembarqueConectVolta = $("#datadesembarque-conect-volta").val();
@@ -431,6 +424,9 @@ $("#alterar").click(() => {
     let numeroaerocrianca = $("#aereo-crianca").val().trim();
     let valortransfer = $("#valor-transfer").val()
     let valorseguro = $("#valor-seguro").val()
+
+
+
 
 
 
@@ -461,9 +457,7 @@ $("#alterar").click(() => {
 
 
 
-
-
-    hotel.text(nomehotel);
+    hotel.text("Hotel " + nomehotel);
     atualdescri.text(drescriquarto)
     atualaeroporto.text(aeroembaqueida)
     atualclasse.text("Classe: " + classeida)
@@ -481,9 +475,6 @@ $("#alterar").click(() => {
     atualdataida.text("Embarque: " + formatarData(dataembarqueida) + " - " + formatarHora(horaembarqueida));
     atualdatadesembarque.text("Desembarque: " + formatarData(datadesembarqueida) + " - " + formatarHora(horadesembarqueida))
 
-
-
-
     //altera conexão volta
     $("#data-desembarque-conect-volta").text("Desembarque: " + formatarData(dataDesembarqueConectVolta) + " - " + formatarHora(horaDesembarqueConectVolta));
     $("#data-conexao-volta").text("Embarque: "+formatarData(datavolta)+" - "+ formatarHora(horavolta));
@@ -492,14 +483,15 @@ $("#alterar").click(() => {
     atualdataembarquevolta.text("Embarque: " + formatarData(dataembarquevolta)+ " - "+ formatarHora(horaembarquevolta))
     atualdatadesembarquevolta.text("Desembarque: " + formatarData(datadesembarquevolta) + " - "+ formatarHora(horadesembarquevolta))
 
+    atualizarMalas()
 
 
-    if (aeroportoconectida && dataconectida && horaconectida && numeroconectida) {
+
+    if (aeroportoconectida && dataconectida && horaconectida) {
         $("#aviao-conect").show()
         $("#conexao").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aeroporto-conect").text(aeroportoconectida);
 
-        $("#numero-aero-conexao-ida").text("Numero Voo: " + numeroconectida);
         if ($("#data-conect").val() && horaconectida) {
             let dataFormatada = formatarData($("#data-conect").val());
             let horaFormatada = formatarHora(horaconectida);
@@ -509,14 +501,15 @@ $("#alterar").click(() => {
 
     }
 
-    if (aeroportovolta && datavolta && horavolta && numerovolta) {
+
+
+    if (aeroportovolta && datavolta && horavolta) {
         $("#aviao-conect-volta").show()
         $("#conexao-volta").show(); // Mostra a div se pelo menos um campo estiver preenchido
         $("#aero-conect-volta").text(aeroportovolta);
-        $("#numero-aero-conexao-volta").text("Numero Voo: " + numerovolta);
+
 
     }
-
 
 
     if (horadesembarqueConect) {
@@ -533,29 +526,35 @@ $("#alterar").click(() => {
 
 
     if(qtdadultos > 0){
-        $(".adultos").text(qtdadultos + " Adultos")
-    } else if(qtdadultos==="" && numeroaeroadultos >0){
+        $(".adultos").text(    qtdadultos + " Adultos")
+    }else if (numeroaeroadultos>0){
         $(".adultos").text(numeroaeroadultos + " Adultos")
     }
 
 
-    if(numerobebes > 0){
-        $(".atualqtdbebes").text(numerobebes + " Bebes")
-        $(".bebeshotel").text("Bebes: " + numerobebes)
-    } else if(numerobebes === "" && numeroaerobebes>0){
-        $(".atualqtdbebes").text(numeroaerobebes + " Bebes")
-
-    } else{
-        $(".bebeshotel").hide()
-        $(".atualqtdbebes").hide()
+    if (numerobebes && numerobebes > 0) {
+        $(".atualqtdbebes").text(numerobebes + " Bebes");
+        $(".bebeshotel").text("Bebes: " + numerobebes).show();
+    } else if (numeroaerobebes && numeroaerobebes > 0) {
+        $(".atualqtdbebes").text(numeroaerobebes + " Bebes").show();
+        $(".bebeshotel").hide();
+    } else {
+        $(".bebeshotel").hide();
+        $(".atualqtdbebes").hide();
     }
 
-    if(qtdcriancas > 0){
-        $(".atualqtdcriancas").text(qtdcriancas + " Crianças")
-        $(".atualqtdcriancass").text(qtdcriancas)
-    } else if(qtdcriancas === "" && numeroaerocrianca >0){
-        $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças")
+
+    if (qtdcriancas > 0) {
+        $(".atualqtdcriancas").text(qtdcriancas + " Crianças").show();
+        $(".atualqtdcriancass").text("Crianças: " + qtdcriancas).show();
+    } else if (numeroaerocrianca > 0) {
+        $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças").show();
+        $(".atualqtdcriancass").text(numeroaerocrianca).show();
+    } else {
+        $(".atualqtdcriancas").hide();
+        $(".atualqtdcriancass").hide();
     }
+
 
 
     if (checkin) {
