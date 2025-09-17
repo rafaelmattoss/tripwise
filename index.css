@@ -187,6 +187,7 @@
     align-items: center;
     gap: 5px;
     font-size: 12px; /* espaço entre ícone e texto */
+    text-decoration: none;
 
 
   }
