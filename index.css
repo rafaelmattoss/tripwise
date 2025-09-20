@@ -171,24 +171,24 @@
 
 
 
- #info-agencia > ul {
+ #info-agencia > div {
     display: flex;
-    list-style: none; /* remove as bolinhas */
     padding: 0;
     margin: 0;
     gap: 20px; /* espaço entre os itens */
     margin-left: 20px;
     justify-content: space-around;
+    margin-bottom: 10px;
 
   }
 
-  #info-agencia > ul> li {
+  #contatoss div {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 12px; /* espaço entre ícone e texto */
+    font-size: 15px; /* espaço entre ícone e texto */
     text-decoration: none;
-
+    font-family: Arial, Helvetica, sans-serif;
 
   }
 

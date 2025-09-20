@@ -120,7 +120,14 @@ if (servicoSelecionado === "Aereo") {
     $("#valorhotel").hide()
 
      // Esconde a hospedagem
-} else{
+} else if(servicoSelecionado === "somente um trecho aereo"){
+     $("#destino-soaereo").show()
+    let destinoaero = $("#aero-destino").val()
+    $("#destino-soaereo").text(destinoaero);
+    $("#valorhospedagem").hide();
+    $("#valorhotel").hide()
+
+}else{
     let dias = $("#dias").val();
     let noites = $("#noites").val();
     let titulo = $("#titulo").val()
@@ -166,6 +173,11 @@ let camposParaVerificar = camposObrigatorios.filter(campo => {
 
         return false;
     }
+    if (servicoSelecionado === "somente um trecho aereo") {
+    $("#container, #botao-pdf").show();
+    return;
+}
+    return;
     return true;
 });
 
@@ -282,7 +294,11 @@ $(document).ready(function () {
            $("#servico-seguro, #servico-transfer, #valortransfer, #valorseguro").hide();
 
 
-        } else if( servico === "hospedagem, aereo e transfer" ){
+        } else if(servico === "somente um trecho aereo"){
+            $("#servico-aereo, #voo, #organizer1, #aereo-adulto, #aereo-bebe, #aereo-crianca, #voo-inf, #valorvoo, #aero-destino").show();
+            $("#hotel-inf, #valortransfer, #valorseguro, #servico-seguro, #servico-transfer, #voovolta, #datasvolta ").hide();
+
+        }else if( servico === "hospedagem, aereo e transfer" ){
 
             $("#servico-hospedagem, #servico-aereo, #voo, #info-hotel, #voo-inf, #valorhospedagem, #organizer, #hotel-inf, #valorvoo, #inf-transfer, #valortransfer, #servico-transfer").show();
 
