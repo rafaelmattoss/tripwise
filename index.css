@@ -343,23 +343,18 @@
 }
 
 
-.qtdquarto{
-display: flex;
-gap: 20px;
-justify-content: right;
-}
-
-.qtdquarto div{
-font-size: 15px;
-}
-
-
-
-
-
   #categoria1 div {
     width: 300px;
 
+  }
+
+  #info-quarto{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .qtdquarto{
+    margin-right: 50px;
   }
 
 

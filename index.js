@@ -206,7 +206,7 @@ if (camposVazios.length > 0) {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo ").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #container ").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -542,17 +542,17 @@ $("#alterar").click(() => {
 
 
     if(qtdadultos > 0){
-        $(".adultos").text(    qtdadultos + " Adultos")
+        $(".adultos").text(   '0'+qtdadultos+" - "+ "Adultos")
     }else if (numeroaeroadultos>0){
-        $(".adultos").text(numeroaeroadultos + " Adultos")
+        $(".adultos").text('0'+numeroaeroadultos+" - "+ "Adultos")
     }
 
 
     if (numerobebes && numerobebes > 0) {
-        $(".atualqtdbebes").text(numerobebes + " Bebes");
-        $(".bebeshotel").text("Bebes: " + numerobebes).show();
+        $(".atualqtdbebes").text('0'+numerobebes+" - "+ "Bebês");
+        $(".bebeshotel").text('0'+numerobebes+" - "+ "Bebês").show();
     } else if (numeroaerobebes && numeroaerobebes > 0) {
-        $(".atualqtdbebes").text(numeroaerobebes + " Bebes").show();
+        $(".atualqtdbebes").text('0'+numeroaerobebes+" - "+ "Bebês").show();
         $(".bebeshotel").hide();
     } else {
         $(".bebeshotel").hide();
@@ -561,10 +561,10 @@ $("#alterar").click(() => {
 
 
     if (qtdcriancas > 0) {
-        $(".atualqtdcriancas").text(qtdcriancas + " Crianças").show();
-        $(".atualqtdcriancass").text("Crianças: " + qtdcriancas).show();
+        $(".atualqtdcriancas").text('0'+qtdcriancas+" - "+ "crianças").show();
+        $(".atualqtdcriancass").text('0'+qtdcriancas+" - "+ "crianças").show();
     } else if (numeroaerocrianca > 0) {
-        $(".atualqtdcriancas").text(numeroaerocrianca + " Crianças").show();
+        $(".atualqtdcriancas").text('0'+numeroaerocrianca+" - "+ "crianças").show();
         $(".atualqtdcriancass").text(numeroaerocrianca).show();
     } else {
         $(".atualqtdcriancas").hide();
