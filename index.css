@@ -357,6 +357,13 @@
     margin-right: 50px;
   }
 
+  a[href^="mailto"],
+  a[href^="tel"] {
+  text-decoration: none;
+  color: inherit;
+}
+
+
 
   #info-quarto h1{
     font-size: 15px;
