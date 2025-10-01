@@ -72,7 +72,30 @@
     color:rgb(23, 34, 98) ;
   }
 
+  #contato{
+    margin-bottom: 30px;
+  }
 
+  #contatoss{
+    margin-top: 10px;
+    color: #313538;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+  }
+
+  #contatoss  li{
+    margin-top: -30px;
+  }
+
+
+  #observs > li{
+  margin-top: -30px;
+  }
+
+  #observs {
+  margin-top: 30px;
+  }
 
 
   #resumo {
@@ -163,34 +186,13 @@
   font-size: 12px;
 }
 
-  #agencia {
-    font-size: 18px;
-    padding-left: 10px; margin-bottom: 10px;
-  }
 
 
 
 
- #info-agencia > div {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    gap: 20px; /* espaço entre os itens */
-    margin-left: 20px;
-    justify-content: space-around;
-    margin-bottom: 10px;
 
-  }
 
-  #contatoss div {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 15px; /* espaço entre ícone e texto */
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
 
-  }
 
   #resumo-viagem p {
     font-size: 15px;
@@ -354,7 +356,7 @@
   }
 
   .qtdquarto{
-    margin-right: 50px;
+    margin-right: 175px;
   }
 
   a[href^="mailto"],
@@ -471,7 +473,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: linear-gradient(to right, rgb(17, 26, 82) 80%, transparent 100%);
+    background-color: #001e3b;
     margin-bottom: 10px;
 
 
@@ -822,6 +824,8 @@ label {
 #proximo{
   display: none;
 }
+
+
 
 
 
