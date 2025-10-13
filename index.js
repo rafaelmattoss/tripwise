@@ -561,8 +561,8 @@ $("#alterar").click(() => {
 
 
     if (qtdcriancas > 0) {
-        $(".atualqtdcriancas").text('0'+qtdcriancas+" - "+ "crianças").show();
-        $(".atualqtdcriancass").text('0'+qtdcriancas+" - "+ "crianças").show();
+        $(".atualqtdcriancas").text('0'+qtdcriancas+" - "+ "Crianças").show();
+        $(".atualqtdcriancass").text('0'+qtdcriancas+" - "+ "Crianças").show();
     } else if (numeroaerocrianca > 0) {
         $(".atualqtdcriancas").text('0'+numeroaerocrianca+" - "+ "crianças").show();
         $(".atualqtdcriancass").text(numeroaerocrianca).show();
