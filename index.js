@@ -564,7 +564,7 @@ $("#alterar").click(() => {
         $(".atualqtdcriancas").text('0'+qtdcriancas+" - "+ "Crianças").show();
         $(".atualqtdcriancass").text('0'+qtdcriancas+" - "+ "Crianças").show();
     } else if (numeroaerocrianca > 0) {
-        $(".atualqtdcriancas").text('0'+numeroaerocrianca+" - "+ "crianças").show();
+        $(".atualqtdcriancas").text('0'+numeroaerocrianca+" - "+ "Crianças").show();
         $(".atualqtdcriancass").text(numeroaerocrianca).show();
     } else {
         $(".atualqtdcriancas").hide();
