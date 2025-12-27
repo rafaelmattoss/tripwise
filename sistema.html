@@ -62,6 +62,25 @@
           <option value="hospedagem, aereo, transfer e seguro viagem">Pacote Completo</option>
         </select>
 
+        <label>Adicionais</label>
+        <ul id="adicionais">
+          <li>
+            <label>
+              <input type="checkbox" id="ingressos" value="ingressos">
+
+              <span>Ingressos</span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" id="alug-carro" value=" Aluguel de veiculo">
+              <span>Aluguel de Veículo</span>
+            </label>
+          </li>
+        </ul>
+
+
+
       <h3> Informações sobre o Destino</h3> <br>
 
       <label for="titulo">Digite o Destino</label>
@@ -359,7 +378,26 @@
           <input type="hidden" id="valorseguro_real">
         </div>
 
+        <div id="inf-alugcar">
+          <label for="">Digite o valor do Aluguel do Veículo</label>
+          <input type="text" id="valor-alugcar" placeholder="R$ 0,00">
+          <input type="hidden" id="valorcar_real">
+        </div>
 
+        <div id="inf-ingresso">
+          <label for="">Digite o valor do Ingresso</label>
+          <input type="text" id="valor-ingres" placeholder="R$ 0,00">
+          <input type="hidden" id="valoringres_real">
+        </div>
+
+          <p>desconto no pix?</p>
+          <input type="checkbox" name="" id="descontopix" >
+
+        <div id="inf-detalhe">
+          <label> Detalhes do orçamento</label>
+          <input type="text" name="detalhes" id="detalhes">
+          <button id="adddetalhe">adicionar detalhe</button>
+        </div>
 
       </div>
 
@@ -383,6 +421,7 @@
     <div id="imagemlogo"></div>
 
   <div id="inclusos">
+
       <h2 class="tit">Resumo da Viagem</h2>
 
 
@@ -399,6 +438,15 @@
         <li id="servico-seguro">
           <span class="material-symbols-outlined">health_and_safety</span> Seguro Viagem
         </li>
+
+        <li id="servico-alug">
+          <span class="material-symbols-outlined">directions_car</span> Aluguel de Veículo
+        </li>
+
+        <li id="servico-ingresso">
+          <span class="material-symbols-outlined">confirmation_number</span> Ingresso
+        </li>
+
       </ul>
 </div>
 
@@ -605,6 +653,18 @@
             <div>Traslado: </div>
             <div id="atualvalortransfer"></div>
           </div>
+
+          <div class="organizarvalores" id="valoralug">
+            <div>Aluguel do Veiculo:</div>
+            <div id="atualvaloralug"></div>
+          </div>
+
+          <div class="organizarvalores" id="valoring">
+            <div>ingresso</div>
+            <div id="atualvaloringre"></div>
+
+          </div>
+
           <div class="organizarvalores">
             <div>TOTAL:</div>
             <div id="atualtotal"></div>
@@ -630,7 +690,7 @@
     <h2>Formas de Pagamentos</h2>
     <ul>
       <li>Cartão de Crédito: em 10x sem juros</li>
-      <li>PIX - 7% de desconto</li>
+      <li id="desconto">PIX</li>
     </ul>
 
 
@@ -644,6 +704,14 @@
 
 
     </ul>
+
+    <div id="totdetalhes">
+      <h2>Detalhes do orçamento</h2>
+      <ul id="datails">
+      </ul>
+    </div>
+
+    <br>
 
     <h2 id="contato">Contato</h2>
         <div id="contatoss">

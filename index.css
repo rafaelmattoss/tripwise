@@ -55,6 +55,35 @@
     margin: auto;
   }
 
+#adicionais {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#adicionais li label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+}
+
+#adicionais input[type="checkbox"] {
+  margin-top: -1px;
+}
+
+#adicionais span {
+  font-weight: 600;
+  line-height: 1;
+}
+
+#inf-detalhe{
+  border: 1px solid black;
+  padding: 5px;
+}
+
+
+
 
   #tituloprincipal {
     padding: 5px;
@@ -169,6 +198,7 @@
     margin-left: 20px;
     margin-bottom: 50px;
     justify-content: space-around;
+    flex-wrap: wrap;
   }
 
  #inclusos > ul > li {
@@ -796,6 +826,15 @@ label {
     background-color: #fff;
     border-color: #ff9900;
 }
+
+input[type="checkbox"] {
+  padding: 0;
+  border: none;
+  background: none;
+  width: auto;
+  height: auto;
+}
+
 
 @media (max-width: 768px) {
    #orcar {

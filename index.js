@@ -20,6 +20,9 @@ function irParaClientes(){
 
 }
 
+
+
+
 function formatarHora(horaStr) {
     if (!horaStr) return "";
     const [hora, minutos] = horaStr.split(":");
@@ -97,9 +100,10 @@ function atualizarTotal() {
     let valorVoo        = parseFloat($("#valorvoo_real").val())     || 0;
     let valorseguro     = parseFloat($("#valorseguro_real").val())  || 0; // CORRETO
     let valortransfer   = parseFloat($("#valortransfer_real").val())|| 0; // CORRETO
+    let valoralug       = parseFloat($("#valorcar_real").val()) || 0
+    let valoringres     = parseFloat($("#valoringres_real").val()) || 0
 
-
-    let total = valorHospedagem + valorVoo + valorseguro + valortransfer;
+    let total = valorHospedagem + valorVoo + valorseguro + valortransfer + valoralug + valoringres;
 
     $("#atualtotal").text(
       total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -134,79 +138,88 @@ if (servicoSelecionado === "Aereo") {
    $("#destinotit").text(`${titulo} (${dias} dias e ${noites} noites)`);
 }
 
-// Define os campos obrigatórios com uma propriedade 'tipo'
-let camposObrigatorios = [
-    {id:"titulo", nome: "Destino", tipo: "hotel"},
-    {id:"hotel", nome:"Nome do Hotel", tipo: "hotel"},
-    {id:"qtdadultos", nome: "Quantidade de Adultos", tipo: "hotel"},
-    {id:"checkin", nome: "Data Checkin", tipo: "hotel"},
-    {id:"checkout", nome: "Data Checkout", tipo: "hotel"},
-    {id:"aeroporto", nome: "Aeroporto (ida)", tipo: "voo"},
-    {id:"dataembarque", nome: "Data de Embarque (ida)", tipo: "voo"},
-    {id:"horaembarque", nome: "Hora de Embarque (ida)", tipo: "voo"},
-    {id:"classe", nome: "Classe (ida)", tipo: "voo"},
-    {id:"aeroporto-desembarque", nome: "Aeroporto Desembarque (ida)", tipo: "voo"},
-    {id:"datadesembarque", nome: "Data de Desembarque (ida)", tipo: "voo"},
-    {id:"horadesembarque", nome: "Hora de Desembarque (ida)", tipo: "voo"},
-    {id:"aeroporto-embarque-volta", nome: "Aeroporto de Embarque (Volta)", tipo: "voo"},
-    {id:"dataembarque-volta", nome: "Data de Embarque (Volta)", tipo: "voo"},
-    {id:"horaembarque-volta", nome: "Hora de Embarque (Volta)", tipo: "voo"},
-    {id:"classe-volta", nome: "Classe (Volta)", tipo: "voo"},
-    {id:"ciaaereavolta", nome: "Companhia Aérea (Volta)", tipo: "voo"},
-    {id:"aeroporto-desembarque-volta", nome: "Aeroporto de Desembarque (Volta)", tipo: "voo"},
-    {id:"datadesembarque-volta", nome: "Data de Desembarque (Volta)", tipo: "voo"},
-    {id:"horadesembarque-volta", nome: "Hora de Desembarque (Volta)", tipo: "voo"},
-    {id: "valorhotel", nome: "Valor Hospedagem", tipo: "hotel"},
-    {id: "valorvoo", nome: "Valor Aereo", tipo: "voo"},
-];
 
-// Cria um array para armazenar os campos vazios
-let camposVazios = [];
 
-// Filtra os campos obrigatórios conforme a opção selecionada
-// Se for apenas "Hospedagem", não valida os campos do tipo "voo"
-// Se for apenas "Aereo", não valida os campos do tipo "hotel"
-let camposParaVerificar = camposObrigatorios.filter(campo => {
-    if (servicoSelecionado === "Hospedagem" && campo.tipo === "voo") {
-        return false;
-    } else if (servicoSelecionado === "Aereo" && campo.tipo === "hotel") {
+ let camposObrigatorios = [
+        { id: "titulo", nome: "Destino", tipo: "hotel" },
+        { id: "hotel", nome: "Nome do Hotel", tipo: "hotel" },
+        { id: "qtdadultos", nome: "Quantidade de Adultos", tipo: "hotel" },
+        { id: "checkin", nome: "Data Check-in", tipo: "hotel" },
+        { id: "checkout", nome: "Data Check-out", tipo: "hotel" },
 
+        { id: "aeroporto", nome: "Aeroporto (ida)", tipo: "voo" },
+        { id: "dataembarque", nome: "Data de Embarque (ida)", tipo: "voo" },
+        { id: "horaembarque", nome: "Hora de Embarque (ida)", tipo: "voo" },
+        { id: "classe", nome: "Classe (ida)", tipo: "voo" },
+        { id: "aeroporto-desembarque", nome: "Aeroporto Desembarque (ida)", tipo: "voo" },
+        { id: "datadesembarque", nome: "Data de Desembarque (ida)", tipo: "voo" },
+        { id: "horadesembarque", nome: "Hora de Desembarque (ida)", tipo: "voo" },
+
+        { id: "aeroporto-embarque-volta", nome: "Aeroporto de Embarque (volta)", tipo: "voo" },
+        { id: "dataembarque-volta", nome: "Data de Embarque (volta)", tipo: "voo" },
+        { id: "horaembarque-volta", nome: "Hora de Embarque (volta)", tipo: "voo" },
+        { id: "classe-volta", nome: "Classe (volta)", tipo: "voo" },
+        { id: "ciaaereavolta", nome: "Companhia Aérea (volta)", tipo: "voo" },
+        { id: "aeroporto-desembarque-volta", nome: "Aeroporto de Desembarque (volta)", tipo: "voo" },
+        { id: "datadesembarque-volta", nome: "Data de Desembarque (volta)", tipo: "voo" },
+        { id: "horadesembarque-volta", nome: "Hora de Desembarque (volta)", tipo: "voo" },
+
+        { id: "valorhotel", nome: "Valor da Hospedagem", tipo: "hotel" },
+        { id: "valorvoo", nome: "Valor do Aéreo", tipo: "voo" },
+    ];
+
+    let camposVazios = [];
+
+    // Filtra os campos conforme o serviço selecionado
+    let camposParaVerificar = camposObrigatorios.filter(campo => {
+
+        if (servicoSelecionado === "Hospedagem" && campo.tipo === "voo") {
+            return false;
+        }
+
+        if (servicoSelecionado === "Aereo" && campo.tipo === "hotel") {
+            return false;
+        }
+
+        if (servicoSelecionado === "somente um trecho aereo" && campo.tipo === "hotel") {
+            return false;
+        }
+
+        return true;
+    });
+
+    // Validação dos campos
+    camposParaVerificar.forEach(campo => {
+        let valor = $("#" + campo.id).val()?.trim();
+
+        if (!valor) {
+            camposVazios.push(campo.nome);
+            $("#" + campo.id).css("border", "2px solid red");
+        } else {
+            $("#" + campo.id).css("border", "");
+        }
+    });
+
+    // Resultado final
+    if (camposVazios.length > 0) {
+        alert(
+            "Preencha os seguintes campos obrigatórios:\n\n" +
+            camposVazios.join("\n")
+        );
         return false;
     }
-    if (servicoSelecionado === "somente um trecho aereo") {
+
     $("#container, #botao-pdf").show();
-    return;
-}
-    return;
     return true;
-});
-
-// Verifica os campos filtrados
-camposParaVerificar.forEach(campo => {
-    let valor = $("#" + campo.id).val().trim();
-    if (!valor) {
-        camposVazios.push(campo.nome);
-        $("#" + campo.id).css("border", "2px solid red"); // Destaca o campo
-    } else {
-        $("#" + campo.id).css("border", ""); // Remove o destaque se preenchido
-    }
-});
-
-// Se houver campos vazios, exibe alerta e interrompe a execução
-if (camposVazios.length > 0) {
-    alert("Preencha os seguintes campos obrigatórios:\n\n" + camposVazios.join("\n"));
-
-    return;
-} else{
-    $("#container, #botao-pdf").show()
-}
-
-
 }
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #container ").hide();
+
+
+
+
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #inf-ingresso, #inf-alugcar, #totdetalhes, #container ").hide();
 
 
 $("#vizuorcar").click(()=>{
@@ -269,6 +282,16 @@ $(document).ready(function () {
         formatarMoeda(this, document.getElementById("valortransfer_real"));
     });
 
+     $("#valor-alugcar").on("input", function () {
+        formatarMoeda(this, document.getElementById("valorcar_real"));
+    });
+
+    $("#valor-ingres").on("input", function () {
+        formatarMoeda(this, document.getElementById("valoringres_real"));
+    });
+
+
+
     $("#servicos").change(function () {
         let servico = $(this).val();
 
@@ -278,6 +301,7 @@ $(document).ready(function () {
         $("#organizer, #organizer1").hide();
         $("#separar1, #separar3").hide();
         $("#aereo-adulto, #aereo-bebe, #aereo-crianca, #aero-destino").hide();
+
 
 
         if (servico === "Hospedagem") {
@@ -305,9 +329,8 @@ $(document).ready(function () {
             $("#valorseguro, #servico-seguro").hide()
 
         }else if(servico === "hospedagem, aereo, transfer e seguro viagem" ){
-            $("#inf-seguro, #voo-inf, #hotel-inf, #inf-transfer, #valorvoo, #valorseguro, #servico-seguro, #servico-transfer, #servico-aereo, #servico-hospedagem, #organizer, #valorhospedagem").show()
+            $("#inf-seguro, #voo-inf, #hotel-inf, #inf-transfer, #valorvoo, #valorseguro, #servico-seguro, #servico-transfer, #servico-aereo, #servico-hospedagem, #organizer, #valorhospedagem, #info-hotel, #voo").show()
         }
-
 
     });
 
@@ -386,6 +409,59 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
   pdf.save("orcamento_viagem.pdf");
 });
+
+
+
+    function atualizarAdicionais() {
+
+         if ($("#descontopix").is(":checked")) {
+            $("#desconto").text("PIX - 7% de Desconto");
+        } else {
+            $("#desconto").text("PIX");
+        }
+
+        if ($("#ingressos").is(":checked")) {
+            $("#servico-ingresso, #valoring, #inf-ingresso").show();
+        } else {
+            $("#servico-ingresso, #valoring, #inf-ingresso").hide();
+        }
+
+        if ($("#alug-carro").is(":checked")) {
+            $("#servico-alug, #valoralug, #inf-alugcar").show();
+        } else {
+            $("#servico-alug, #valoralug, #inf-alugcar").hide();
+        }
+
+        }
+
+        $("#servico-alug, #servico-ingresso").hide()
+
+        $("#ingressos, #alug-carro, #descontopix").on("change", function () {
+            atualizarAdicionais();
+        });
+
+
+        $("#adddetalhe").on("click", function () {
+
+            let detalhe = $("#detalhes").val().trim();
+
+            // evita adicionar item vazio
+            if (detalhe === "") {
+                return;
+            }else{
+                $("#totdetalhes").show()
+            }
+
+
+
+            // cria a li e adiciona na ul
+            $("#datails").append(`<li>${detalhe}</li>`);
+
+            // limpa o campo depois de adicionar
+            $("#detalhes").val("");
+        });
+
+
 
 
 
@@ -473,6 +549,7 @@ $("#alterar").click(() => {
 
 
 
+
     hotel.text("Hotel " + nomehotel);
     atualdescri.text(drescriquarto)
     atualaeroporto.text(aeroembaqueida)
@@ -490,6 +567,8 @@ $("#alterar").click(() => {
     atualseguro.text(valorseguro)
     atualdataida.text("Embarque: " + formatarData(dataembarqueida) + " - " + formatarHora(horaembarqueida));
     atualdatadesembarque.text("Desembarque: " + formatarData(datadesembarqueida) + " - " + formatarHora(horadesembarqueida))
+    $("#atualvaloralug").text($("#valor-alugcar").val())
+    $("#atualvaloringre").text($("#valor-ingres").val())
 
     //altera conexão volta
     $("#data-desembarque-conect-volta").text("Desembarque: " + formatarData(dataDesembarqueConectVolta) + " - " + formatarHora(horaDesembarqueConectVolta));
@@ -516,6 +595,16 @@ $("#alterar").click(() => {
 
 
     }
+
+
+    function toggleServico(checkboxId, servicoId) {
+    $(document).on("change", checkboxId, function () {
+        $(servicoId).toggle(this.checked);
+    });
+    }
+
+    toggleServico("#ingressos", "#servico-ingresso");
+    toggleServico("#alug-carro", "#servico-alug");
 
 
 
