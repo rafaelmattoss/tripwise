@@ -1,3 +1,5 @@
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #inf-ingresso, #inf-alugcar, #totdetalhes, #valoralug, #valoring, #container ").hide();
+
 function formatarData(dataStr) {
     if (!dataStr) return "";
     let data = new Date(dataStr + "T12:00:00"); // Força meio-dia para evitar problemas de fuso horário
@@ -19,6 +21,35 @@ function irParaClientes(){
       }
 
 }
+
+function atualizarAdicionais() {
+
+         if ($("#descontopix").is(":checked")) {
+            $("#desconto").text("PIX - 7% de Desconto");
+        } else {
+            $("#desconto").text("PIX");
+        }
+
+        if ($("#ingressos").is(":checked")) {
+            $("#servico-ingresso, #valoring, #inf-ingresso").show();
+        } else {
+            $("#servico-ingresso, #valoring, #inf-ingresso").hide();
+        }
+
+        if ($("#alug-carro").is(":checked")) {
+            $("#servico-alug, #valoralug, #inf-alugcar").show();
+        } else {
+            $("#servico-alug, #valoralug, #inf-alugcar").hide();
+        }
+
+        }
+
+        $("#servico-alug, #servico-ingresso").hide()
+
+        $("#ingressos, #alug-carro, #descontopix").on("change", function () {
+            atualizarAdicionais();
+        });
+
 
 
 
@@ -219,9 +250,6 @@ if (servicoSelecionado === "Aereo") {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #inf-ingresso, #inf-alugcar, #totdetalhes, #valoralug, #valoring, container ").hide();
-
-
 $("#vizuorcar").click(()=>{
     $("#orcar").fadeToggle();
 });
@@ -412,33 +440,6 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 
 
-    function atualizarAdicionais() {
-
-         if ($("#descontopix").is(":checked")) {
-            $("#desconto").text("PIX - 7% de Desconto");
-        } else {
-            $("#desconto").text("PIX");
-        }
-
-        if ($("#ingressos").is(":checked")) {
-            $("#servico-ingresso, #valoring, #inf-ingresso").show();
-        } else {
-            $("#servico-ingresso, #valoring, #inf-ingresso").hide();
-        }
-
-        if ($("#alug-carro").is(":checked")) {
-            $("#servico-alug, #valoralug, #inf-alugcar").show();
-        } else {
-            $("#servico-alug, #valoralug, #inf-alugcar").hide();
-        }
-
-        }
-
-        $("#servico-alug, #servico-ingresso").hide()
-
-        $("#ingressos, #alug-carro, #descontopix").on("change", function () {
-            atualizarAdicionais();
-        });
 
 
         $("#adddetalhe").on("click", function () {
@@ -597,14 +598,6 @@ $("#alterar").click(() => {
     }
 
 
-    function toggleServico(checkboxId, servicoId) {
-    $(document).on("change", checkboxId, function () {
-        $(servicoId).toggle(this.checked);
-    });
-    }
-
-    toggleServico("#ingressos", "#servico-ingresso");
-    toggleServico("#alug-carro", "#servico-alug");
 
 
 
@@ -718,6 +711,8 @@ $("#proximocel3").off("click").on("click", () => {
         show: ["#valoresfinais", "#proximocel4"],
         hide: ["#destino", "#proximocel3", "#dadopassageiros", "#dadoshospedagem", "#info-voo-ida, #organizer1", "#proximocel"]
     });
+
+    atualizarAdicionais();
 });
 
 }
