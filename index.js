@@ -707,6 +707,7 @@ function setupMobileView() {
         show: ["#organizer1", "#info-voo-ida", "#proximocel3"],
         hide: ["#destino", "#proximocel2", "#dadopassageiros", "#dadoshospedagem", "#proximocel"]
     });
+    atualizarAdicionais();
 });
 
 $("#proximocel3").off("click").on("click", () => {
