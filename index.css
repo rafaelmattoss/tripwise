@@ -860,6 +860,7 @@ input[type="checkbox"] {
 #valoresfinais {
     height: auto !important;
     overflow: visible !important;
+    width: 80px;
 }
 
 #valoresfinais > div {

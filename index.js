@@ -22,13 +22,15 @@ function irParaClientes(){
 
 }
 
-function atualizarAdicionais() {
-
-         if ($("#descontopix").is(":checked")) {
+function descontoPix(){
+    if ($("#descontopix").is(":checked")) {
             $("#desconto").text("PIX - 7% de Desconto");
         } else {
             $("#desconto").text("PIX");
         }
+}
+
+function atualizarAdicionais() {
 
         if ($("#ingressos").is(":checked")) {
             $("#servico-ingresso, #valoring, #inf-ingresso").show();
@@ -470,6 +472,7 @@ document.getElementById("botao-pdf").addEventListener("click", async function ()
 
 $("#alterar").click(() => {
 
+    descontoPix()
     Validacao()
     $("#atual-regime").text("Regime: " +$("#modalidade-pensao").val())
     let nomehotel = $("#hotel").val();
