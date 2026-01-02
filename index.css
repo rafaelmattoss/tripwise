@@ -842,12 +842,14 @@ input[type="checkbox"] {
     height: 80px; /* Altura fixa da barra */
 
 }
+
 #container {
     width: 800px;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
   }
+
 #organizer1{
   display: block;
   width: 80%;
@@ -855,9 +857,16 @@ input[type="checkbox"] {
 
 }
 
-#valoresfinais{
-  width: 80%;
+#valoresfinais {
+    height: auto !important;
+    overflow: visible !important;
 }
+
+#valoresfinais > div {
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 #proximo{

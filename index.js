@@ -219,7 +219,7 @@ if (servicoSelecionado === "Aereo") {
 
 
 
-$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #inf-ingresso, #inf-alugcar, #totdetalhes, #container ").hide();
+$("#organizer, #organizer1, #dados-conect, #dados-conect-volta, #orcar, #valoresfinais, #aereo-adulto, #aereo-bebe, #aereo-crianca, #conexao,#conexao-volta, #aviao-conect-volta, #aviao-conect,#botao-pdf, #inf-transfer, #inf-seguro, #proximo1, #proximocel1, #proximocel2, #proximocel,#proximocel3,#proximocel4, #camposenha, #aero-destino, #destino-soaereo, #inf-ingresso, #inf-alugcar, #totdetalhes, #valoralug, #valoring, container ").hide();
 
 
 $("#vizuorcar").click(()=>{
